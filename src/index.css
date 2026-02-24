@@ -1,0 +1,55 @@
+@import "tailwindcss";
+<<<<<<< HEAD
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+
+@theme {
+  --color-toiral-primary: #149499;
+  --color-toiral-dark: #16384b;
+  --color-toiral-secondary: #67a8a9;
+  --color-toiral-light: #bbdad9;
+  --color-toiral-bg: #e4f0ef;
+  --color-toiral-bg-light: #f2fbfa;
+
+  --font-outfit: "Outfit", sans-serif;
+}
+
+body {
+  font-family: var(--font-outfit);
+  background-color: var(--color-toiral-bg);
+  color: var(--color-toiral-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Your custom scrollbar - keep if needed */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-toiral-light);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-toiral-secondary);
+}
+
+/* Paper textures - keep only if used */
+.bg-paper-texture {
+  background-color: #f9f7f2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+=======
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+>>>>>>> dcb14d45f3aece23ac343a4192c29ef0338a58f7
+}
