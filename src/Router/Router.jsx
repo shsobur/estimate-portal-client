@@ -2,16 +2,17 @@
 import { createBrowserRouter } from "react-router-dom";
 
 // File path__
-import MainLayout from "../Layout/MainLayout/MainLayout";
-import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
-import HomePage from "../Layout/MainLayout/Pages/HomePage/HomePage";
-import ClientLogin from "../Layout/MainLayout/Pages/ClientLogin/ClientLogin";
+import HomePage from "../Layout/ClientDashboard/Pages/HomePage/HomePage";
+import ClientLogin from "../Layout/ClientDashboard/Pages/ClientLogin/ClientLogin";
+import ClientDashboard from "../Layout/ClientDashboard/ClientDashboard";
+import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
+import AdminLogin from "../Layout/AdminDashboard/Page/AdminLogin/AdminLogin";
 
 const router = createBrowserRouter([
   {
     path: "/",
     errorElement: "",
-    element: <MainLayout></MainLayout>,
+    element: <ClientDashboard></ClientDashboard>,
     children: [
       {
         path: "/",
@@ -26,10 +27,11 @@ const router = createBrowserRouter([
   {
     path: "/Dashboard",
     errorElement: "",
-    element: <DashboardLayout></DashboardLayout>,
+    element: <AdminDashboard></AdminDashboard>,
     children: [
       {
-        // Dashboard components hear__
+        path: "/Dashboard/AdminLogin",
+        element: <AdminLogin></AdminLogin>,
       },
     ],
   },

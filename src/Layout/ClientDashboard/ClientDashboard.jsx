@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../../ShearComponents/Footer/Footer";
 import Navbar from "../../ShearComponents/Navbar/Navbar";
 
-const MainLayout = () => {
+const ClientDashboard = () => {
   return (
     <>
       <div>
@@ -14,4 +14,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout;
+export default ClientDashboard;

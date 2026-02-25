@@ -1,20 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Sparkles, Mail, Monitor, PartyPopper, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ClientLogin = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [accessCode, setAccessCode] = useState("");
+  const navigate = useNavigate(); 
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/client/dashboard");
-    }, 1200);
+  const handleSwitchToAdminLogin = () => {
+    navigate("/Dashboard/AdminLogin");
   };
 
   return (
@@ -119,13 +110,11 @@ const ClientLogin = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleLogin} className="space-y-8">
+              <form className="space-y-8">
                 <div>
                   <input
                     type="text"
                     placeholder="PRJ-2024-XYZ"
-                    value={accessCode}
-                    onChange={(e) => setAccessCode(e.target.value)}
                     className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-6 py-5 text-center text-lg tracking-widest font-mono focus:outline-none focus:border-toiral-primary"
                   />
                   <p className="text-xs text-gray-500 text-center mt-3">
@@ -135,18 +124,16 @@ const ClientLogin = () => {
 
                 <button
                   type="submit"
-                  disabled={loading}
                   className="w-full bg-toiral-primary hover:bg-toiral-primary/90 text-white font-semibold py-5 rounded-2xl flex items-center justify-center gap-3 text-lg transition-all disabled:opacity-70"
                 >
-                  {loading ? "Checking..." : "View My Project"}
-                  {!loading && <ArrowRight className="w-6 h-6" />}
+                   View My Project
+                  <ArrowRight className="w-6 h-6" />
                 </button>
               </form>
 
               <p className="text-center mt-8 text-sm text-gray-500">
-                Can't find your code?{" "}
-                <button className="text-toiral-primary font-medium hover:underline">
-                  Contact support
+                <button onClick={handleSwitchToAdminLogin} className="text-toiral-primary font-medium hover:underline">
+                  Switch to Admin Login
                 </button>
               </p>
             </div>
