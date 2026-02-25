@@ -5,12 +5,12 @@ const ClientLogin = () => {
   const navigate = useNavigate(); 
 
   const handleSwitchToAdminLogin = () => {
-    navigate("/Dashboard/AdminLogin");
+    navigate("/Admin-login");
   };
 
   return (
     <div className="min-h-screen bg-toiral-bg flex items-center justify-center overflow-hidden">
-      <div className="max-w-[1536px] mx-auto w-full px-2.5 md:px-5 py-8 lg:py-12">
+      <div className="max-w-384 mx-auto w-full px-2.5 md:px-5 py-8 lg:py-12">
 
         <div className="flex flex-col lg:flex-row justify-around items-center gap-10 lg:gap-16">
 

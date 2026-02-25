@@ -21,7 +21,7 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen bg-toiral-bg flex items-center justify-center overflow-hidden">
-      <div className="max-w-[1536px] mx-auto w-full px-2.5 md:px-5 py-8 lg:py-12">
+      <div className="max-w-384 mx-auto w-full px-2.5 md:px-5 py-8 lg:py-12">
         <div className="flex flex-col lg:flex-row justify-around items-center gap-10 lg:gap-16">
 
           {/* ==================== LEFT SIDE - JOURNEY ==================== */}
@@ -48,11 +48,11 @@ const AdminLogin = () => {
             </p>
 
             <div className="mt-12 relative pl-4">
-              <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-toiral-primary/30 to-transparent" />
+              <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-linear-to-b from-toiral-primary/30 to-transparent" />
 
               <div className="space-y-14">
                 <div className="flex gap-6 items-start">
-                  <div className="w-14 h-14 bg-toiral-light rounded-3xl flex items-center justify-center flex-shrink-0 shadow-sm border border-toiral-primary/20">
+                  <div className="w-14 h-14 bg-toiral-light rounded-3xl flex items-center justify-center shrink-0 shadow-sm border border-toiral-primary/20">
                     <Mail className="w-7 h-7 text-toiral-primary" />
                   </div>
                   <div>
@@ -66,7 +66,7 @@ const AdminLogin = () => {
                 </div>
 
                 <div className="flex gap-6 items-start">
-                  <div className="w-14 h-14 bg-orange-100 rounded-3xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <div className="w-14 h-14 bg-orange-100 rounded-3xl flex items-center justify-center shrink-0 shadow-sm">
                     <Monitor className="w-7 h-7 text-orange-600" />
                   </div>
                   <div>
@@ -80,7 +80,7 @@ const AdminLogin = () => {
                 </div>
 
                 <div className="flex gap-6 items-start">
-                  <div className="w-14 h-14 bg-amber-100 rounded-3xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <div className="w-14 h-14 bg-amber-100 rounded-3xl flex items-center justify-center shrink-0 shadow-sm">
                     <PartyPopper className="w-7 h-7 text-amber-600" />
                   </div>
                   <div>

@@ -7,31 +7,44 @@ import ClientLogin from "../Layout/ClientDashboard/Pages/ClientLogin/ClientLogin
 import ClientDashboard from "../Layout/ClientDashboard/ClientDashboard";
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import AdminLogin from "../Layout/AdminDashboard/Page/AdminLogin/AdminLogin";
+import AdminOverview from "../Layout/AdminDashboard/Page/AdminOverview/AdminOverview";
+import MainLayout from "../Layout/MainLayout/MainLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
     errorElement: "",
-    element: <ClientDashboard></ClientDashboard>,
+    element: <MainLayout></MainLayout>,
     children: [
       {
         path: "/",
-        element: <ClientLogin></ClientLogin>
+        element: <ClientLogin></ClientLogin>,
       },
       {
-        path: "/",
+        path: "/Admin-login",
+        element: <AdminLogin></AdminLogin>,
+      },
+    ],
+  },
+  {
+    path: "/ClientDashboard",
+    errorElement: "",
+    element: <ClientDashboard></ClientDashboard>,
+    children: [
+      {
+        path: "/ClientDashboard/Client-Home",
         element: <HomePage></HomePage>,
       },
     ],
   },
   {
-    path: "/Dashboard",
+    path: "/AdminDashboard",
     errorElement: "",
     element: <AdminDashboard></AdminDashboard>,
     children: [
       {
-        path: "/Dashboard/AdminLogin",
-        element: <AdminLogin></AdminLogin>,
+        path: "/AdminDashboard/Admin-Overview",
+        element: <AdminOverview></AdminOverview>,
       },
     ],
   },
