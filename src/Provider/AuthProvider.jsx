@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const [userLoading, setUserLoading] = useState(true);
 
   const googleProvider = new GoogleAuthProvider();
-  // console.log(user);
+  console.log(user);
 
   // Sign in use with google__
   const handleGoogleSignIn = async () => {

@@ -7,12 +7,21 @@ import {
   ArrowRight,
   Shield,
 } from "lucide-react";
+import { useContext } from "react";
+import { AuthContext } from "../../../../Context/AuthContext";
 
 const AdminLogin = () => {
+  const { handleGoogleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleGoogleLogin = () => {
-    // Implement Google OAuth login flow here__
+    handleGoogleSignIn()
+      .then(() => {
+        navigate("/dashboard/admin/overview");
+      })
+      .catch((error) => {
+        console.error("Google Sign-In Error:", error);
+      });
   };
 
   const handleSwitchToClient = () => {
@@ -23,7 +32,6 @@ const AdminLogin = () => {
     <div className="min-h-screen bg-toiral-bg flex items-center justify-center overflow-hidden">
       <div className="max-w-384 mx-auto w-full px-2.5 md:px-5 py-8 lg:py-12">
         <div className="flex flex-col lg:flex-row justify-around items-center gap-10 lg:gap-16">
-
           {/* ==================== LEFT SIDE - JOURNEY ==================== */}
           <div className="flex-1 w-full max-w-2xl mx-auto lg:mx-0 lg:pl-8">
             <div className="inline-flex items-center gap-2 px-5 py-2 bg-white rounded-full shadow-sm mb-6">

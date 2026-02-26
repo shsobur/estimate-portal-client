@@ -1,50 +1,47 @@
-// Packages__
 import { createBrowserRouter } from "react-router-dom";
 
-// File path__
-import HomePage from "../Layout/ClientDashboard/Pages/HomePage/HomePage";
-import ClientLogin from "../Layout/ClientDashboard/Pages/ClientLogin/ClientLogin";
-import ClientDashboard from "../Layout/ClientDashboard/ClientDashboard";
-import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
-import AdminLogin from "../Layout/AdminDashboard/Page/AdminLogin/AdminLogin";
-import AdminOverview from "../Layout/AdminDashboard/Page/AdminOverview/AdminOverview";
+import ClientLogin from "../Layout/MainLayout/Pages/ClientLogin/ClientLogin";
+import AdminLogin from "../Layout/MainLayout/Pages/AdminLogin/AdminLogin";
+
 import MainLayout from "../Layout/MainLayout/MainLayout";
+import Dashboard from "../Layout/Dashboard/Dashboard";
+import ClientOverview from "../Layout/Dashboard/ClientPages/ClientOverview/ClientOverview";
+import AdminOverview from "../Layout/Dashboard/AdminPages/AdminOverview/AdminOverview";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: "",
-    element: <MainLayout></MainLayout>,
+    element: <MainLayout />,
     children: [
       {
-        path: "/",
-        element: <ClientLogin></ClientLogin>,
+        index: true,
+        element: <ClientLogin />,
       },
       {
-        path: "/Admin-login",
-        element: <AdminLogin></AdminLogin>,
-      },
-    ],
-  },
-  {
-    path: "/ClientDashboard",
-    errorElement: "",
-    element: <ClientDashboard></ClientDashboard>,
-    children: [
-      {
-        path: "/ClientDashboard/Client-Home",
-        element: <HomePage></HomePage>,
+        path: "admin-login",
+        element: <AdminLogin />,
       },
     ],
   },
+
   {
-    path: "/AdminDashboard",
-    errorElement: "",
-    element: <AdminDashboard></AdminDashboard>,
+    path: "/dashboard/client",
+    element: <Dashboard role="client" />,
     children: [
       {
-        path: "/AdminDashboard/Admin-Overview",
-        element: <AdminOverview></AdminOverview>,
+        path: "/dashboard/client/overview",
+        element: <ClientOverview />,
+      },
+    ],
+  },
+
+  {
+    path: "/dashboard/admin",
+    element: <Dashboard role="admin" />,
+    children: [
+      {
+        path: "/dashboard/admin/overview",
+        element: <AdminOverview />,
       },
     ],
   },
