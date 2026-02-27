@@ -2,7 +2,7 @@ import { X, Mail } from "lucide-react";
 
 const ClientProfilePanel = ({ user, onClose }) => {
   return (
-    <div className="fixed top-3 right-0 bottom-0 w-full md:w-105 bg-white z-70 shadow-xl overflow-hidden flex flex-col rounded-l-xl">
+    <div className="h-full w-full bg-white shadow-xl overflow-hidden flex flex-col rounded-2xl">
       {/* Header */}
       <div className="p-6 border-b flex items-center justify-between bg-toiral-dark text-white">
         <div className="flex items-center gap-3">
@@ -14,7 +14,10 @@ const ClientProfilePanel = ({ user, onClose }) => {
             <p className="text-xs opacity-70">Account settings</p>
           </div>
         </div>
-        <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-xl">
+        <button
+          onClick={onClose}
+          className="p-2 hover:bg-white/10 rounded-xl transition-all"
+        >
           <X className="w-6 h-6" />
         </button>
       </div>
