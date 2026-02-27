@@ -1,10 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-const MainLayout = ({role}) => {
+const MainLayout = () => {
   return (
     <>
       <Outlet></Outlet>
-      <h1>You are in {role} layout</h1>
     </>
   );
 };

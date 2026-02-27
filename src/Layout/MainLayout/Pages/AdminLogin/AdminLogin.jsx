@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Context/AuthContext";
 
 const AdminLogin = () => {
-  const { handleGoogleSignIn } = useContext(AuthContext);
+  const { user, handleGoogleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleGoogleLogin = () => {
