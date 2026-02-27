@@ -1,22 +1,33 @@
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
+import AuthLoading from "../AuthLoading/AuthLoading";
 
 const GuestRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
+  const accessEmail = [
+    "shsoburhossen951@gmail.com",
+    "abirsabirhossain@gmail.com",
+    "alifshahriarjihad@gmail.com",
+    "rankwithmarufur@gmail.com",
+    "aminulislam004474@gmail.com",
+  ];
+
   // Still loading auth__
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        Loading...
+      <div>
+        <AuthLoading></AuthLoading>
       </div>
     );
   }
 
-  // If user is logged in redirect based on role__
+  // If user is logged in, decide admin/client based on email__
   if (user) {
-    const isAdmin = user.role === "admin" || user.isAdmin;
+    const userEmail = user.email?.toLowerCase();
+
+    const isAdmin = userEmail && accessEmail.includes(userEmail);
 
     return (
       <Navigate
