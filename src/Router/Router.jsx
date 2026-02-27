@@ -7,11 +7,13 @@ import MainLayout from "../Layout/MainLayout/MainLayout";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import ClientOverview from "../Layout/Dashboard/ClientPages/ClientOverview/ClientOverview";
 import AdminOverview from "../Layout/Dashboard/AdminPages/AdminOverview/AdminOverview";
+import ErrorPage from "../Layout/Components/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -27,6 +29,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard/client",
     element: <Dashboard role="client" />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard/client/overview",
@@ -38,6 +41,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard/admin",
     element: <Dashboard role="admin" />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard/admin/overview",

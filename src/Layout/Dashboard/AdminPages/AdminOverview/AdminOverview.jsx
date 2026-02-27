@@ -1,6 +1,6 @@
 const AdminOverview = () => {
   return (
-    <div>AdminOverview</div>
+    <div>Admin Overview</div>
   )
 }
 

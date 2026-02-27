@@ -7,21 +7,56 @@ import {
   ArrowRight,
   Shield,
 } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const AdminLogin = () => {
-  const { user, handleGoogleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { handleGoogleSignIn, logOut } = useContext(AuthContext);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const accessEmail = [
+    "shsoburhossen951@gmail.com",
+    "abirsabirhossain@gmail.com",
+    "alifshahriarjihad@gmail.com",
+    "rankwithmarufur@gmail.com",
+    "aminulislam004474@gmail.com",
+  ];
 
-  const handleGoogleLogin = () => {
-    handleGoogleSignIn()
-      .then(() => {
+  const handleGoogleLogin = async () => {
+    setLoginLoading(true);
+
+    try {
+      const result = await handleGoogleSignIn();
+      const userEmail = result.user.email.toLowerCase();
+
+      if (accessEmail.includes(userEmail)) {
+        // Allowed__
         navigate("/dashboard/admin/overview");
-      })
-      .catch((error) => {
-        console.error("Google Sign-In Error:", error);
+      } else {
+        // Not allowed, logout + show message__
+        await logOut();
+
+        Swal.fire({
+          icon: "error",
+          title: "Access Denied",
+          text: "You are not allowed to access the admin portal.",
+          confirmButtonColor: "#149499",
+          confirmButtonText: "Okay",
+        });
+      }
+    } catch (error) {
+      console.error("Google Sign-In Error:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: error.message || "Something went wrong. Please try again.",
+        confirmButtonColor: "#149499",
       });
+    } finally {
+      setLoginLoading(false);
+    }
   };
 
   const handleSwitchToClient = () => {
@@ -123,12 +158,13 @@ const AdminLogin = () => {
 
               <button
                 onClick={handleGoogleLogin}
+                disabled={loginLoading}
                 className="w-full bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-800 font-semibold py-4 rounded-2xl flex items-center justify-center gap-4 text-lg transition-all hover:shadow-md cursor-pointer"
               >
                 <div className="w-8 h-8 bg-toiral-primary rounded flex items-center justify-center text-white text-xl font-bold">
                   G
                 </div>
-                Continue with Google
+                {loginLoading ? "Checking access..." : "Continue with Google"}
                 <ArrowRight className="w-6 h-6 text-gray-400" />
               </button>
 
