@@ -66,17 +66,17 @@ const Dashboard = ({ role }) => {
         {
           icon: <Folder className="w-5 h-5" />,
           label: "Add Client",
-          path: "/dashboard/admin/projects",          
+          path: "/dashboard/admin/add-client",          
         },
         {
           icon: <Users className="w-5 h-5" />,
           label: "Add Project",
-          path: "/dashboard/admin/clients",
+          path: "/dashboard/admin/add-project",
         },
         {
           icon: <Users className="w-5 h-5" />,
           label: "Invoice",
-          path: "/dashboard/admin/team",
+          path: "/dashboard/admin/invoice",
         },
         {
           icon: <Settings className="w-5 h-5" />,
@@ -86,7 +86,7 @@ const Dashboard = ({ role }) => {
       ];
 
   return (
-    <div className="min-h-screen bg-[#DEEDEC] p-3 md:p-5 flex gap-5 overflow-hidden">
+    <div className="max-h-screen bg-[#DEEDEC] p-3 md:p-5 flex gap-5 overflow-hidden">
       {/* ==================== SIDEBAR with Framer Motion ==================== */}
       <AnimatePresence>
         {(sidebarOpen || window.innerWidth >= 1024) && (
@@ -279,7 +279,7 @@ const Dashboard = ({ role }) => {
 
         {/* ==================== CONTENT AREA ==================== */}
         <div className="flex-1 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 overflow-hidden">
-          <div className="h-full overflow-auto p-6 md:p-8">
+          <div className="h-full overflow-auto p-2 md:p-3">
             {/* Content goes here - Outlet will render child routes */}
             <Outlet />
           </div>
