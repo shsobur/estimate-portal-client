@@ -1,12 +1,15 @@
+// Packages__
+import Swal from "sweetalert2";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, ArrowLeft, X, Copy, Loader2 } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
+
+// File path__
 import useAxios from "../../../Hooks/useAxios";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 // ====== Step Configuration ======
 const steps = [
@@ -425,8 +428,8 @@ const ClientDetailsStep = ({ register, errors }) => (
           Phone Number <span className="text-red-500">*</span>
         </label>
         <input
-          type="tel"
-          placeholder="+1 234 567 890"
+          type="number"
+          placeholder="+880 13456-78900"
           {...register("phone", { required: "Phone number is required" })}
           className={`w-full px-4 py-3 rounded-xl border text-base ${
             errors.phone ? "border-red-500" : "border-gray-200"
