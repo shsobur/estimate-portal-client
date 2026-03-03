@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ArrowRight, ArrowLeft, X, Copy } from "lucide-react";
+import { Check, ArrowRight, ArrowLeft, X, Copy, Loader2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-// ================== Step Configuration ==================
+// ====== Step Configuration ======
 const steps = [
   { number: 1, title: "Client Details", subtitle: "Basic information" },
   { number: 2, title: "Assign Team", subtitle: "Select members" },
@@ -14,7 +16,7 @@ const steps = [
   { number: 4, title: "Success", subtitle: "Client added" },
 ];
 
-// ================== Mock Team Members (replace with API later) ==================
+// ====== Mock Team Members (replace with API later) ======
 const teamMembers = [
   {
     name: "Sobur Hossen",
@@ -43,18 +45,10 @@ const teamMembers = [
   },
 ];
 
-// ================== Helper: Generate Unique Client Code ==================
-const generateCode = () => {
-  const digits = Math.floor(1000 + Math.random() * 9000);
-  const letters =
-    String.fromCharCode(97 + Math.floor(Math.random() * 26)) +
-    String.fromCharCode(97 + Math.floor(Math.random() * 26));
-  return `CL-${digits}${letters}`;
-};
-
-// ================== Main Component ==================
+// ====== Main Component ======
 const AddClientModal = ({ onClose }) => {
   const { api } = useAxios();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -73,36 +67,11 @@ const AddClientModal = ({ onClose }) => {
   // eslint-disable-next-line react-hooks/incompatible-library
   const formData = watch();
 
-  // TanStack Query Mutation – handles POST + code generation + PATCH
+  // ====== Mutation – POST ======
   const mutation = useMutation({
     mutationFn: async (finalData) => {
-      // 1. Create client
-      const postResponse = await api.post("/admin-api/add-client", finalData);
-      console.log(postResponse);
-      const clientId = postResponse.data.result.insertedId;
-
-      // 2. Get existing codes
-      const codesResponse = await api.get("/admin-api/clients-codes");
-      const existingCodes = codesResponse.data.map((item) => item.clientCode);
-
-      // 3. Generate unique code
-      let newCode;
-      let attempts = 0;
-      const maxAttempts = 10;
-      do {
-        newCode = generateCode();
-        attempts++;
-        if (attempts > maxAttempts) {
-          throw new Error("Unable to generate unique client code.");
-        }
-      } while (existingCodes.includes(newCode));
-
-      // 4. Update client with code
-      await api.patch(`/admin-api/clients/${clientId}`, {
-        clientCode: newCode,
-      });
-
-      return newCode;
+      const res = await api.post("/admin-api/add-client", finalData);
+      return res.data.clientCode; // backend returns code directly__
     },
     onSuccess: (code) => {
       setGeneratedCode(code);
@@ -114,7 +83,7 @@ const AddClientModal = ({ onClose }) => {
     },
   });
 
-  // ========== Navigation ==========
+  // ====== Navigation (manual control for safety) ======
   const handleNext = async () => {
     const isValid = await trigger();
     if (isValid) {
@@ -133,18 +102,31 @@ const AddClientModal = ({ onClose }) => {
     }
   };
 
-  // ========== Team Selection ==========
+  // ====== Explicit submit handler ======
+  const handleAddClient = () => {
+    handleSubmit(onSubmit)();
+  };
+
+  // ====== Team Selection ======
   const toggleTeamMember = (index) => {
     setSelectedTeam((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
     );
   };
 
-  // ========== Form Submission (now properly connected) ==========
+  // ====== Form Submission ======
   const onSubmit = (data) => {
-    // Prevent submission without team
+    // Prevent empty team__
     if (selectedTeam.length === 0) {
-      alert("Please select at least one team member.");
+      Swal.fire({
+        title: "Oops!",
+        text: "Please select at least one team member.",
+        icon: "warning",
+        confirmButtonText: "Got it",
+        background: "var(--color-toiral-bg-light)",
+        color: "var(--color-toiral-dark)",
+        confirmButtonColor: "var(--color-toiral-primary)",
+      });
       return;
     }
 
@@ -156,12 +138,14 @@ const AddClientModal = ({ onClose }) => {
     mutation.mutate(finalData);
   };
 
-  // ========== Copy Code ==========
+  // ====== Copy Code ======
   const copyToClipboard = () => {
     if (generatedCode) {
       navigator.clipboard.writeText(generatedCode);
       setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000);
+      if (copySuccess) {
+        navigate("/dashboard/admin/add-client");
+      }
     }
   };
 
@@ -201,11 +185,7 @@ const AddClientModal = ({ onClose }) => {
 
       {/* Form Content */}
       <div className="flex-1 overflow-y-auto px-6 pb-6">
-        <form
-          id="add-client-form"
-          onSubmit={handleSubmit(onSubmit)}
-          className="h-full"
-        >
+        <form id="add-client-form" className="h-full">
           <AnimatePresence mode="wait">
             {currentStep === 1 && (
               <ClientDetailsStep
@@ -241,7 +221,7 @@ const AddClientModal = ({ onClose }) => {
             )}
           </AnimatePresence>
 
-          {/* Mutation Error (shown only on review step) */}
+          {/* Mutation Error (only on review) */}
           {currentStep === 3 && mutation.isError && (
             <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-red-600 text-sm">
@@ -254,7 +234,7 @@ const AddClientModal = ({ onClose }) => {
         </form>
       </div>
 
-      {/* Sticky Navigation – Button stays visually outside form but is connected via form attribute */}
+      {/* Sticky Navigation */}
       {currentStep < 4 && (
         <div className="sticky bottom-0 bg-white border-t border-toiral-light p-4 md:p-6">
           <div className="flex flex-col-reverse md:flex-row md:justify-between md:items-center gap-3">
@@ -292,33 +272,14 @@ const AddClientModal = ({ onClose }) => {
                 </button>
               ) : (
                 <button
-                  type="submit"
-                  form="add-client-form"
+                  type="button"
+                  onClick={handleAddClient}
                   disabled={isSubmitting}
                   className="flex items-center justify-center gap-2 px-6 py-3 bg-toiral-primary hover:bg-toiral-dark text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer min-w-35"
                 >
                   {isSubmitting ? (
                     <>
-                      <svg
-                        className="animate-spin h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
-                      </svg>
+                      <Loader2 className="h-5 w-5 animate-spin text-white" />
                       <span>Adding...</span>
                     </>
                   ) : (
@@ -337,7 +298,7 @@ const AddClientModal = ({ onClose }) => {
   );
 };
 
-// ================== Sub-Components (Clean & Reusable) ==================
+// ====== Sub-Components ======
 const StepIndicator = ({ steps, currentStep, completedSteps, onStepClick }) => (
   <div className="flex flex-wrap items-center justify-center md:justify-between gap-4 mb-8">
     {steps.map((step, index) => {
@@ -401,7 +362,6 @@ const ClientDetailsStep = ({ register, errors }) => (
       Client Information
     </h3>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* All input fields remain exactly the same – only cleaned up */}
       <div>
         <label className="block text-base font-medium text-toiral-dark mb-1">
           Client Name <span className="text-red-500">*</span>
