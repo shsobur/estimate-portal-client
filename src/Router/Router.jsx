@@ -9,6 +9,7 @@ import ClientOverview from "../Layout/Dashboard/ClientPages/ClientOverview/Clien
 import AdminOverview from "../Layout/Dashboard/AdminPages/AdminOverview/AdminOverview";
 import ErrorPage from "../Layout/Components/ErrorPage/ErrorPage";
 import AddClient from "../Layout/Dashboard/AdminPages/AddClient/AddClient";
+import AddProject from "../Layout/Dashboard/AdminPages/AddProject/AddProject";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin/add-client",
         element: <AddClient></AddClient>,
+      },
+      {
+        path: "/dashboard/admin/add-project",
+        element: <AddProject></AddProject>,
       },
     ],
   },

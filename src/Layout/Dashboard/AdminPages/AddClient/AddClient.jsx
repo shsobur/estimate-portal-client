@@ -114,7 +114,7 @@ const AddClient = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-toiral-bg px-2.5 md:px-5 py-6 flex flex-col gap-6 rounded-xl">
+    <div className="h-full bg-toiral-bg px-2.5 md:px-5 py-6 flex flex-col gap-6 rounded-xl">
       {/* Top Part: Title + Button */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>

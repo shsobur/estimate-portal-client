@@ -66,7 +66,7 @@ const Dashboard = ({ role }) => {
         {
           icon: <Folder className="w-5 h-5" />,
           label: "Add Client",
-          path: "/dashboard/admin/add-client",          
+          path: "/dashboard/admin/add-client",
         },
         {
           icon: <Users className="w-5 h-5" />,
@@ -86,15 +86,11 @@ const Dashboard = ({ role }) => {
       ];
 
   return (
-    <div className="max-h-screen bg-[#DEEDEC] p-3 md:p-5 flex gap-5 overflow-hidden">
+    <div className="min-h-screen bg-[#DEEDEC] p-3 md:p-5 flex gap-5 overflow-hidden">
       {/* ==================== SIDEBAR with Framer Motion ==================== */}
       <AnimatePresence>
         {(sidebarOpen || window.innerWidth >= 1024) && (
-          <motion.div
-            initial={{ x: -320, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -320, opacity: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+          <div
             className={`fixed lg:static inset-y-0 left-0 z-50 w-80 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden flex flex-col border border-white/50`}
           >
             {/* Logo Section */}
@@ -174,7 +170,7 @@ const Dashboard = ({ role }) => {
                 <span className="font-medium">Logout</span>
               </motion.button>
             </div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
