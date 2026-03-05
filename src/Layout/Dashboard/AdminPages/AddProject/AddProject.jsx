@@ -13,6 +13,7 @@ import {
   Edit2,
   Trash2,
 } from "lucide-react";
+import AddProjectModal from "../../../Components/AddProjectModal/AddProjectModal";
 
 // --- DUMMY DATA ---
 const dummyProjects = [
@@ -88,7 +89,10 @@ const AddProject = () => {
   const [projects, setProjects] = useState(dummyProjects);
   const [openDropdownId, setOpenDropdownId] = useState(null);
 
-  // Trigger refresh animation__
+  // ====== Modal State ======
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  // Trigger refresh animation
   const handleRefresh = () => {
     setIsRefreshing(true);
     setTimeout(() => setIsRefreshing(false), 1000);
@@ -141,6 +145,7 @@ const AddProject = () => {
           </div>
 
           <motion.button
+            onClick={() => setShowAddModal(true)} // <-- Added onClick to open modal
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.95 }}
             className="bg-toiral-primary hover:bg-toiral-dark text-white px-5 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors shadow-md shadow-toiral-primary/20 cursor-pointer text-base"
@@ -316,6 +321,24 @@ const AddProject = () => {
           ))}
         </motion.div>
       </div>
+
+      {/* ================= ADD PROJECT MODAL ================= */}
+      <AnimatePresence>
+        {showAddModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-toiral-dark/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
+            <AddProjectModal
+              onClose={() => {
+                setShowAddModal(false);
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

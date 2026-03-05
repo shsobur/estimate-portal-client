@@ -2,7 +2,6 @@
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
@@ -59,7 +58,6 @@ const teamMembers = [
 // ====== Main Component ======
 const AddClientModal = ({ onClose }) => {
   const { api } = useAxios();
-  const navigate = useNavigate();
 
   const {
     register,
@@ -154,7 +152,7 @@ const AddClientModal = ({ onClose }) => {
       navigator.clipboard.writeText(generatedCode);
       setCopySuccess(true);
       setTimeout(() => {
-        navigate("/dashboard/admin/add-client");
+        onClose();
       }, 2000); // Small delay to let user see "Copied!"__
     }
   };
