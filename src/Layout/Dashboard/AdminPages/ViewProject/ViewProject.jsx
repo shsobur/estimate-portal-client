@@ -51,7 +51,7 @@ const ViewProject = () => {
     <div className="h-full flex flex-col gap-4 md:gap-5 font-['Outfit',sans-serif] overflow-y-auto">
       {/* ================= TOP PART (HEADER) ================= */}
       {/* shrink-0 ensures this header never gets squished */}
-      <div className="shrink-0 bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-toiral-bg flex flex-col lg:flex-row justify-between lg:items-center gap-4">
+      <div className="shrink-0 bg-white p-4 md:p-6 rounded-xl shadow-sm border border-toiral-bg flex flex-col lg:flex-row justify-between lg:items-center gap-4">
         {/* Left Info - min-w-0 prevents text from pushing the layout wide */}
         <div className="flex-1 min-w-0 space-y-2.5">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-4">
@@ -97,14 +97,14 @@ const ViewProject = () => {
         visible when scrolling long content. z-10 ensures it sits above with
         a light backdrop.
       */}
-      <div className="shrink-0 bg-white p-2 rounded-2xl shadow-sm border border-toiral-bg overflow-x-auto custom-scrollbar sticky top-0 z-10">
+      <div className="shrink-0 bg-white p-2 rounded-xl shadow-sm border border-toiral-bg overflow-x-auto custom-scrollbar sticky top-0 z-10">
         <div className="flex gap-2 justify-start max-[590px]:justify-around w-full min-w-max">
           <NavLink
             to="overview"
             className={({ isActive }) =>
-              `flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all cursor-pointer relative ${
+              `flex items-center gap-2 px-5 py-2.5 rounded-t-lg font-bold text-sm transition-all cursor-pointer relative ${
                 isActive
-                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-1 after:left-0 after:w-full after:h-1 after:bg-toiral-primary"
+                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-0.5 after:bg-toiral-primary"
                   : "text-toiral-secondary hover:text-toiral-dark hover:bg-toiral-bg"
               }`
             }
@@ -118,7 +118,7 @@ const ViewProject = () => {
             className={({ isActive }) =>
               `flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all cursor-pointer relative ${
                 isActive
-                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-1 after:left-0 after:w-full after:h-1 after:bg-toiral-primary"
+                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-0.5 after:bg-toiral-primary"
                   : "text-toiral-secondary hover:text-toiral-dark hover:bg-toiral-bg"
               }`
             }
@@ -132,7 +132,7 @@ const ViewProject = () => {
             className={({ isActive }) =>
               `flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all cursor-pointer relative ${
                 isActive
-                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-1 after:left-0 after:w-full after:h-1 after:bg-toiral-primary"
+                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-0.5 after:bg-toiral-primary"
                   : "text-toiral-secondary hover:text-toiral-dark hover:bg-toiral-bg"
               }`
             }
@@ -146,7 +146,7 @@ const ViewProject = () => {
             className={({ isActive }) =>
               `flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all cursor-pointer relative ${
                 isActive
-                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-1 after:left-0 after:w-full after:h-1 after:bg-toiral-primary"
+                  ? "bg-toiral-bg-light text-toiral-primary shadow-sm after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-0.5 after:bg-toiral-primary"
                   : "text-toiral-secondary hover:text-toiral-dark hover:bg-toiral-bg"
               }`
             }

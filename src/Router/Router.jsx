@@ -13,7 +13,6 @@ import AddProject from "../Layout/Dashboard/AdminPages/AddProject/AddProject";
 import ViewProject from "../Layout/Dashboard/AdminPages/ViewProject/ViewProject";
 import ProfileOverview from "../Layout/Components/ProfileOverview/ProfileOverview";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,8 +65,6 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            // child path is relative; this becomes
-            // /dashboard/admin/view-project/:projectId/overview
             path: "overview",
             element: <ProfileOverview></ProfileOverview>,
           },
