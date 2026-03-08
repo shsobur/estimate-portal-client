@@ -10,6 +10,9 @@ import AdminOverview from "../Layout/Dashboard/AdminPages/AdminOverview/AdminOve
 import ErrorPage from "../Layout/Components/ErrorPage/ErrorPage";
 import AddClient from "../Layout/Dashboard/AdminPages/AddClient/AddClient";
 import AddProject from "../Layout/Dashboard/AdminPages/AddProject/AddProject";
+import ViewProject from "../Layout/Dashboard/AdminPages/ViewProject/ViewProject";
+import ProfileOverview from "../Layout/Components/ProfileOverview/ProfileOverview";
+
 
 const router = createBrowserRouter([
   {
@@ -56,6 +59,19 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin/add-project",
         element: <AddProject></AddProject>,
+      },
+      {
+        path: "/dashboard/admin/view-project/:projectId",
+        element: <ViewProject></ViewProject>,
+        children: [
+          {
+            index: true,
+            // child path is relative; this becomes
+            // /dashboard/admin/view-project/:projectId/overview
+            path: "overview",
+            element: <ProfileOverview></ProfileOverview>,
+          },
+        ],
       },
     ],
   },

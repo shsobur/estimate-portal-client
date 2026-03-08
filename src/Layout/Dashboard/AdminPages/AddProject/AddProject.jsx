@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -34,6 +35,7 @@ const formatDate = (isoString) => {
 const AddProject = () => {
   const { api } = useAxios();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -285,7 +287,13 @@ const AddProject = () => {
                             className="absolute right-5 top-14 w-40 bg-white border border-toiral-bg shadow-xl rounded-2xl p-2 z-20 flex flex-col gap-1"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">
+                            <button
+                              onClick={() => {
+                                /* navigate to view page with project id */
+                                navigate(`/dashboard/admin/view-project/${project._id}`);
+                              }}
+                              className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer"
+                            >
                               <Eye size={18} /> View
                             </button>
                             <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">

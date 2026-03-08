@@ -86,7 +86,8 @@ const Dashboard = ({ role }) => {
       ];
 
   return (
-    <div className="min-h-screen bg-[#DEEDEC] p-3 md:p-5 flex gap-5 overflow-hidden">
+    // use fixed screen height so inner panels can scroll instead of pushing the layout
+    <div className="h-screen bg-[#DEEDEC] p-3 md:p-5 flex gap-5 overflow-hidden">
       {/* ==================== SIDEBAR with Framer Motion ==================== */}
       <AnimatePresence>
         {(sidebarOpen || window.innerWidth >= 1024) && (
@@ -274,7 +275,7 @@ const Dashboard = ({ role }) => {
         </div>
 
         {/* ==================== CONTENT AREA ==================== */}
-        <div className="flex-1 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 overflow-hidden">
+        <div className="flex-1 bg-[#F2FBFA] backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 overflow-hidden">
           <div className="h-full overflow-auto p-2 md:p-3">
             {/* Content goes here - Outlet will render child routes */}
             <Outlet />
