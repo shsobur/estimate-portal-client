@@ -12,65 +12,44 @@ import {
   X,
   CalendarPlus,
 } from "lucide-react";
+import { useOutletContext, useParams } from "react-router-dom";
 
-const initialTimeline = [
-  {
-    step: 1,
-    title: "Discovery",
-    description: "Initial meeting to understand project goals.",
-    status: "completed",
-    date: "Mar 8, 2026",
-  },
-  {
-    step: 2,
-    title: "Project Planning",
-    description: "Define features, timeline, and tech stack.",
-    status: "completed",
-    date: "Mar 10, 2026",
-  },
-  {
-    step: 3,
-    title: "Design Preview",
-    description: "UI/UX preview shared with client.",
-    status: "current",
-    date: null,
-  },
-  {
-    step: 4,
-    title: "Project Start",
-    description: "Development begins. 30% advance payment required.",
-    status: "pending",
-    payment: 30,
-    date: null,
-  },
-  {
-    step: 5,
-    title: "Progress Review",
-    description: "Client reviews progress and provides feedback.",
-    status: "pending",
-    payment: 30,
-    date: null,
-  },
-  {
-    step: 6,
-    title: "Final Delivery",
-    description: "Website completed and prepared for launch.",
-    status: "pending",
-    payment: 30,
-    date: null,
-  },
-  {
-    step: 7,
-    title: "Support & Completion",
-    description: "1 month free support after launch.",
-    status: "pending",
-    payment: 10,
-    date: null,
-  },
-];
+// timeline data comes from the parent via outlet context.  We no longer
+// need a hard‑coded initialTimeline; the caller will provide the real array.
+// the component will keep its own copy so it can be edited locally.
 
-const ProjectTimeline = () => {
-  const [timelineData, setTimelineData] = useState(initialTimeline);
+// helper hooks for server communication
+import { useMutation } from "@tanstack/react-query";
+import useAxios from "../../../Hooks/useAxios";
+
+const ProjectTimeLine = () => {
+  // only need timeline data from context; project object isn't used here
+  const { timelineData: timelineDataFromContext } = useOutletContext();
+  const { projectId } = useParams();
+  const { api } = useAxios();
+
+  // start with the passed timeline; keep a local state copy for editing
+  const [timelineData, setTimelineData] = useState(
+    timelineDataFromContext || [],
+  );
+
+  // mutation for updating timeline on server
+  const updateTimelineMutation = useMutation({
+    mutationFn: async (payload) => {
+      const res = await api.patch(
+        `/admin-api/projects/${projectId}/timeline`,
+        payload,
+      );
+      return res.data;
+    },
+    onError: (err) => {
+      console.error("Failed to update timeline", err);
+      // optionally display error toast here
+    },
+    onSuccess: (data) => {
+      if (data.timeline) setTimelineData(data.timeline);
+    },
+  });
 
   // States for our new Inline Date Editor
   const [editingDateStep, setEditingDateStep] = useState(null);
@@ -80,25 +59,27 @@ const ProjectTimeline = () => {
   // PROGRESS UPDATE FUNCTION (Auto-move)
   // ==========================================
   const handleAdvanceProgress = () => {
-    setTimelineData((prevData) => {
-      const currentIndex = prevData.findIndex(
-        (item) => item.status === "current",
-      );
-      if (currentIndex === -1) return prevData;
+    const currentIndex = timelineData.findIndex(
+      (item) => item.status === "current",
+    );
+    if (currentIndex === -1) return;
 
-      const today = new Date().toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      });
-
-      return prevData.map((item, index) => {
-        if (index === currentIndex)
-          return { ...item, status: "completed", date: today };
-        if (index === currentIndex + 1) return { ...item, status: "current" };
-        return item;
-      });
+    const today = new Date().toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
+
+    const newData = timelineData.map((item, index) => {
+      if (index === currentIndex)
+        return { ...item, status: "completed", date: today };
+      if (index === currentIndex + 1) return { ...item, status: "current" };
+      return item;
+    });
+
+    setTimelineData(newData);
+    // send update to server
+    updateTimelineMutation.mutate({ timeline: newData });
   };
 
   // ==========================================
@@ -133,22 +114,22 @@ const ProjectTimeline = () => {
 
   // 4. Save the manual date
   const saveManualDate = (step) => {
-    setTimelineData((prev) =>
-      prev.map((item) => {
-        if (item.step === step) {
-          return { ...item, date: formatToDisplayDate(tempDate) };
-        }
-        return item;
-      }),
-    );
+    const updated = timelineData.map((item) => {
+      if (item.step === step) {
+        return { ...item, date: formatToDisplayDate(tempDate) };
+      }
+      return item;
+    });
+    setTimelineData(updated);
     setEditingDateStep(null); // Close editor
+    updateTimelineMutation.mutate({ timeline: updated });
   };
 
   const completedSteps = timelineData.filter(
     (t) => t.status === "completed",
   ).length;
   const progressPercentage = Math.round(
-    (completedSteps / timelineData.length) * 100,
+    (completedSteps / (timelineData.length || 1)) * 100,
   );
 
   return (
@@ -371,4 +352,4 @@ const ProjectTimeline = () => {
   );
 };
 
-export default ProjectTimeline;
+export default ProjectTimeLine;

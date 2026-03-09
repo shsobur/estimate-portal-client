@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useOutletContext } from "react-router-dom";
 
-const ProfileOverview = () => {
+const ProjectOverview = () => {
   // context is provided as { project } from ViewProject
   const { project: projectData } = useOutletContext();
 
@@ -237,4 +237,4 @@ const DetailCard = ({ icon, label, value, highlight }) => (
   </div>
 );
 
-export default ProfileOverview;
+export default ProjectOverview;

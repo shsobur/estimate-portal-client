@@ -11,8 +11,9 @@ import ErrorPage from "../Layout/Components/ErrorPage/ErrorPage";
 import AddClient from "../Layout/Dashboard/AdminPages/AddClient/AddClient";
 import AddProject from "../Layout/Dashboard/AdminPages/AddProject/AddProject";
 import ViewProject from "../Layout/Dashboard/AdminPages/ViewProject/ViewProject";
-import ProfileOverview from "../Layout/Components/ProfileOverview/ProfileOverview";
-import ProfileTimeLine from "../Layout/Components/ProfileTimeLine/ProfileTimeLine";
+
+import ProjectOverview from "../Layout/Components/ProjectOverview/ProjectOverview";
+import ProjectTimeLine from "../Layout/Components/ProjectTimeLine/ProfileTimeLine";
 
 const router = createBrowserRouter([
   {
@@ -68,11 +69,11 @@ const router = createBrowserRouter([
           {
             index: true,
             path: "overview",
-            element: <ProfileOverview></ProfileOverview>,
+            element: <ProjectOverview></ProjectOverview>,
           },
           {
             path: "timeline",
-            element: <ProfileTimeLine></ProfileTimeLine>,
+            element: <ProjectTimeLine></ProjectTimeLine>,
           },
         ],
       },

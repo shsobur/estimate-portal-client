@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   NavLink,
   Outlet,
@@ -24,6 +24,7 @@ const ViewProject = () => {
   const { projectId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const [timeLineData, setTimelineData] = useState([]);
 
   // fetch project via react-query
   const {
@@ -35,6 +36,7 @@ const ViewProject = () => {
     queryKey: ["project", projectId],
     queryFn: async () => {
       const res = await api.get(`/admin-api/projects/${projectId}`);
+      setTimelineData(res.data.timeline);
       return res.data;
     },
     enabled: !!projectId,
@@ -204,15 +206,8 @@ const ViewProject = () => {
       </div>
 
       {/* ================= BOTTOM PART (OUTLET CONTAINER) ================= */}
-      {/*
-        This div previously held its own scrollbar (`overflow-y-auto`), which
-        meant only the outlet content moved while the header/tabs stayed in
-        place.  By removing the overflow we allow the parent panel (white
-        Dashboard content area) to control scrolling, keeping the header and
-        tabs together with the outlet content.
-      */}
       <div className="flex-1 bg-white rounded-xl shadow-sm border border-toiral-bg custom-scrollbar">
-        <Outlet context={{ project }} />
+        <Outlet context={{ project, timelineData: timeLineData }} />
       </div>
     </div>
   );

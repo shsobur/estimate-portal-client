@@ -291,7 +291,7 @@ const Dashboard = ({ role }) => {
           scrollbar.  The top bar above remains outside of this container and
           is also made sticky as a safety belt.
         */}
-        <div className="flex-1 bg-[#F2FBFA] backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 overflow-auto p-2 md:p-3">
+        <div className="flex-1 bg-[#F2FBFA] backdrop-blur-xl rounded-xl shadow-xl border border-white/50 overflow-auto p-2 md:p-3">
           {/* Content goes here - Outlet will render child routes */}
           <Outlet />
         </div>
