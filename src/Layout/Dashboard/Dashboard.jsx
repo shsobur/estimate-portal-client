@@ -178,7 +178,10 @@ const Dashboard = ({ role }) => {
       {/* ==================== MAIN AREA ==================== */}
       <div className="flex-1 flex flex-col gap-5 min-w-0">
         {/* ==================== TOP BAR - Responsive ==================== */}
-        <div className="relative h-20 bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 flex items-center justify-between px-3 sm:px-6 min-[640px]:px-2.5">
+        {/* make the top bar sticky so that if the outer container ever scrolls
+            the navbar will remain visible (addresses the "twist" mentioned by
+            the user).  z-20 keeps it above the scrolling panel. */}
+        <div className="relative top-0 z-20 h-20 bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 flex items-center justify-between px-3 sm:px-6 min-[640px]:px-2.5">
           <div className="flex items-center gap-2 sm:gap-4 flex-1">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -275,11 +278,22 @@ const Dashboard = ({ role }) => {
         </div>
 
         {/* ==================== CONTENT AREA ==================== */}
-        <div className="flex-1 bg-[#F2FBFA] backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 overflow-hidden">
-          <div className="h-full overflow-auto p-2 md:p-3">
-            {/* Content goes here - Outlet will render child routes */}
-            <Outlet />
-          </div>
+        {/*
+          The previous implementation nested a scrollable container inside the
+          white panel.  That meant long pages like ViewProject only scrolled the
+          outlet area, leaving the header and tabs fixed.  The user requested
+          that the *entire* page scroll together, while still keeping the
+          dashboard height fixed and the top bar always visible.
+
+          To satisfy that we move the overflow onto the panel itself and remove
+          the extra wrapper.  Now the white panel will scroll as a whole and the
+          view project header/tabs are part of the scroll, giving a single
+          scrollbar.  The top bar above remains outside of this container and
+          is also made sticky as a safety belt.
+        */}
+        <div className="flex-1 bg-[#F2FBFA] backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 overflow-auto p-2 md:p-3">
+          {/* Content goes here - Outlet will render child routes */}
+          <Outlet />
         </div>
       </div>
 

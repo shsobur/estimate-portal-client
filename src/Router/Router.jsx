@@ -12,6 +12,7 @@ import AddClient from "../Layout/Dashboard/AdminPages/AddClient/AddClient";
 import AddProject from "../Layout/Dashboard/AdminPages/AddProject/AddProject";
 import ViewProject from "../Layout/Dashboard/AdminPages/ViewProject/ViewProject";
 import ProfileOverview from "../Layout/Components/ProfileOverview/ProfileOverview";
+import ProfileTimeLine from "../Layout/Components/ProfileTimeLine/ProfileTimeLine";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
             index: true,
             path: "overview",
             element: <ProfileOverview></ProfileOverview>,
+          },
+          {
+            path: "timeline",
+            element: <ProfileTimeLine></ProfileTimeLine>,
           },
         ],
       },

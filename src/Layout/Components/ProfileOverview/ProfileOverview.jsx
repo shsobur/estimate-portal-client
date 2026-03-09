@@ -9,8 +9,50 @@ import {
   Calendar,
   Coins,
 } from "lucide-react";
+import { useOutletContext } from "react-router-dom";
 
 const ProfileOverview = () => {
+  // context is provided as { project } from ViewProject
+  const { project: projectData } = useOutletContext();
+
+  // derive dynamic values from projectData
+  const today = new Date();
+  const deadlineDate = projectData?.deadline
+    ? new Date(projectData.deadline)
+    : null;
+  const daysLeft = deadlineDate
+    ? Math.max(0, Math.ceil((deadlineDate - today) / (1000 * 60 * 60 * 24)))
+    : "-";
+
+  const completeTasks = projectData?.completeTask ?? 0;
+  const totalTasks = projectData?.totalTasks ?? 0;
+
+  const timeline = projectData?.timeline || [];
+  const completedSteps = timeline.filter(
+    (t) => t.status === "completed",
+  ).length;
+  const progressPercent = timeline.length
+    ? Math.round((completedSteps / timeline.length) * 100)
+    : 0;
+
+  const issuesCount = projectData?.issues ?? 0;
+  const teamCount = projectData?.assignedTeam?.length ?? 0;
+
+  const formattedStart = projectData?.createdAt
+    ? new Date(projectData.createdAt).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : "-";
+  const formattedEnd = deadlineDate
+    ? deadlineDate.toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : "-";
+
   // Framer Motion animation variants for smooth staggered loading
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -52,12 +94,7 @@ const ProfileOverview = () => {
             Project Overview
           </h2>
           <p className="text-toiral-dark/80 leading-relaxed text-sm md:text-base text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident.
+            {projectData?.projectDescription || "No description provided."}
           </p>
         </motion.div>
 
@@ -66,7 +103,7 @@ const ProfileOverview = () => {
         {/* ============================== */}
         <motion.div
           variants={itemVariants}
-          className="bg-(--color-trial-bg-light) p-6 md:p-8 rounded-2xl shadow-sm border border-toiral-light/50"
+          className="bg-toiral-bg-light p-6 md:p-8 rounded-2xl shadow-sm border border-toiral-light/50"
         >
           <h2 className="text-xl md:text-2xl font-bold text-toiral-dark mb-6">
             Current Progress
@@ -79,7 +116,7 @@ const ProfileOverview = () => {
                 Completion Rate
               </span>
               <span className="text-2xl font-bold text-toiral-primary">
-                83%
+                {progressPercent}%
               </span>
             </div>
             {/* Bar Background */}
@@ -87,7 +124,7 @@ const ProfileOverview = () => {
               {/* Bar Fill */}
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: "83%" }}
+                animate={{ width: `${progressPercent}%` }}
                 transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
                 className="h-full bg-toiral-primary rounded-full relative"
               >
@@ -99,10 +136,18 @@ const ProfileOverview = () => {
 
           {/* 4 Stats Grid (2 columns on mobile, 4 on desktop) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <StatCard icon={<Clock />} title="Days Left" value="15" />
-            <StatCard icon={<CheckSquare />} title="Tasks Done" value="50/60" />
-            <StatCard icon={<AlertCircle />} title="Issues" value="2" />
-            <StatCard icon={<Users />} title="Team" value="4" />
+            <StatCard icon={<Clock />} title="Days Left" value={daysLeft} />
+            <StatCard
+              icon={<CheckSquare />}
+              title="Tasks Done"
+              value={`${completeTasks}/${totalTasks}`}
+            />
+            <StatCard
+              icon={<AlertCircle />}
+              title="Issues"
+              value={issuesCount}
+            />
+            <StatCard icon={<Users />} title="Team" value={teamCount} />
           </div>
         </motion.div>
 
@@ -122,17 +167,21 @@ const ProfileOverview = () => {
             <DetailCard
               icon={<Calendar />}
               label="Project Start"
-              value="14 Mar 2026"
+              value={formattedStart}
             />
             <DetailCard
               icon={<Calendar />}
               label="Project End"
-              value="30 Mar 2026"
+              value={formattedEnd}
             />
             <DetailCard
               icon={<Coins />}
               label="Project Cost"
-              value="50,000 TK"
+              value={
+                projectData?.projectCost
+                  ? `${projectData.projectCost.toLocaleString()} TK`
+                  : "-"
+              }
               highlight
             />
           </div>

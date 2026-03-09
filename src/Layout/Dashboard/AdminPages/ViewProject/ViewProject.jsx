@@ -101,7 +101,7 @@ const ViewProject = () => {
   }
 
   return (
-    <div className="h-full flex flex-col gap-4 md:gap-5 font-['Outfit',sans-serif] overflow-y-auto">
+    <div className="flex flex-col gap-4 md:gap-5 font-[\'Outfit\',sans-serif] min-h-full">
       {/* ================= TOP PART (HEADER) ================= */}
       <div className="shrink-0 bg-white p-4 md:p-6 rounded-xl shadow-sm border border-toiral-bg flex flex-col lg:flex-row justify-between lg:items-center gap-4">
         {/* Left Info */}
@@ -143,7 +143,7 @@ const ViewProject = () => {
       </div>
 
       {/* ================= MIDDLE PART (TABS) ================= */}
-      <div className="shrink-0 bg-white p-2 rounded-xl shadow-sm border border-toiral-bg overflow-x-auto custom-scrollbar sticky top-0 z-10">
+      <div className="shrink-0 bg-white p-2 rounded-xl shadow-sm border border-toiral-bg overflow-x-auto custom-scrollbar">
         <div className="flex gap-2 justify-start max-[590px]:justify-around w-full min-w-max">
           <NavLink
             to="overview"
@@ -204,7 +204,14 @@ const ViewProject = () => {
       </div>
 
       {/* ================= BOTTOM PART (OUTLET CONTAINER) ================= */}
-      <div className="flex-1 bg-white rounded-2xl shadow-sm border border-toiral-bg custom-scrollbar overflow-y-auto">
+      {/*
+        This div previously held its own scrollbar (`overflow-y-auto`), which
+        meant only the outlet content moved while the header/tabs stayed in
+        place.  By removing the overflow we allow the parent panel (white
+        Dashboard content area) to control scrolling, keeping the header and
+        tabs together with the outlet content.
+      */}
+      <div className="flex-1 bg-white rounded-xl shadow-sm border border-toiral-bg custom-scrollbar">
         <Outlet context={{ project }} />
       </div>
     </div>
