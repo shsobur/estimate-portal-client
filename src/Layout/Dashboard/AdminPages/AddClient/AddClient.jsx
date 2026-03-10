@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,6 +13,7 @@ import {
   Eye,
   Edit2,
   Trash2,
+  Copy, // added for copy button
 } from "lucide-react";
 import AddClientModal from "../../../Components/AddClientModal/AddClientModal";
 import useAxios from "../../../../Hooks/useAxios";
@@ -46,6 +47,11 @@ const AddClient = () => {
   const [sortStatus, setSortStatus] = useState("All");
   const [openDropdownId, setOpenDropdownId] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [copiedId, setCopiedId] = useState(null); // for copy feedback
+
+  // Refs for dropdown click-outside handling
+  const dropdownRef = useRef(null);
+  const activeButtonRef = useRef(null);
 
   // ====== Fetch Clients with TanStack Query ======
   const {
@@ -58,11 +64,8 @@ const AddClient = () => {
     queryFn: async () => {
       const params = new URLSearchParams();
       if (searchQuery.trim()) params.append("search", searchQuery.trim());
-
-      // Default sort: newest first
       params.append("sort", "createdAt");
       params.append("order", "desc");
-
       const res = await api.get(`/admin-api/clients?${params.toString()}`);
       return res.data;
     },
@@ -75,7 +78,7 @@ const AddClient = () => {
       ? clients
       : clients.filter((client) => client.status === sortStatus);
 
-  // ====== Status Color Helper (Using strict theme classes) ======
+  // ====== Status Color Helper ======
   const getStatusStyle = (status) => {
     switch (status) {
       case "Pending":
@@ -91,12 +94,44 @@ const AddClient = () => {
     }
   };
 
+  // ====== Copy to clipboard handler ======
+  const handleCopy = (clientId, code) => {
+    navigator.clipboard.writeText(code);
+    setCopiedId(clientId);
+    setTimeout(() => setCopiedId(null), 1500);
+  };
+
+  // ====== Click‑outside listener for dropdown ======
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // If click is on the active button or inside the dropdown, do nothing
+      if (
+        (activeButtonRef.current &&
+          activeButtonRef.current.contains(event.target)) ||
+        (dropdownRef.current && dropdownRef.current.contains(event.target))
+      ) {
+        return;
+      }
+      // Otherwise close the dropdown
+      setOpenDropdownId(null);
+    };
+
+    if (openDropdownId) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Cleanup refs when dropdown closes
+      activeButtonRef.current = null;
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdownId]);
+
   return (
-    // 1. FIXED OVERALL LAYOUT
     <div className="fixed inset-0 w-full h-screen bg-toiral-bg-light overflow-hidden">
-      {/* 2. INNER SCROLLABLE AREA */}
       <div className="w-full h-full overflow-y-auto pt-10 pb-48 px-4 md:px-6 flex flex-col gap-6">
-        {/* ================= TOP PART ================= */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -123,14 +158,13 @@ const AddClient = () => {
           </motion.button>
         </motion.div>
 
-        {/* ================= MIDDLE PART ================= */}
+        {/* Search & Filters */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
           className="flex flex-col md:flex-row gap-5 w-full"
         >
-          {/* Search Bar */}
           <div className="relative flex-1 group">
             <Search
               className="absolute left-4 top-1/2 -translate-y-1/2 text-toiral-secondary group-focus-within:text-toiral-primary transition-colors"
@@ -145,7 +179,6 @@ const AddClient = () => {
             />
           </div>
 
-          {/* Filters and Refresh */}
           <div className="flex gap-4 w-full md:w-auto">
             <div className="relative flex-1 md:w-52 group">
               <select
@@ -165,7 +198,6 @@ const AddClient = () => {
               />
             </div>
 
-            {/* FIXED: Standard button with standard css animation for flawless fetching status */}
             <button
               onClick={() => refetch()}
               disabled={isFetching}
@@ -180,31 +212,56 @@ const AddClient = () => {
           </div>
         </motion.div>
 
-        {/* ================= BOTTOM PART (CARDS) ================= */}
+        {/* Client Cards */}
         {isLoading ? (
           <div className="w-full py-16 text-center text-toiral-secondary font-medium text-lg">
             Loading clients...
           </div>
         ) : (
-          // FIXED: Removed container variants. Using a standard grid to prevent stagger delays
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredClients.length > 0 ? (
               filteredClients.map((client) => (
                 <motion.div
                   key={client._id}
-                  layout // Smoothly repositions cards when filtering/sorting
+                  layout
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.2 }}
-                  whileHover={{ y: -4 }}
-                  className="bg-white rounded-2xl p-6 shadow-sm border border-toiral-bg hover:shadow-lg hover:shadow-toiral-light/30 hover:border-toiral-light/80 transition-all flex flex-col gap-4 group cursor-pointer relative"
+                  // Removed whileHover – no lift animation
+                  className={`
+                    bg-white rounded-2xl p-6 shadow-sm 
+                    hover:border-toiral-primary hover:shadow-lg hover:shadow-toiral-light/30 
+                    transition-all flex flex-col gap-4 group relative
+                    ${openDropdownId === client._id ? "z-10" : ""}
+                  `}
                 >
-                  {/* Top Row: Title, Email, Status & Dots */}
+                  {/* Top Row: Title, Code, Status & Dots */}
                   <div className="flex justify-between items-start gap-3">
                     <div className="flex-1 overflow-hidden">
                       <h3 className="font-bold text-lg text-toiral-dark leading-tight group-hover:text-toiral-primary transition-colors truncate">
                         {client.clientName}
                       </h3>
+                      {/* Client Code with copy button */}
+                      <div className="flex items-center gap-2 mt-1 text-sm text-toiral-secondary">
+                        <span className="font-mono bg-toiral-bg-light px-2 py-1 rounded-md">
+                          {client.clientCode}
+                        </span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopy(client._id, client.clientCode);
+                          }}
+                          className="p-1 hover:bg-toiral-bg rounded-md transition-colors"
+                          title="Copy client code"
+                        >
+                          <Copy size={16} />
+                          {copiedId === client._id && (
+                            <span className="absolute ml-1 text-xs text-green-600">
+                              Copied!
+                            </span>
+                          )}
+                        </button>
+                      </div>
                       <div className="flex items-center gap-2 text-toiral-secondary text-sm font-medium mt-2">
                         <Mail size={16} />
                         <span className="truncate">{client.email}</span>
@@ -213,15 +270,19 @@ const AddClient = () => {
 
                     <div className="flex items-center gap-2 mt-0.5">
                       <span
-                        className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap border ${getStatusStyle(client.status)}`}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap border ${getStatusStyle(
+                          client.status,
+                        )}`}
                       >
                         {client.status}
                       </span>
 
-                      {/* 3-Dot Menu Button */}
+                      {/* 3‑Dot Menu Button */}
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+                          // Store reference to the clicked button for click-outside detection
+                          activeButtonRef.current = e.currentTarget;
                           setOpenDropdownId(
                             openDropdownId === client._id ? null : client._id,
                           );
@@ -233,42 +294,31 @@ const AddClient = () => {
                     </div>
                   </div>
 
-                  {/* DROPDOWN MENU */}
+                  {/* Dropdown Menu */}
                   <AnimatePresence>
                     {openDropdownId === client._id && (
-                      <>
-                        {/* Invisible overlay to handle click-outside */}
-                        <div
-                          className="fixed inset-0 z-10 cursor-default"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setOpenDropdownId(null);
-                          }}
-                        />
-
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.95, y: -10 }}
-                          animate={{ opacity: 1, scale: 1, y: 0 }}
-                          exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute right-5 top-14 w-40 bg-white border border-toiral-bg shadow-xl rounded-2xl p-2 z-20 flex flex-col gap-1"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">
-                            <Eye size={18} /> View
-                          </button>
-                          <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">
-                            <Edit2 size={18} /> Edit
-                          </button>
-                          <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer">
-                            <Trash2 size={18} /> Delete
-                          </button>
-                        </motion.div>
-                      </>
+                      <motion.div
+                        ref={dropdownRef} // Attach ref for click-outside
+                        initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute right-5 top-14 w-40 bg-white border border-toiral-bg shadow-xl rounded-2xl p-2 z-20 flex flex-col gap-1"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">
+                          <Eye size={18} /> View
+                        </button>
+                        <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">
+                          <Edit2 size={18} /> Edit
+                        </button>
+                        <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer">
+                          <Trash2 size={18} /> Delete
+                        </button>
+                      </motion.div>
                     )}
                   </AnimatePresence>
 
-                  {/* Empty spacer to push footer to the bottom seamlessly */}
                   <div className="mt-auto" />
 
                   {/* Footer: Date Added */}

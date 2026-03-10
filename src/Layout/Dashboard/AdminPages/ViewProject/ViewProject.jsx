@@ -44,6 +44,8 @@ const ViewProject = () => {
     gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
   });
 
+  console.log(project);
+
   // derive header fields with fallback while loading
   const projectData = {
     name: project?.projectName || "Loading...",
@@ -207,7 +209,13 @@ const ViewProject = () => {
 
       {/* ================= BOTTOM PART (OUTLET CONTAINER) ================= */}
       <div className="flex-1 bg-white rounded-xl shadow-sm border border-toiral-bg custom-scrollbar">
-        <Outlet context={{ project, timelineData: timeLineData }} />
+        <Outlet
+        context={{
+          project,
+          timelineData: timeLineData,
+          clientCode: project?.clientCode, // pass only the code through context
+        }}
+      />
       </div>
     </div>
   );

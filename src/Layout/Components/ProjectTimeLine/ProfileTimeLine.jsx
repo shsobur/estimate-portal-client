@@ -23,15 +23,38 @@ import { useMutation } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios";
 
 const ProjectTimeLine = () => {
-  // only need timeline data from context; project object isn't used here
-  const { timelineData: timelineDataFromContext } = useOutletContext();
+  // only need timeline data (and client code) from context; project object isn't used here
+  const {
+    timelineData: timelineDataFromContext,
+    clientCode,
+  } = useOutletContext();
   const { projectId } = useParams();
   const { api } = useAxios();
+
+  // for debugging/verification you can log the code
+  // console.log("received clientCode in timeline:", clientCode);
 
   // start with the passed timeline; keep a local state copy for editing
   const [timelineData, setTimelineData] = useState(
     timelineDataFromContext || [],
   );
+
+  // mutation to notify server that the client has completed the full timeline
+  const completeClientMutation = useMutation({
+    mutationFn: async (code) => {
+      const res = await api.patch(`/admin-api/clients/complete`, {
+        clientCode: code,
+      });
+      return res.data;
+    },
+    onError: (err) => {
+      console.error("Failed to notify client completion", err);
+    },
+    onSuccess: (data) => {
+      console.log("client marked complete on server", data);
+      // Optionally display a success toast here
+    },
+  });
 
   // mutation for updating timeline on server
   const updateTimelineMutation = useMutation({
@@ -48,6 +71,15 @@ const ProjectTimeLine = () => {
     },
     onSuccess: (data) => {
       if (data.timeline) setTimelineData(data.timeline);
+
+      // if every step is marked completed, call the completion endpoint
+      const updatedTimeline = data.timeline || [];
+      const allFinished = updatedTimeline.every(
+        (step) => step.status === "completed",
+      );
+      if (allFinished && clientCode) {
+        completeClientMutation.mutate(clientCode);
+      }
     },
   });
 
