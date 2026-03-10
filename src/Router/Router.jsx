@@ -64,8 +64,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin/view-project/:projectId",
         element: <ViewProject></ViewProject>,
-        children: [
-          // default child when no sub-path is provided
+        children: [          
           {
             index: true,
             path: "overview",

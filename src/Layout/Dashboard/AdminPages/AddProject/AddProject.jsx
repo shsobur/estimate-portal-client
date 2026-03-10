@@ -166,7 +166,7 @@ const AddProject = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search projects..."
+              placeholder="Search by client, company or project name..."
               className="w-full bg-white border border-toiral-bg hover:border-toiral-light focus:border-toiral-primary rounded-xl pl-12 pr-5 py-3 text-toiral-dark text-base font-medium outline-none transition-all shadow-sm"
             />
           </div>
@@ -222,8 +222,7 @@ const AddProject = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedProjects.length > 0 ? (
               sortedProjects.map((project) => {
-                const progress = 0; // static placeholder
-                const dueDate = formatDate(project.deadline);
+                const addedOn = formatDate(project.createdAt);
 
                 return (
                   <div
@@ -290,7 +289,9 @@ const AddProject = () => {
                             <button
                               onClick={() => {
                                 /* navigate to view page with project id */
-                                navigate(`/dashboard/admin/view-project/${project._id}`);
+                                navigate(
+                                  `/dashboard/admin/view-project/${project._id}`,
+                                );
                               }}
                               className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer"
                             >
@@ -314,13 +315,15 @@ const AddProject = () => {
                           Progress
                         </span>
                         <span className="font-bold text-toiral-primary text-sm">
-                          {progress}%
+                          {Math.ceil(project.progress)}%
                         </span>
                       </div>
                       <div className="w-full bg-toiral-bg h-2.5 rounded-xl overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
-                          whileInView={{ width: `${progress}%` }}
+                          whileInView={{
+                            width: `${Math.ceil(project.progress)}%`,
+                          }}
                           viewport={{ once: true }}
                           transition={{
                             duration: 1.2,
@@ -336,10 +339,10 @@ const AddProject = () => {
                     <div className="pt-3.5 border-t border-toiral-bg flex items-center justify-between mt-2">
                       <div className="flex items-center gap-2 text-toiral-secondary">
                         <Calendar size={16} />
-                        <span className="font-medium text-sm">Due Date</span>
+                        <span className="font-medium text-sm">Added On</span>
                       </div>
                       <span className="font-bold text-toiral-dark text-sm">
-                        {dueDate}
+                        {addedOn}
                       </span>
                     </div>
                   </div>
