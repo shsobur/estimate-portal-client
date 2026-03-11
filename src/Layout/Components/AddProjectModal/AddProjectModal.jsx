@@ -284,6 +284,7 @@ const AddProjectModal = ({ onClose }) => {
       stackName: formData.stackName,
       totalTasks: Number(formData.totalTasks),
       completeTask: 0,
+      issues: 0,
       deadline: formData.deadline,
       projectDescription: formData.projectDescription,
       timeline: generateTimeline(),

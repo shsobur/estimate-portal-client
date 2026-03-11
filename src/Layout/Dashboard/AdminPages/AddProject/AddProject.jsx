@@ -19,18 +19,24 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxios from "../../../../Hooks/useAxios";
 import Swal from "sweetalert2";
 
-// ====== Date Formatting Helper ======
-const formatDate = (isoString) => {
+// ====== Date & Time Formatting Helper ======
+const formatDateTime = (isoString) => {
   if (!isoString) return "N/A";
   const date = new Date(isoString);
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  return (
+    date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }) +
+    " " +
+    date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+  );
 };
-
-// (progress bar is static according to requirement)
 
 const AddProject = () => {
   const { api } = useAxios();
@@ -60,7 +66,6 @@ const AddProject = () => {
       if (searchQuery.trim()) params.append("search", searchQuery.trim());
       if (filterStatus && filterStatus !== "All Status")
         params.append("status", filterStatus);
-      // default server-side sort isn't available, client can sort later
       const res = await api.get(`/admin-api/projects?${params.toString()}`);
       return res.data;
     },
@@ -83,10 +88,10 @@ const AddProject = () => {
     }
   }, [isError, error]);
 
-  // client-side sort by deadline ascending just so data isn't jumbled
+  // client‑side sort: newest first (by createdAt)
   const sortedProjects = projects
     .slice()
-    .sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   // Trigger refresh animation + refetch
   const handleRefresh = () => {
@@ -94,9 +99,6 @@ const AddProject = () => {
     refetch();
     setTimeout(() => setIsRefreshing(false), 1000);
   };
-
-  // Invalidate when modal closes so new project appears automatically
-  // (see modal rendering further down)
 
   const getStatusStyle = (status) => {
     switch (status) {
@@ -115,14 +117,10 @@ const AddProject = () => {
     }
   };
 
-  // animations removed: cards will use only CSS hover effects
-
   return (
-    // 1. FIXED OVERALL LAYOUT
     <div className="fixed inset-0 w-full h-screen bg-toiral-bg-light overflow-hidden">
-      {/* 2. INNER SCROLLABLE AREA (Scrollbar handled by index.css globally) */}
       <div className="w-full h-full overflow-y-auto pt-10 pb-48 px-4 md:px-6 flex flex-col gap-6">
-        {/* ================= TOP PART ================= */}
+        {/* TOP PART */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -138,7 +136,7 @@ const AddProject = () => {
           </div>
 
           <motion.button
-            onClick={() => setShowAddModal(true)} // <-- Added onClick to open modal
+            onClick={() => setShowAddModal(true)}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.95 }}
             className="bg-toiral-primary hover:bg-toiral-dark text-white px-5 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors shadow-md shadow-toiral-primary/20 cursor-pointer text-base"
@@ -149,14 +147,13 @@ const AddProject = () => {
           </motion.button>
         </motion.div>
 
-        {/* ================= MIDDLE PART ================= */}
+        {/* MIDDLE PART */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           className="flex flex-col md:flex-row gap-5 w-full"
         >
-          {/* Search Bar */}
           <div className="relative flex-1 group">
             <Search
               className="absolute left-4 top-1/2 -translate-y-1/2 text-toiral-secondary group-focus-within:text-toiral-primary transition-colors"
@@ -171,7 +168,6 @@ const AddProject = () => {
             />
           </div>
 
-          {/* Filters and Refresh */}
           <div className="flex gap-4 w-full md:w-auto">
             <div className="relative flex-1 md:w-52 group">
               <select
@@ -207,7 +203,7 @@ const AddProject = () => {
           </div>
         </motion.div>
 
-        {/* ================= BOTTOM PART (CARDS) ================= */}
+        {/* BOTTOM PART (CARDS) */}
         {isLoading ? (
           <div className="w-full py-16 text-center text-toiral-secondary font-medium text-lg">
             Loading projects...
@@ -221,133 +217,123 @@ const AddProject = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedProjects.length > 0 ? (
-              sortedProjects.map((project) => {
-                const addedOn = formatDate(project.createdAt);
-
-                return (
-                  <div
-                    key={project._id}
-                    className="bg-white rounded-2xl p-6 shadow-sm border border-toiral-bg hover:shadow-lg hover:shadow-toiral-light/30 hover:border-toiral-light/80 transition-all flex flex-col gap-4 group cursor-pointer relative"
-                  >
-                    {/* Top Row: Title, Client, Status & Dots */}
-                    <div className="flex justify-between items-start gap-3">
-                      <div className="flex-1 overflow-hidden">
-                        <h3 className="font-bold text-lg text-toiral-dark leading-tight group-hover:text-toiral-primary transition-colors truncate">
-                          {project.projectName}
-                        </h3>
-                        <div className="flex items-center gap-2 text-toiral-secondary text-sm font-medium mt-2">
-                          <User size={16} />
-                          <span className="truncate">{project.clientName}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <span
-                          className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap border ${getStatusStyle(project.status)}`}
-                        >
-                          {project.status}
-                        </span>
-
-                        {/* 3-Dot Menu Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setOpenDropdownId(
-                              openDropdownId === project._id
-                                ? null
-                                : project._id,
-                            );
-                          }}
-                          className="p-1.5 text-toiral-secondary hover:text-toiral-primary hover:bg-toiral-bg rounded-xl transition-colors cursor-pointer"
-                        >
-                          <MoreVertical size={20} />
-                        </button>
+              sortedProjects.map((project) => (
+                <div
+                  key={project._id}
+                  className="bg-white rounded-2xl p-6 shadow-sm border border-toiral-bg hover:shadow-lg hover:shadow-toiral-light/30 hover:border-toiral-light/80 transition-all flex flex-col gap-4 group cursor-pointer relative"
+                >
+                  {/* Top Row */}
+                  <div className="flex justify-between items-start gap-3">
+                    <div className="flex-1 overflow-hidden">
+                      <h3 className="font-bold text-lg text-toiral-dark leading-tight group-hover:text-toiral-primary transition-colors truncate">
+                        {project.projectName}
+                      </h3>
+                      <div className="flex items-center gap-2 text-toiral-secondary text-sm font-medium mt-2">
+                        <User size={16} />
+                        <span className="truncate">{project.clientName}</span>
                       </div>
                     </div>
 
-                    {/* DROPDOWN MENU */}
-                    <AnimatePresence>
-                      {openDropdownId === project._id && (
-                        <>
-                          {/* Invisible overlay to handle click-outside */}
-                          <div
-                            className="fixed inset-0 z-10 cursor-default"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setOpenDropdownId(null);
-                            }}
-                          />
-
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: -10 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                            transition={{ duration: 0.15 }}
-                            className="absolute right-5 top-14 w-40 bg-white border border-toiral-bg shadow-xl rounded-2xl p-2 z-20 flex flex-col gap-1"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <button
-                              onClick={() => {
-                                /* navigate to view page with project id */
-                                navigate(
-                                  `/dashboard/admin/view-project/${project._id}`,
-                                );
-                              }}
-                              className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer"
-                            >
-                              <Eye size={18} /> View
-                            </button>
-                            <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">
-                              <Edit2 size={18} /> Edit
-                            </button>
-                            <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer">
-                              <Trash2 size={18} /> Delete
-                            </button>
-                          </motion.div>
-                        </>
-                      )}
-                    </AnimatePresence>
-
-                    {/* Progress Bar Component */}
-                    <div className="mt-auto flex flex-col gap-2.5 pt-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-semibold text-toiral-dark text-sm">
-                          Progress
-                        </span>
-                        <span className="font-bold text-toiral-primary text-sm">
-                          {Math.ceil(project.progress)}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-toiral-bg h-2.5 rounded-xl overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{
-                            width: `${Math.ceil(project.progress)}%`,
-                          }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 1.2,
-                            delay: 0.2,
-                            ease: "easeOut",
-                          }}
-                          className="bg-linear-to-r from-toiral-primary to-toiral-secondary h-full rounded-xl relative"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Footer: Due Date */}
-                    <div className="pt-3.5 border-t border-toiral-bg flex items-center justify-between mt-2">
-                      <div className="flex items-center gap-2 text-toiral-secondary">
-                        <Calendar size={16} />
-                        <span className="font-medium text-sm">Added On</span>
-                      </div>
-                      <span className="font-bold text-toiral-dark text-sm">
-                        {addedOn}
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <span
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap border ${getStatusStyle(project.status)}`}
+                      >
+                        {project.status}
                       </span>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenDropdownId(
+                            openDropdownId === project._id ? null : project._id,
+                          );
+                        }}
+                        className="p-1.5 text-toiral-secondary hover:text-toiral-primary hover:bg-toiral-bg rounded-xl transition-colors cursor-pointer"
+                      >
+                        <MoreVertical size={20} />
+                      </button>
                     </div>
                   </div>
-                );
-              })
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {openDropdownId === project._id && (
+                      <>
+                        <div
+                          className="fixed inset-0 z-10 cursor-default"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenDropdownId(null);
+                          }}
+                        />
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute right-5 top-14 w-40 bg-white border border-toiral-bg shadow-xl rounded-2xl p-2 z-20 flex flex-col gap-1"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <button
+                            onClick={() => {
+                              navigate(
+                                `/dashboard/admin/view-project/${project._id}`,
+                              );
+                            }}
+                            className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer"
+                          >
+                            <Eye size={18} /> View
+                          </button>
+                          <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-toiral-dark hover:bg-toiral-bg-light hover:text-toiral-primary rounded-xl transition-colors cursor-pointer">
+                            <Edit2 size={18} /> Edit
+                          </button>
+                          <button className="flex items-center gap-2.5 w-full text-left px-3 py-2.5 text-base font-medium text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer">
+                            <Trash2 size={18} /> Delete
+                          </button>
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Progress Bar */}
+                  <div className="mt-auto flex flex-col gap-2.5 pt-2">
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold text-toiral-dark text-sm">
+                        Progress
+                      </span>
+                      <span className="font-bold text-toiral-primary text-sm">
+                        {Math.ceil(project.progress)}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-toiral-bg h-2.5 rounded-xl overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{
+                          width: `${Math.ceil(project.progress)}%`,
+                        }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 1.2,
+                          delay: 0.2,
+                          ease: "easeOut",
+                        }}
+                        className="bg-linear-to-r from-toiral-primary to-toiral-secondary h-full rounded-xl relative"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Footer: Added On with Date & Time */}
+                  <div className="pt-3.5 border-t border-toiral-bg flex items-center justify-between mt-2">
+                    <div className="flex items-center gap-2 text-toiral-secondary">
+                      <Calendar size={16} />
+                      <span className="font-medium text-sm">Added On</span>
+                    </div>
+                    <span className="font-bold text-toiral-dark text-sm text-right">
+                      {formatDateTime(project.createdAt)}
+                    </span>
+                  </div>
+                </div>
+              ))
             ) : (
               <div className="col-span-full w-full py-16 text-center text-toiral-secondary font-medium text-2xl">
                 No projects found. Try adjusting your search or filters.
@@ -357,7 +343,7 @@ const AddProject = () => {
         )}
       </div>
 
-      {/* ================= ADD PROJECT MODAL ================= */}
+      {/* Add Project Modal */}
       <AnimatePresence>
         {showAddModal && (
           <motion.div
