@@ -13,7 +13,6 @@ import AddProject from "../Layout/Dashboard/AdminPages/AddProject/AddProject";
 import ViewProject from "../Layout/Dashboard/AdminPages/ViewProject/ViewProject";
 
 import ProjectOverview from "../Layout/Components/ProjectOverview/ProjectOverview";
-import ProjectTimeLine from "../Layout/Components/ProjectTimeLine/ProfileTimeLine";
 
 const router = createBrowserRouter([
   {
@@ -69,10 +68,6 @@ const router = createBrowserRouter([
             index: true,
             path: "overview",
             element: <ProjectOverview></ProjectOverview>,
-          },
-          {
-            path: "timeline",
-            element: <ProjectTimeLine></ProjectTimeLine>,
           },
         ],
       },
