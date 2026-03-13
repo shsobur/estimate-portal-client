@@ -13,6 +13,7 @@ import AddProject from "../Layout/Dashboard/AdminPages/AddProject/AddProject";
 import ViewProject from "../Layout/Dashboard/AdminPages/ViewProject/ViewProject";
 
 import ProjectOverview from "../Layout/Components/ProjectOverview/ProjectOverview";
+import ProjectTimeline from "../Layout/Components/ProjectTimeline/ProjectTimeline";
 
 const router = createBrowserRouter([
   {
@@ -63,11 +64,15 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin/view-project/:projectId",
         element: <ViewProject></ViewProject>,
-        children: [          
+        children: [
           {
             index: true,
             path: "overview",
             element: <ProjectOverview></ProjectOverview>,
+          },
+          {
+            path: "timeline",
+            element: <ProjectTimeline></ProjectTimeline>,
           },
         ],
       },

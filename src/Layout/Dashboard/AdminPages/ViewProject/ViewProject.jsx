@@ -24,7 +24,6 @@ const ViewProject = () => {
   const { projectId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const [timeLineData, setTimelineData] = useState([]);
 
   // fetch project via react-query
   const {
@@ -36,7 +35,6 @@ const ViewProject = () => {
     queryKey: ["project", projectId],
     queryFn: async () => {
       const res = await api.get(`/admin-api/projects/${projectId}`);
-      setTimelineData(res.data.timeline);
       return res.data;
     },
     enabled: !!projectId,
@@ -212,7 +210,10 @@ const ViewProject = () => {
         <Outlet
         context={{
           project,
-          clientCode: project?.clientCode, // pass only the code through context
+          progress: project?.progress || 0,
+          projectId: project?._id,
+          timeline: project?.timeline,
+          clientCode: project?.clientCode,
         }}
       />
       </div>

@@ -23,7 +23,7 @@ const ProjectOverviewEditModal = ({
 }) => {
   const { api } = useAxios();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const queryClient = useQueryClient(); // ✅ Get the query client
+  const queryClient = useQueryClient();
 
   // Initialize React Hook Form
   const {
