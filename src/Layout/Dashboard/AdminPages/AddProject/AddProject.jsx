@@ -329,7 +329,7 @@ const AddProject = () => {
                       <span className="font-medium text-sm">Added On</span>
                     </div>
                     <span className="font-bold text-toiral-dark text-sm text-right">
-                      {formatDateTime(project.createdAt)}
+                      {formatDateTime(project.start)}
                     </span>
                   </div>
                 </div>

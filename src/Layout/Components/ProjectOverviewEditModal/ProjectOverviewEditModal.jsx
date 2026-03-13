@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, Save, Loader2, LayoutDashboard } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import useAxios from "../../../Hooks/useAxios";
 
 // Helper to format date strings for the HTML date input
 const formatDateForInput = (dateString) => {
@@ -15,10 +18,12 @@ const formatDateForInput = (dateString) => {
 const ProjectOverviewEditModal = ({
   isOpen,
   onClose,
+  projectId,
   projectData,
-  onSubmitApi,
 }) => {
+  const { api } = useAxios();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const queryClient = useQueryClient(); // ✅ Get the query client
 
   // Initialize React Hook Form
   const {
@@ -26,44 +31,97 @@ const ProjectOverviewEditModal = ({
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors, dirtyFields },
   } = useForm({
     defaultValues: {
       projectDescription: projectData?.projectDescription || "",
       totalTasks: projectData?.totalTasks || 0,
       issues: projectData?.issues || 0,
-      createdAt: formatDateForInput(projectData?.createdAt),
+      completeTask: projectData?.completeTask || 0,
+      start: formatDateForInput(projectData?.start),
       deadline: formatDateForInput(projectData?.deadline),
       projectCost: projectData?.projectCost || 0,
     },
   });
 
+  // Reset form when new projectData arrives (important when modal opens with fresh data)
+  useEffect(() => {
+    if (isOpen && projectData) {
+      reset({
+        projectDescription: projectData.projectDescription || "",
+        totalTasks: projectData.totalTasks || 0,
+        issues: projectData.issues || 0,
+        completeTask: projectData.completeTask || 0,
+        start: formatDateForInput(projectData.start || projectData.createdAt),
+        deadline: formatDateForInput(projectData.deadline),
+        projectCost: projectData.projectCost || 0,
+      });
+    }
+  }, [isOpen, projectData, reset]);
+
   // Watch values for the custom +/- buttons
   const currentTasks = watch("totalTasks");
   const currentIssues = watch("issues");
+  const currentCompleteTask = watch("completeTask");
 
   // Custom handler for +/- buttons to ensure React Hook Form marks them as "dirty"
   const handleNumberChange = (field, currentValue, increment) => {
-    const newValue = Math.max(0, parseInt(currentValue || 0) + increment); // Prevent negative numbers
+    const newValue = Math.max(0, parseInt(currentValue || 0) + increment); // prevent negative
     setValue(field, newValue, { shouldValidate: true, shouldDirty: true });
   };
 
   const processSubmit = async (data) => {
-    setIsSubmitting(true);
-
-    // Extract only fields that were actually modified by the user
+    // Extract only fields that were actually modified
     const changedData = {};
     Object.keys(dirtyFields).forEach((key) => {
+      // If the field is a date, ensure it's in ISO format or as expected by backend
       changedData[key] = data[key];
     });
 
+    if (Object.keys(changedData).length === 0) {
+      // Nothing changed – just close
+      onClose();
+      return;
+    }
+
+    setIsSubmitting(true);
+
     try {
-      if (Object.keys(changedData).length > 0) {
-        await onSubmitApi(changedData);
-      }
+      // Perform PATCH request
+      await api.patch(`/admin-api/projects/${projectId}`, changedData);
+
+      // ✅ SOLUTION 1: Invalidate the query cache to refetch data
+      queryClient.invalidateQueries({
+        queryKey: ["project", projectId],
+      });
+
+      // Success alert
+      await Swal.fire({
+        icon: "success",
+        title: "Updated!",
+        text: "Project details have been saved.",
+        timer: 2000,
+        showConfirmButton: false,
+        background: "#f2fbfa",
+        color: "#16384b",
+        iconColor: "#149499",
+      });
+
       onClose();
     } catch (error) {
-      console.error("Failed to update:", error);
+      // Error alert
+      await Swal.fire({
+        icon: "error",
+        title: "Update failed",
+        text:
+          error?.response?.data?.message ||
+          error.message ||
+          "Something went wrong.",
+        confirmButtonColor: "#16384b",
+        background: "#f2fbfa",
+        color: "#16384b",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -89,12 +147,10 @@ const ProjectOverviewEditModal = ({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
-              // Here is the fix: max-w-[1024px] instead of min-w, keeping it 100% responsive!
-              // Changed background to pure white as requested.
               className="bg-white w-full max-w-5xl max-h-[90vh] rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden pointer-events-auto flex flex-col border border-toiral-light/30"
               style={{ fontFamily: "var(--font-outfit)" }}
             >
-              {/* Header (Sticky at top) */}
+              {/* Header */}
               <div className="flex justify-between items-center p-5 md:p-6 lg:px-8 border-b border-toiral-light/40 shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-toiral-primary/10 rounded-lg text-toiral-primary hidden sm:block">
@@ -113,19 +169,20 @@ const ProjectOverviewEditModal = ({
                   onClick={onClose}
                   disabled={isSubmitting}
                   className="p-2.5 text-toiral-dark/50 hover:text-toiral-primary hover:bg-toiral-primary/10 rounded-full transition-all cursor-pointer active:scale-90 disabled:opacity-50"
+                  aria-label="Close modal"
                 >
                   <X size={22} />
                 </button>
               </div>
 
-              {/* Form Body - Inner Scrollable Area */}
+              {/* Form Body */}
               <div className="p-5 md:p-6 lg:p-8 overflow-y-auto flex-1 custom-scrollbar">
                 <form
                   id="edit-project-form"
                   onSubmit={handleSubmit(processSubmit)}
                   className="space-y-6 md:space-y-8"
                 >
-                  {/* 1. Description */}
+                  {/* Description */}
                   <div className="group">
                     <label className="block text-sm font-semibold text-toiral-dark mb-2 transition-colors group-focus-within:text-toiral-primary">
                       Project Overview
@@ -145,9 +202,9 @@ const ProjectOverviewEditModal = ({
                     )}
                   </div>
 
-                  {/* 2 & 3. Tasks and Issues Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    {/* Tasks */}
+                  {/* Project Metrics: Tasks, Issues, Completed Tasks */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    {/* Total Tasks */}
                     <div className="group">
                       <label className="block text-sm font-semibold text-toiral-dark mb-2 transition-colors group-focus-within:text-toiral-primary">
                         Total Tasks
@@ -159,6 +216,7 @@ const ProjectOverviewEditModal = ({
                             handleNumberChange("totalTasks", currentTasks, -1)
                           }
                           className="px-5 h-full flex items-center justify-center text-toiral-dark/70 hover:text-toiral-primary hover:bg-toiral-light/30 transition-colors cursor-pointer active:bg-toiral-light"
+                          aria-label="Decrease total tasks"
                         >
                           <Minus size={18} />
                         </button>
@@ -175,6 +233,7 @@ const ProjectOverviewEditModal = ({
                             handleNumberChange("totalTasks", currentTasks, 1)
                           }
                           className="px-5 h-full flex items-center justify-center text-toiral-dark/70 hover:text-toiral-primary hover:bg-toiral-light/30 transition-colors cursor-pointer active:bg-toiral-light"
+                          aria-label="Increase total tasks"
                         >
                           <Plus size={18} />
                         </button>
@@ -186,7 +245,7 @@ const ProjectOverviewEditModal = ({
                       )}
                     </div>
 
-                    {/* Issues */}
+                    {/* Active Issues */}
                     <div className="group">
                       <label className="block text-sm font-semibold text-toiral-dark mb-2 transition-colors group-focus-within:text-toiral-primary">
                         Active Issues
@@ -198,6 +257,7 @@ const ProjectOverviewEditModal = ({
                             handleNumberChange("issues", currentIssues, -1)
                           }
                           className="px-5 h-full flex items-center justify-center text-toiral-dark/70 hover:text-toiral-primary hover:bg-toiral-light/30 transition-colors cursor-pointer active:bg-toiral-light"
+                          aria-label="Decrease active issues"
                         >
                           <Minus size={18} />
                         </button>
@@ -214,6 +274,7 @@ const ProjectOverviewEditModal = ({
                             handleNumberChange("issues", currentIssues, 1)
                           }
                           className="px-5 h-full flex items-center justify-center text-toiral-dark/70 hover:text-toiral-primary hover:bg-toiral-light/30 transition-colors cursor-pointer active:bg-toiral-light"
+                          aria-label="Increase active issues"
                         >
                           <Plus size={18} />
                         </button>
@@ -224,9 +285,58 @@ const ProjectOverviewEditModal = ({
                         </p>
                       )}
                     </div>
+
+                    {/* Completed Tasks */}
+                    <div className="group">
+                      <label className="block text-sm font-semibold text-toiral-dark mb-2 transition-colors group-focus-within:text-toiral-primary">
+                        Completed Tasks
+                      </label>
+                      <div className="flex items-center bg-toiral-bg-light/50 border border-toiral-light/60 rounded-xl overflow-hidden focus-within:bg-white focus-within:border-toiral-primary focus-within:ring-4 focus-within:ring-toiral-primary/10 transition-all h-13">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleNumberChange(
+                              "completeTask",
+                              currentCompleteTask,
+                              -1,
+                            )
+                          }
+                          className="px-5 h-full flex items-center justify-center text-toiral-dark/70 hover:text-toiral-primary hover:bg-toiral-light/30 transition-colors cursor-pointer active:bg-toiral-light"
+                          aria-label="Decrease completed tasks"
+                        >
+                          <Minus size={18} />
+                        </button>
+                        <input
+                          type="number"
+                          {...register("completeTask", {
+                            min: { value: 0, message: "Cannot be negative" },
+                          })}
+                          className="w-full h-full text-center font-bold text-lg text-toiral-dark outline-none bg-transparent appearance-none cursor-text"
+                        />
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleNumberChange(
+                              "completeTask",
+                              currentCompleteTask,
+                              1,
+                            )
+                          }
+                          className="px-5 h-full flex items-center justify-center text-toiral-dark/70 hover:text-toiral-primary hover:bg-toiral-light/30 transition-colors cursor-pointer active:bg-toiral-light"
+                          aria-label="Increase completed tasks"
+                        >
+                          <Plus size={18} />
+                        </button>
+                      </div>
+                      {errors.completeTask && (
+                        <p className="text-red-500 text-xs mt-1.5 font-medium">
+                          {errors.completeTask.message}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
-                  {/* 4 & 5. Dates Grid */}
+                  {/* Dates Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <div className="group">
                       <label className="block text-sm font-semibold text-toiral-dark mb-2 transition-colors group-focus-within:text-toiral-primary">
@@ -234,14 +344,14 @@ const ProjectOverviewEditModal = ({
                       </label>
                       <input
                         type="date"
-                        {...register("createdAt", {
+                        {...register("start", {
                           required: "Start date is required",
                         })}
                         className="w-full p-4 h-13 rounded-xl bg-toiral-bg-light/50 border border-toiral-light/60 focus:bg-white focus:border-toiral-primary focus:ring-4 focus:ring-toiral-primary/10 outline-none transition-all cursor-pointer text-toiral-dark font-medium"
                       />
-                      {errors.createdAt && (
+                      {errors.start && (
                         <p className="text-red-500 text-xs mt-1.5 font-medium">
-                          {errors.createdAt.message}
+                          {errors.start.message}
                         </p>
                       )}
                     </div>
@@ -264,7 +374,7 @@ const ProjectOverviewEditModal = ({
                     </div>
                   </div>
 
-                  {/* 6. Cost */}
+                  {/* Cost */}
                   <div className="group">
                     <label className="block text-sm font-semibold text-toiral-dark mb-2 transition-colors group-focus-within:text-toiral-primary">
                       Project Cost (TK)
@@ -291,7 +401,7 @@ const ProjectOverviewEditModal = ({
                 </form>
               </div>
 
-              {/* Footer / Actions (Sticky at bottom) */}
+              {/* Footer Actions */}
               <div className="p-5 md:p-6 lg:px-8 border-t border-toiral-light/40 shrink-0 bg-gray-50/50 flex flex-col-reverse sm:flex-row justify-end gap-3 md:gap-4">
                 <button
                   type="button"

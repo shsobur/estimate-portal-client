@@ -31,14 +31,6 @@ const ProjectOverview = () => {
   const completeTasks = projectData?.completeTask ?? 0;
   const totalTasks = projectData?.totalTasks ?? 0;
 
-  const timeline = projectData?.timeline || [];
-  const completedSteps = timeline.filter(
-    (t) => t.status === "completed",
-  ).length;
-  const progressPercent = timeline.length
-    ? Math.round((completedSteps / timeline.length) * 100)
-    : 0;
-
   const issuesCount = projectData?.issues ?? 0;
   const teamCount = projectData?.assignedTeam?.length ?? 0;
 
@@ -139,13 +131,13 @@ const ProjectOverview = () => {
                 Completion Rate
               </span>
               <span className="text-2xl font-bold text-toiral-primary">
-                {progressPercent}%
+                {Math.ceil(projectData?.progress || 0)}%
               </span>
             </div>
             <div className="h-3 md:h-4 w-full bg-toiral-light rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${progressPercent}%` }}
+                animate={{ width: `${Math.ceil(projectData?.progress || 0)}%` }}
                 transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
                 className="h-full bg-toiral-primary rounded-full relative"
               >
@@ -210,6 +202,7 @@ const ProjectOverview = () => {
       <ProjectOverviewEditModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
+        projectId={projectData._id}
         projectData={projectData}
         onSubmitApi={handleApiUpdate}
       />

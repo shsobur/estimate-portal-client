@@ -154,7 +154,7 @@ const showErrorAlert = (title, text) => {
 
 // ====== Main Component ======
 const AddProjectModal = ({ onClose }) => {
-  const {api} = useAxios();
+  const { api } = useAxios();
 
   // --- Step Navigation State ---
   const [currentStep, setCurrentStep] = useState(1);
@@ -191,7 +191,7 @@ const AddProjectModal = ({ onClose }) => {
   // --- TanStack Query: Client Verification Mutation ---
   const verifyClientMutation = useMutation({
     mutationFn: async (clientCode) => {
-      console.log(clientCode)
+      console.log(clientCode);
       const response = await api.post("/admin-api/client-by-code", {
         clientCode: clientCode,
       });

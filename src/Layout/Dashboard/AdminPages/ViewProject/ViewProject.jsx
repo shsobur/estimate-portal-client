@@ -212,7 +212,6 @@ const ViewProject = () => {
         <Outlet
         context={{
           project,
-          timelineData: timeLineData,
           clientCode: project?.clientCode, // pass only the code through context
         }}
       />
