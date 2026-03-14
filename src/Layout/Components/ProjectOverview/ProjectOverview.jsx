@@ -15,6 +15,7 @@ import ProjectOverviewEditModal from "../ProjectOverviewEditModal/ProjectOvervie
 
 const ProjectOverview = () => {
   const { project: projectData } = useOutletContext();
+  console.log(projectData);
 
   // State to control our new modal
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -34,8 +35,8 @@ const ProjectOverview = () => {
   const issuesCount = projectData?.issues ?? 0;
   const teamCount = projectData?.assignedTeam?.length ?? 0;
 
-  const formattedStart = projectData?.createdAt
-    ? new Date(projectData.createdAt).toLocaleDateString("en-US", {
+  const formattedStart = projectData?.start
+    ? new Date(projectData.start).toLocaleDateString("en-US", {
         day: "numeric",
         month: "short",
         year: "numeric",

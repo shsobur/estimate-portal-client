@@ -1,7 +1,18 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
-import { CheckCircle2, Circle, Lock, AlertCircle } from "lucide-react";
+import {
+  CheckCircle2,
+  CircleDashed,
+  Lock,
+  Check,
+  Clock,
+  CreditCard,
+  ChevronRight,
+  Loader2,
+} from "lucide-react";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import useAxios from "../../../Hooks/useAxios";
 
@@ -10,6 +21,10 @@ const ProjectTimeline = () => {
   const { timeline, projectId, clientCode } = useOutletContext();
   const [isUpdating, setIsUpdating] = useState(false);
   const queryClient = useQueryClient();
+
+  // ==========================================
+  // FUNCTIONALITY: KEPT 100% EXACTLY AS YOURS
+  // ==========================================
 
   // Get formatted date (today)
   const getFormattedDate = () => {
@@ -20,7 +35,6 @@ const ProjectTimeline = () => {
 
   // Handle step completion
   const handleCompleteStep = async (stepNumber) => {
-    // Show confirmation dialog
     const result = await Swal.fire({
       title: "Complete This Step?",
       text: `Are you sure you want to mark this step as completed?`,
@@ -35,15 +49,13 @@ const ProjectTimeline = () => {
     });
 
     if (!result.isConfirmed) {
-      return; // User cancelled
+      return;
     }
 
     setIsUpdating(true);
 
     try {
-      // Create updated timeline
       const updatedTimeline = timeline.map((step) => {
-        // Complete the current step
         if (step.step === stepNumber) {
           return {
             ...step,
@@ -51,32 +63,26 @@ const ProjectTimeline = () => {
             date: getFormattedDate(),
           };
         }
-        // Move next step to current
         if (step.step === stepNumber + 1) {
           return {
             ...step,
             status: "current",
           };
         }
-        // Keep other steps as is
         return step;
       });
 
-      // Call PATCH API to update project timeline
       await api.patch(`/admin-api/projects/${projectId}`, {
         timeline: updatedTimeline,
       });
 
-      // Check if Step 4 is now the current step
       const step4IsCurrent =
         updatedTimeline.find((step) => step.step === 4)?.status === "current";
 
-      // Check if ALL steps are now completed
       const allStepsCompleted = updatedTimeline.every(
         (step) => step.status === "completed",
       );
 
-      // If Step 4 becomes current, update client status to "In Progress"
       if (step4IsCurrent) {
         await api.patch(`/admin-api/clients/complete`, {
           clientCode,
@@ -84,22 +90,15 @@ const ProjectTimeline = () => {
         });
       }
 
-      // If all steps completed, update client status to "Complete"
       if (allStepsCompleted) {
         await api.patch(`/admin-api/clients/complete`, {
           clientCode,
           status: "Complete",
         });
 
-        // Invalidate both caches
-        queryClient.invalidateQueries({
-          queryKey: ["project", projectId],
-        });
-        queryClient.invalidateQueries({
-          queryKey: ["clients"],
-        });
+        queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+        queryClient.invalidateQueries({ queryKey: ["clients"] });
 
-        // Show special success message for project completion
         await Swal.fire({
           icon: "success",
           title: "🎉 Congratulations!",
@@ -117,13 +116,8 @@ const ProjectTimeline = () => {
           iconColor: "#149499",
         });
       } else if (step4IsCurrent) {
-        // Show success message when Step 4 becomes current
-        queryClient.invalidateQueries({
-          queryKey: ["project", projectId],
-        });
-        queryClient.invalidateQueries({
-          queryKey: ["clients"],
-        });
+        queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+        queryClient.invalidateQueries({ queryKey: ["clients"] });
 
         await Swal.fire({
           icon: "success",
@@ -136,10 +130,7 @@ const ProjectTimeline = () => {
           iconColor: "#149499",
         });
       } else {
-        // Show regular success message for step completion
-        queryClient.invalidateQueries({
-          queryKey: ["project", projectId],
-        });
+        queryClient.invalidateQueries({ queryKey: ["project", projectId] });
 
         await Swal.fire({
           icon: "success",
@@ -153,7 +144,6 @@ const ProjectTimeline = () => {
         });
       }
     } catch (error) {
-      // Error alert
       await Swal.fire({
         icon: "error",
         title: "Update Failed",
@@ -171,164 +161,257 @@ const ProjectTimeline = () => {
     }
   };
 
-  // Get status icon
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case "completed":
-        return <CheckCircle2 className="w-6 h-6 text-green-500" />;
-      case "current":
-        return <AlertCircle className="w-6 h-6 text-blue-500" />;
-      case "pending":
-        return <Circle className="w-6 h-6 text-gray-400" />;
-      default:
-        return <Circle className="w-6 h-6 text-gray-400" />;
-    }
-  };
-
-  // Get status badge color
-  const getStatusBadgeColor = (status) => {
-    switch (status) {
-      case "completed":
-        return "bg-green-100 text-green-800";
-      case "current":
-        return "bg-blue-100 text-blue-800";
-      case "pending":
-        return "bg-gray-100 text-gray-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
-  };
+  // ==========================================
+  // DESIGN & LAYOUT UPDATES BELOW
+  // ==========================================
 
   if (!timeline || timeline.length === 0) {
     return (
-      <div className="p-6">
-        <p className="text-gray-500">No timeline data available.</p>
+      <div className="p-6 md:p-8 rounded-2xl bg-white border border-toiral-light/50 text-center">
+        <p className="text-toiral-dark/60 font-medium">
+          No timeline data available.
+        </p>
       </div>
     );
   }
 
+  // Calculate stats for the gorgeous top header
+  const completedCount = timeline.filter(
+    (s) => s.status === "completed",
+  ).length;
+  const currentCount = timeline.filter((s) => s.status === "current").length;
+  const pendingCount = timeline.filter((s) => s.status === "pending").length;
+  const progressPercent = Math.round((completedCount / timeline.length) * 100);
+
   return (
-    <div className="p-6 bg-white rounded-lg">
-      <h2 className="text-2xl font-bold text-gray-800 mb-8">
-        Project Timeline
-      </h2>
+    <div
+      className="w-full flex flex-col items-center p-3 md:p-4"
+      style={{ fontFamily: "var(--font-outfit)" }}
+    >
+      <div className="w-full space-y-6 md:space-y-8">
+        {/* ========================================== */}
+        {/* NEW DASHBOARD HEADER & PROGRESS SUMMARY    */}
+        {/* ========================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-toiral-bg-light p-6 md:p-8 rounded-2xl shadow-sm border border-toiral-light/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(20,148,153,0.15)] hover:border-toiral-primary/40"
+        >
+          <div className="text-center md:text-left mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-toiral-dark mb-2">
+              Project Timeline
+            </h2>
+            <p className="text-toiral-dark/70 text-sm md:text-base">
+              Track live progress and manage project milestones.
+            </p>
+          </div>
 
-      {/* Timeline Container */}
-      <div className="space-y-6">
-        {timeline.map((step, index) => (
-          <div key={step.step} className="flex gap-4">
-            {/* Left side - Status Icon and connector */}
-            <div className="flex flex-col items-center">
-              {/* Icon */}
-              <div className="shrink-0">{getStatusIcon(step.status)}</div>
-
-              {/* Connector line */}
-              {index < timeline.length - 1 && (
-                <div
-                  className={`w-1 h-20 mt-2 ${
-                    step.status === "completed" ? "bg-green-500" : "bg-gray-300"
-                  }`}
-                />
-              )}
+          {/* Progress Bar */}
+          <div className="mb-6">
+            <div className="flex justify-between items-end mb-2">
+              <span className="text-sm font-semibold text-toiral-dark/80 uppercase tracking-wider">
+                Overall Progress
+              </span>
+              <span className="text-2xl font-bold text-toiral-primary">
+                {progressPercent}%
+              </span>
             </div>
+            <div className="w-full bg-toiral-light/50 h-2.5 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-toiral-primary rounded-full relative"
+                initial={{ width: 0 }}
+                animate={{ width: `${progressPercent}%` }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                <div className="absolute top-0 left-0 w-full h-full bg-white/20" />
+              </motion.div>
+            </div>
+          </div>
 
-            {/* Right side - Content */}
-            <div className="flex-1 pb-4">
-              {/* Header */}
-              <div className="flex items-start justify-between mb-2">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800">
-                    Step {step.step}: {step.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm mt-1">
-                    {step.description}
-                  </p>
-                </div>
-                {/* Status Badge */}
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusBadgeColor(
-                    step.status,
-                  )} whitespace-nowrap ml-4`}
+          {/* Stats Row */}
+          <div className="grid grid-cols-3 gap-3 md:gap-4 pt-4 border-t border-toiral-light/40">
+            <div className="text-center p-2 rounded-xl bg-green-50/50">
+              <span className="block text-xs md:text-sm text-toiral-dark/60 font-semibold mb-1">
+                Completed
+              </span>
+              <span className="text-lg md:text-xl font-bold text-toiral-primary">
+                {completedCount}
+              </span>
+            </div>
+            <div className="text-center p-2 rounded-xl bg-blue-50/50">
+              <span className="block text-xs md:text-sm text-toiral-dark/60 font-semibold mb-1">
+                In Progress
+              </span>
+              <span className="text-lg md:text-xl font-bold text-blue-600">
+                {currentCount}
+              </span>
+            </div>
+            <div className="text-center p-2 rounded-xl bg-gray-50/50">
+              <span className="block text-xs md:text-sm text-toiral-dark/60 font-semibold mb-1">
+                Pending
+              </span>
+              <span className="text-lg md:text-xl font-bold text-toiral-dark/40">
+                {pendingCount}
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ========================================== */}
+        {/* TIMELINE LIST                              */}
+        {/* ========================================== */}
+        <div className="relative mt-8 md:mt-12 pl-2">
+          {/* The Vertical Line */}
+          <div className="absolute left-5 md:left-7 top-4 bottom-12 w-0.75 bg-toiral-light/60 rounded-full" />
+
+          <div className="space-y-6 md:space-y-8">
+            {timeline.map((step, index) => {
+              const isCompleted = step.status === "completed";
+              const isCurrent = step.status === "current";
+              const isPending = step.status === "pending";
+
+              return (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative flex items-start gap-4 md:gap-6 pl-12 md:pl-16 group"
                 >
-                  {step.status.charAt(0).toUpperCase() + step.status.slice(1)}
-                </span>
-              </div>
-
-              {/* Details */}
-              <div className="mt-3 space-y-2">
-                {/* Date */}
-                {step.date && (
-                  <p className="text-sm text-gray-600">
-                    <span className="font-semibold">Completed:</span>{" "}
-                    {step.date}
-                  </p>
-                )}
-
-                {/* Payment Info */}
-                {step.payment && (
-                  <p className="text-sm text-gray-600">
-                    <span className="font-semibold">Payment:</span>{" "}
-                    {step.payment}%
-                  </p>
-                )}
-
-                {/* Complete Button - Only show for current step */}
-                {step.status === "current" && (
-                  <button
-                    onClick={() => handleCompleteStep(step.step)}
-                    disabled={isUpdating}
-                    className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                  {/* Timeline Dot/Icon */}
+                  <div
+                    className={`absolute left-0 w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border-4 border-toiral-bg z-10 transition-all duration-500
+                    ${isCompleted ? "bg-toiral-primary text-white" : ""}
+                    ${isCurrent ? "bg-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)] scale-110" : ""}
+                    ${isPending ? "bg-toiral-light text-toiral-dark/40" : ""}
+                  `}
                   >
-                    {isUpdating ? "Updating..." : "Complete This Step"}
-                  </button>
-                )}
+                    {isCompleted && (
+                      <Check size={20} className="md:w-6 md:h-6" />
+                    )}
+                    {isCurrent && (
+                      <CircleDashed
+                        size={20}
+                        className="animate-spin-slow md:w-6 md:h-6"
+                      />
+                    )}
+                    {isPending && <Clock size={20} className="md:w-6 md:h-6" />}
+                  </div>
 
-                {/* Disabled message for pending steps */}
-                {step.status === "pending" && (
-                  <p className="text-xs text-gray-500 flex items-center gap-1 mt-3">
-                    <Lock className="w-4 h-4" />
-                    Locked - Complete previous steps first
-                  </p>
-                )}
+                  {/* Content Card */}
+                  <div
+                    className={`w-full p-5 md:p-6 rounded-2xl border transition-all duration-300
+                    ${isCurrent ? "bg-white border-blue-400 shadow-lg scale-[1.02]" : ""}
+                    ${isCompleted ? "bg-toiral-bg-light border-toiral-light/50 hover:shadow-[0_0_15px_rgba(20,148,153,0.15)] hover:border-toiral-primary/40" : ""}
+                    ${isPending ? "bg-white/40 border-transparent opacity-70 hover:opacity-100" : ""}
+                  `}
+                  >
+                    {/* Header Row */}
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
+                      <h3
+                        className={`text-lg md:text-xl font-bold 
+                        ${isCurrent ? "text-toiral-dark" : ""}
+                        ${isCompleted ? "text-toiral-primary" : ""}
+                        ${isPending ? "text-toiral-dark/60" : ""}
+                      `}
+                      >
+                        {step.step}. {step.title}
+                      </h3>
 
-                {/* Completed message */}
-                {step.status === "completed" && (
-                  <p className="text-xs text-green-600 font-semibold mt-3">
-                    ✓ This step is completed
-                  </p>
-                )}
-              </div>
+                      {/* Status Badge */}
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider w-fit
+                        ${isCompleted ? "bg-toiral-primary/10 text-toiral-primary" : ""}
+                        ${isCurrent ? "bg-blue-100 text-blue-700" : ""}
+                        ${isPending ? "bg-gray-100 text-gray-500" : ""}
+                      `}
+                      >
+                        {step.status}
+                      </span>
+                    </div>
 
-              {/* Divider */}
-              {index < timeline.length - 1 && (
-                <div className="mt-4 border-b border-gray-200" />
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+                    {/* Description */}
+                    <p
+                      className={`text-sm md:text-base leading-relaxed mb-4
+                      ${isCurrent ? "text-toiral-dark/80" : "text-toiral-dark/60"}
+                    `}
+                    >
+                      {step.description}
+                    </p>
 
-      {/* Progress Summary */}
-      <div className="mt-10 p-4 bg-gray-50 rounded-lg">
-        <h4 className="font-semibold text-gray-800 mb-2">Progress Summary</h4>
-        <div className="grid grid-cols-3 gap-4 text-sm">
-          <div>
-            <span className="text-gray-600">Completed:</span>
-            <p className="text-lg font-bold text-green-600">
-              {timeline.filter((s) => s.status === "completed").length}
-            </p>
-          </div>
-          <div>
-            <span className="text-gray-600">Current:</span>
-            <p className="text-lg font-bold text-blue-600">
-              {timeline.filter((s) => s.status === "current").length}
-            </p>
-          </div>
-          <div>
-            <span className="text-gray-600">Pending:</span>
-            <p className="text-lg font-bold text-gray-600">
-              {timeline.filter((s) => s.status === "pending").length}
-            </p>
+                    {/* Badges Row (Date & Payment) */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {step.date && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-toiral-light/30 text-toiral-dark text-xs md:text-sm font-semibold rounded-lg">
+                          <CheckCircle2
+                            size={14}
+                            className="text-toiral-primary"
+                          />
+                          Completed: {step.date}
+                        </span>
+                      )}
+
+                      {step.payment && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#fff8e6] border border-[#f0d699] text-[#b38210] text-xs md:text-sm font-bold rounded-lg">
+                          <CreditCard size={14} />
+                          Payment: {step.payment}%
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Footer / Actions Area */}
+                    <div className="mt-2">
+                      {isCurrent && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          className="pt-4 border-t border-blue-100 flex flex-col sm:flex-row justify-between items-center gap-4"
+                        >
+                          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider flex items-center gap-2">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                            </span>
+                            Action Required
+                          </span>
+
+                          <button
+                            onClick={() => handleCompleteStep(step.step)}
+                            disabled={isUpdating}
+                            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-toiral-dark hover:bg-toiral-primary text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 hover:shadow-lg active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+                          >
+                            {isUpdating ? (
+                              <>
+                                <Loader2 size={16} className="animate-spin" />{" "}
+                                Updating...
+                              </>
+                            ) : (
+                              <>
+                                Complete This Step <ChevronRight size={16} />
+                              </>
+                            )}
+                          </button>
+                        </motion.div>
+                      )}
+
+                      {isPending && (
+                        <div className="flex items-center gap-2 text-xs font-semibold text-toiral-dark/40 pt-2 border-t border-transparent">
+                          <Lock size={14} />
+                          Locked until previous steps finish
+                        </div>
+                      )}
+
+                      {isCompleted && (
+                        <div className="flex items-center gap-2 text-xs font-bold text-toiral-primary pt-2 border-t border-transparent">
+                          <Check size={14} strokeWidth={3} />
+                          Step successfully completed
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
