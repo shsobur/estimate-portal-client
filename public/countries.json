@@ -1,0 +1,3138 @@
+[
+  {
+    "country": "Afghanistan",
+    "cities": [
+      "Kabul",
+      "Kandahar",
+      "Herat",
+      "Mazar-i-Sharif",
+      "Kunduz",
+      "Jalalabad",
+      "Ghazni",
+      "Gardez",
+      "Khost",
+      "Lashkargah",
+      "Kunduz",
+      "Balkh",
+      "Baghlan",
+      "Kabul",
+      "Kandahar",
+      "Herat",
+      "Jowzjan",
+      "Kabul",
+      "Kandahar",
+      "Herat",
+      "Kunduz",
+      "Jalalabad",
+      "Ghazni",
+      "Bamyan",
+      "Khost",
+      "Lashkargah",
+      "Maimana",
+      "Kabul",
+      "Kandahar",
+      "Herat",
+      "Kunduz",
+      "Jalalabad",
+      "Ghazni",
+      "Khost"
+    ],
+    "phone": "+93"
+  },
+  {
+    "country": "Albania",
+    "cities": [
+      "Tirana",
+      "Durrës",
+      "Vlorë",
+      "Elbasan",
+      "Shkodër",
+      "Fier",
+      "Korçë",
+      "Berat",
+      "Gjirokastër",
+      "Kukës",
+      "Lezhë",
+      "Dibër"
+    ],
+    "phone": "+355"
+  },
+  {
+    "country": "Algeria",
+    "cities": [
+      "Adrar",
+      "Chlef",
+      "Laghouat",
+      "Oum El Bouaghi",
+      "Batna",
+      "Béjaïa",
+      "Biskra",
+      "Béchar",
+      "Blida",
+      "Bouïra",
+      "Tamanrasset",
+      "Tébessa",
+      "Tlemcen",
+      "Tiaret"
+    ],
+    "phone": "+213"
+  },
+  {
+    "country": "Andorra",
+    "cities": [
+      "Andorra la Vella",
+      "Escaldes-Engordany",
+      "Encamp",
+      "Sant Julià de Lòria",
+      "La Massana",
+      "Ordino",
+      "Canillo"
+    ],
+    "phone": "+376"
+  },
+  {
+    "country": "Angola",
+    "cities": [
+      "Luanda",
+      "Huambo",
+      "Lobito",
+      "Benguela",
+      "Lubango",
+      "Malanje",
+      "Namibe",
+      "Soyo",
+      "Cabinda",
+      "Uíge"
+    ],
+    "phone": "+244"
+  },
+  {
+    "country": "Antigua and Barbuda",
+    "cities": [
+      "Saint John's",
+      "All Saints",
+      "Liberta",
+      "Potter's Village",
+      "Bolans",
+      "Swetes",
+      "Seaview Farm",
+      "Piggotts",
+      "Parham",
+      "Codrington"
+    ],
+    "phone": "+1-268"
+  },
+  {
+    "country": "Argentina",
+    "cities": [
+      "Buenos Aires",
+      "Córdoba",
+      "Rosario",
+      "Mendoza",
+      "La Plata",
+      "San Miguel de Tucumán",
+      "Mar del Plata",
+      "Salta",
+      "Santa Fe",
+      "San Juan"
+    ],
+    "phone": "+54"
+  },
+  {
+    "country": "Armenia",
+    "cities": [
+      "Yerevan",
+      "Gyumri",
+      "Vanadzor",
+      "Vagharshapat",
+      "Abovyan",
+      "Kapan",
+      "Hrazdan",
+      "Armavir",
+      "Artashat",
+      "Ijevan"
+    ],
+    "phone": "+374"
+  },
+  {
+    "country": "Australia",
+    "cities": [
+      "Sydney",
+      "Melbourne",
+      "Brisbane",
+      "Perth",
+      "Adelaide",
+      "Gold Coast",
+      "Canberra",
+      "Newcastle",
+      "Wollongong",
+      "Hobart"
+    ],
+    "phone": "+61"
+  },
+  {
+    "country": "Austria",
+    "cities": [
+      "Vienna",
+      "Graz",
+      "Linz",
+      "Salzburg",
+      "Innsbruck",
+      "Klagenfurt",
+      "Villach",
+      "Wels",
+      "Sankt Pölten",
+      "Dornbirn"
+    ],
+    "phone": "+43"
+  },
+  {
+    "country": "Azerbaijan",
+    "cities": [
+      "Baku",
+      "Ganja",
+      "Sumqayit",
+      "Mingachevir",
+      "Lankaran",
+      "Shirvan",
+      "Nakhchivan",
+      "Shaki",
+      "Yevlakh",
+      "Khirdalan"
+    ],
+    "phone": "+994"
+  },
+  {
+    "country": "Bahamas",
+    "cities": [
+      "Nassau",
+      "Freeport",
+      "West End",
+      "Coopers Town",
+      "Marsh Harbour",
+      "Freetown",
+      "High Rock",
+      "Andros Town",
+      "George Town",
+      "Rock Sound"
+    ],
+    "phone": "+1-242"
+  },
+  {
+    "country": "Bahrain",
+    "cities": [
+      "Manama",
+      "Riffa",
+      "Muharraq",
+      "Hamad Town",
+      "A'ali",
+      "Isa Town",
+      "Sitra",
+      "Budaiya",
+      "Jidhafs",
+      "Al-Malikiya"
+    ],
+    "phone": "+973"
+  },
+  {
+    "country": "Bangladesh",
+    "cities": [
+      "Dhaka",
+      "Chattogram",
+      "Sylhet",
+      "Rajshahi",
+      "Mymensingh",
+      "Rangpur",
+      "Khulna",
+      "Barisal"
+    ],
+    "phone": "+880"
+  },
+  {
+    "country": "Barbados",
+    "cities": [
+      "Bridgetown",
+      "Speightstown",
+      "Oistins",
+      "Bathsheba",
+      "Holetown",
+      "The Crane",
+      "Blackmans",
+      "Greenidge",
+      "Prospect",
+      "Six Cross Roads"
+    ],
+    "phone": "+1-246"
+  },
+  {
+    "country": "Belarus",
+    "cities": [
+      "Minsk",
+      "Gomel",
+      "Mogilev",
+      "Vitebsk",
+      "Grodno",
+      "Brest",
+      "Babruysk",
+      "Baranavichy",
+      "Barysaw",
+      "Pinsk"
+    ],
+    "phone": "+375"
+  },
+  {
+    "country": "Belgium",
+    "cities": [
+      "Brussels",
+      "Antwerp",
+      "Ghent",
+      "Charleroi",
+      "Liège",
+      "Bruges",
+      "Namur",
+      "Leuven",
+      "Mons",
+      "Mechelen"
+    ],
+    "phone": "+32"
+  },
+  {
+    "country": "Belize",
+    "cities": [
+      "Belmopan",
+      "Belize City",
+      "San Ignacio",
+      "Orange Walk",
+      "Dangriga",
+      "Corozal",
+      "San Pedro",
+      "Benque Viejo del Carmen",
+      "Punta Gorda",
+      "Ladyville"
+    ],
+    "phone": "+501"
+  },
+  {
+    "country": "Benin",
+    "cities": [
+      "Porto-Novo",
+      "Cotonou",
+      "Parakou",
+      "Djougou",
+      "Bohicon",
+      "Abomey",
+      "Natitingou",
+      "Lokossa",
+      "Ouidah",
+      "Save"
+    ],
+    "phone": "+229"
+  },
+  {
+    "country": "Bhutan",
+    "cities": [
+      "Thimphu",
+      "Phuntsholing",
+      "Punakha",
+      "Jakar",
+      "Wangdue Phodrang",
+      "Mongar",
+      "Trashigang",
+      "Gelephu",
+      "Samdrup Jongkhar",
+      "Paro"
+    ],
+    "phone": "+975"
+  },
+  {
+    "country": "Bolivia",
+    "cities": [
+      "La Paz",
+      "Sucre",
+      "Santa Cruz de la Sierra",
+      "Cochabamba",
+      "Oruro",
+      "Tarija",
+      "Potosí",
+      "Sacaba",
+      "Montero",
+      "Quillacollo"
+    ],
+    "phone": "+591"
+  },
+  {
+    "country": "Bosnia and Herzegovina",
+    "cities": [
+      "Sarajevo",
+      "Banja Luka",
+      "Tuzla",
+      "Mostar",
+      "Zenica",
+      "Bihać",
+      "Brčko",
+      "Prijedor",
+      "Doboj",
+      "Trebinje"
+    ],
+    "phone": "+387"
+  },
+  {
+    "country": "Botswana",
+    "cities": [
+      "Gaborone",
+      "Francistown",
+      "Molepolole",
+      "Maun",
+      "Serowe",
+      "Selibe Phikwe",
+      "Kanye",
+      "Mochudi",
+      "Mahalapye",
+      "Mogoditshane"
+    ],
+    "phone": "+267"
+  },
+  {
+    "country": "Brazil",
+    "cities": [
+      "Brasília",
+      "São Paulo",
+      "Rio de Janeiro",
+      "Salvador",
+      "Fortaleza",
+      "Belo Horizonte",
+      "Manaus",
+      "Curitiba",
+      "Recife",
+      "Goiânia"
+    ],
+    "phone": "+55"
+  },
+  {
+    "country": "Brunei",
+    "cities": [
+      "Bandar Seri Begawan",
+      "Kuala Belait",
+      "Seria",
+      "Tutong",
+      "Bangar",
+      "Sengkurong",
+      "Jerudong",
+      "Mentiri",
+      "Muara",
+      "Temburong"
+    ],
+    "phone": "+673"
+  },
+  {
+    "country": "Bulgaria",
+    "cities": [
+      "Sofia",
+      "Plovdiv",
+      "Varna",
+      "Burgas",
+      "Ruse",
+      "Stara Zagora",
+      "Pleven",
+      "Sliven",
+      "Dobrich",
+      "Shumen"
+    ],
+    "phone": "+359"
+  },
+  {
+    "country": "Burkina Faso",
+    "cities": [
+      "Ouagadougou",
+      "Bobo-Dioulasso",
+      "Koudougou",
+      "Ouahigouya",
+      "Banfora",
+      "Dédougou",
+      "Kaya",
+      "Tenkodogo",
+      "Fada N'gourma",
+      "Dori"
+    ],
+    "phone": "+226"
+  },
+  {
+    "country": "Burundi",
+    "cities": [
+      "Bujumbura",
+      "Gitega",
+      "Muyinga",
+      "Ngozi",
+      "Ruyigi",
+      "Kayanza",
+      "Bururi",
+      "Rutana",
+      "Makamba",
+      "Muramvya"
+    ],
+    "phone": "+257"
+  },
+  {
+    "country": "Cabo Verde",
+    "cities": [
+      "Praia",
+      "Mindelo",
+      "Santa Maria",
+      "Assomada",
+      "Porto Novo",
+      "São Filipe",
+      "Tarrafal",
+      "Espargos",
+      "Pedra Badejo",
+      "Cidade Velha"
+    ],
+    "phone": "+238"
+  },
+  {
+    "country": "Cambodia",
+    "cities": [
+      "Phnom Penh",
+      "Siem Reap",
+      "Battambang",
+      "Sihanoukville",
+      "Poipet",
+      "Kampong Cham",
+      "Kampot",
+      "Koh Kong",
+      "Prey Veng",
+      "Takeo"
+    ],
+    "phone": "+855"
+  },
+  {
+    "country": "Cameroon",
+    "cities": [
+      "Yaoundé",
+      "Douala",
+      "Bamenda",
+      "Garoua",
+      "Maroua",
+      "Bafoussam",
+      "Ngaoundéré",
+      "Kumba",
+      "Bertoua",
+      "Loum"
+    ],
+    "phone": "+237"
+  },
+  {
+    "country": "Canada",
+    "cities": [
+      "Ottawa",
+      "Toronto",
+      "Montreal",
+      "Vancouver",
+      "Calgary",
+      "Edmonton",
+      "Quebec City",
+      "Winnipeg",
+      "Hamilton",
+      "Halifax"
+    ],
+    "phone": "+1"
+  },
+  {
+    "country": "Central African Republic",
+    "cities": [
+      "Bangui",
+      "Bimbo",
+      "Berbérati",
+      "Carnot",
+      "Bambari",
+      "Bouar",
+      "Bossangoa",
+      "Bria",
+      "Bangassou",
+      "Nola"
+    ],
+    "phone": "+236"
+  },
+  {
+    "country": "Chad",
+    "cities": [
+      "N'Djamena",
+      "Moundou",
+      "Sarh",
+      "Abéché",
+      "Kélo",
+      "Koumra",
+      "Pala",
+      "Am Timan",
+      "Bongor",
+      "Mongo"
+    ],
+    "phone": "+235"
+  },
+  {
+    "country": "Chile",
+    "cities": [
+      "Santiago",
+      "Valparaíso",
+      "Concepción",
+      "La Serena",
+      "Antofagasta",
+      "Temuco",
+      "Rancagua",
+      "Talca",
+      "Arica",
+      "Puerto Montt"
+    ],
+    "phone": "+56"
+  },
+  {
+    "country": "China",
+    "cities": [
+      "Beijing",
+      "Shanghai",
+      "Guangzhou",
+      "Shenzhen",
+      "Tianjin",
+      "Chongqing",
+      "Chengdu",
+      "Nanjing",
+      "Wuhan",
+      "Xi'an"
+    ],
+    "phone": "+86"
+  },
+  {
+    "country": "Colombia",
+    "cities": [
+      "Bogotá",
+      "Medellín",
+      "Cali",
+      "Barranquilla",
+      "Cartagena",
+      "Cúcuta",
+      "Bucaramanga",
+      "Pereira",
+      "Santa Marta",
+      "Ibagué"
+    ],
+    "phone": "+57"
+  },
+  {
+    "country": "Comoros",
+    "cities": [
+      "Moroni",
+      "Mutsamudu",
+      "Fomboni",
+      "Domoni",
+      "Tsimbeo",
+      "Ouani",
+      "Moya",
+      "Iconi",
+      "Dembeni",
+      "Sima"
+    ],
+    "phone": "+269"
+  },
+  {
+    "country": "Congo",
+    "cities": [
+      "Brazzaville",
+      "Pointe-Noire",
+      "Dolisie",
+      "Nkayi",
+      "Impfondo",
+      "Ouésso",
+      "Madingou",
+      "Gamboma",
+      "Owando",
+      "Sibiti"
+    ],
+    "phone": "+242"
+  },
+  {
+    "country": "Democratic Republic of the Congo",
+    "cities": [
+      "Kinshasa",
+      "Lubumbashi",
+      "Goma",
+      "Mbuji-Mayi",
+      "Kisangani",
+      "Bukavu",
+      "Kananga",
+      "Kolwezi",
+      "Tshikapa",
+      "Likasi"
+    ],
+    "phone": "+243"
+  },
+  {
+    "country": "Costa Rica",
+    "cities": [
+      "San José",
+      "Limón",
+      "Alajuela",
+      "Heredia",
+      "Liberia",
+      "Puntarenas",
+      "Cartago",
+      "San Isidro",
+      "Curridabat",
+      "San Francisco"
+    ],
+    "phone": "+506"
+  },
+  {
+    "country": "Croatia",
+    "cities": [
+      "Zagreb",
+      "Split",
+      "Rijeka",
+      "Osijek",
+      "Zadar",
+      "Pula",
+      "Slavonski Brod",
+      "Karlovac",
+      "Varaždin",
+      "Šibenik"
+    ],
+    "phone": "+385"
+  },
+  {
+    "country": "Cuba",
+    "cities": [
+      "Havana",
+      "Santiago de Cuba",
+      "Camagüey",
+      "Holguín",
+      "Santa Clara",
+      "Guantánamo",
+      "Bayamo",
+      "Cienfuegos",
+      "Pinar del Río",
+      "Las Tunas"
+    ],
+    "phone": "+53"
+  },
+  {
+    "country": "Cyprus",
+    "cities": [
+      "Nicosia",
+      "Limassol",
+      "Larnaca",
+      "Famagusta",
+      "Paphos",
+      "Kyrenia",
+      "Protaras",
+      "Morphou",
+      "Aradippou",
+      "Paralimni"
+    ],
+    "phone": "+357"
+  },
+  {
+    "country": "Czech Republic",
+    "cities": [
+      "Prague",
+      "Brno",
+      "Ostrava",
+      "Plzeň",
+      "Liberec",
+      "Olomouc",
+      "Ústí nad Labem",
+      "Hradec Králové",
+      "České Budějovice",
+      "Pardubice"
+    ],
+    "phone": "+420"
+  },
+  {
+    "country": "Denmark",
+    "cities": [
+      "Copenhagen",
+      "Aarhus",
+      "Odense",
+      "Aalborg",
+      "Esbjerg",
+      "Randers",
+      "Kolding",
+      "Horsens",
+      "Vejle",
+      "Roskilde"
+    ],
+    "phone": "+45"
+  },
+  {
+    "country": "Djibouti",
+    "cities": [
+      "Djibouti",
+      "Ali Sabieh",
+      "Tadjoura",
+      "Obock",
+      "Dikhil",
+      "Arta",
+      "Holhol",
+      "Dorra",
+      "Yoboki",
+      "Loyada"
+    ],
+    "phone": "+253"
+  },
+  {
+    "country": "Dominica",
+    "cities": [
+      "Roseau",
+      "Portsmouth",
+      "Marigot",
+      "Berekua",
+      "Mahaut",
+      "Saint Joseph",
+      "Wesley",
+      "Soufrière",
+      "Pont Cassé",
+      "La Plaine"
+    ],
+    "phone": "+1-767"
+  },
+  {
+    "country": "Dominican Republic",
+    "cities": [
+      "Santo Domingo",
+      "Santiago de los Caballeros",
+      "La Romana",
+      "San Pedro de Macorís",
+      "Bavaro",
+      "Higüey",
+      "San Cristóbal",
+      "Puerto Plata",
+      "Moca",
+      "San Francisco de Macorís"
+    ],
+    "phone": "+1-809, +1-829, +1-849"
+  },
+  {
+    "country": "Ecuador",
+    "cities": [
+      "Quito",
+      "Guayaquil",
+      "Cuenca",
+      "Santo Domingo",
+      "Machala",
+      "Manta",
+      "Portoviejo",
+      "Loja",
+      "Ambato",
+      "Esmeraldas"
+    ],
+    "phone": "+593"
+  },
+  {
+    "country": "Egypt",
+    "cities": [
+      "Cairo",
+      "Alexandria",
+      "Giza",
+      "Shubra El Kheima",
+      "Port Said",
+      "Suez",
+      "Luxor",
+      "Mansoura",
+      "El-Mahalla El-Kubra",
+      "Tanta"
+    ],
+    "phone": "+20"
+  },
+  {
+    "country": "El Salvador",
+    "cities": [
+      "San Salvador",
+      "Santa Ana",
+      "San Miguel",
+      "Soyapango",
+      "Mejicanos",
+      "Santa Tecla",
+      "Apopa",
+      "Delgado",
+      "Sonsonate",
+      "San Marcos"
+    ],
+    "phone": "+503"
+  },
+  {
+    "country": "Equatorial Guinea",
+    "cities": [
+      "Malabo",
+      "Bata",
+      "Ebebiyín",
+      "Aconibe",
+      "Añisoc",
+      "Luba",
+      "Evinayong",
+      "Mongomo",
+      "Mikomeseng",
+      "Rebola"
+    ],
+    "phone": "+240"
+  },
+  {
+    "country": "Eritrea",
+    "cities": [
+      "Asmara",
+      "Keren",
+      "Massawa",
+      "Assab",
+      "Mendefera",
+      "Barentu",
+      "Adi Keyh",
+      "Dekemhare",
+      "Ak'ordat",
+      "Teseney"
+    ],
+    "phone": "+291"
+  },
+  {
+    "country": "Estonia",
+    "cities": [
+      "Tallinn",
+      "Tartu",
+      "Narva",
+      "Pärnu",
+      "Kohtla-Järve",
+      "Viljandi",
+      "Rakvere",
+      "Maardu",
+      "Sillamäe",
+      "Valga"
+    ],
+    "phone": "+372"
+  },
+  {
+    "country": "Eswatini",
+    "cities": [
+      "Mbabane",
+      "Manzini",
+      "Big Bend",
+      "Malkerns",
+      "Nhlangano",
+      "Piggs Peak",
+      "Siteki",
+      "Lobamba",
+      "Lavumisa",
+      "Hlatikulu"
+    ],
+    "phone": "+268"
+  },
+  {
+    "country": "Ethiopia",
+    "cities": [
+      "Addis Ababa",
+      "Dire Dawa",
+      "Mekele",
+      "Gondar",
+      "Hawassa",
+      "Bahir Dar",
+      "Dessie",
+      "Jimma",
+      "Jijiga",
+      "Shashamane"
+    ],
+    "phone": "+251"
+  },
+  {
+    "country": "Fiji",
+    "cities": [
+      "Suva",
+      "Lautoka",
+      "Nadi",
+      "Labasa",
+      "Ba",
+      "Levuka",
+      "Sigatoka",
+      "Savusavu",
+      "Nausori",
+      "Rakiraki"
+    ],
+    "phone": "+679"
+  },
+  {
+    "country": "Finland",
+    "cities": [
+      "Helsinki",
+      "Espoo",
+      "Tampere",
+      "Vantaa",
+      "Oulu",
+      "Turku",
+      "Jyväskylä",
+      "Lahti",
+      "Kuopio",
+      "Pori"
+    ],
+    "phone": "+358"
+  },
+  {
+    "country": "France",
+    "cities": [
+      "Paris",
+      "Marseille",
+      "Lyon",
+      "Toulouse",
+      "Nice",
+      "Nantes",
+      "Strasbourg",
+      "Montpellier",
+      "Bordeaux",
+      "Lille"
+    ],
+    "phone": "+33"
+  },
+  {
+    "country": "Gabon",
+    "cities": [
+      "Libreville",
+      "Port-Gentil",
+      "Franceville",
+      "Oyem",
+      "Moanda",
+      "Mouila",
+      "Lambaréné",
+      "Tchibanga",
+      "Koulamoutou",
+      "Makokou"
+    ],
+    "phone": "+241"
+  },
+  {
+    "country": "Gambia",
+    "cities": [
+      "Banjul",
+      "Serekunda",
+      "Brikama",
+      "Bakau",
+      "Farafenni",
+      "Lamin",
+      "Sukuta",
+      "Basse Santa Su",
+      "Gunjur",
+      "Brufut"
+    ],
+    "phone": "+220"
+  },
+  {
+    "country": "Georgia",
+    "cities": [
+      "Tbilisi",
+      "Batumi",
+      "Kutaisi",
+      "Rustavi",
+      "Gori",
+      "Zugdidi",
+      "Poti",
+      "Khashuri",
+      "Samtredia",
+      "Senaki"
+    ],
+    "phone": "+995"
+  },
+  {
+    "country": "Germany",
+    "cities": [
+      "Berlin",
+      "Hamburg",
+      "Munich",
+      "Cologne",
+      "Frankfurt",
+      "Stuttgart",
+      "Düsseldorf",
+      "Dortmund",
+      "Essen",
+      "Leipzig"
+    ],
+    "phone": "+49"
+  },
+  {
+    "country": "Ghana",
+    "cities": [
+      "Accra",
+      "Kumasi",
+      "Tamale",
+      "Sekondi-Takoradi",
+      "Ashaiman",
+      "Sunyani",
+      "Cape Coast",
+      "Obuasi",
+      "Teshie",
+      "Tema"
+    ],
+    "phone": "+233"
+  },
+  {
+    "country": "Greece",
+    "cities": [
+      "Athens",
+      "Thessaloniki",
+      "Patras",
+      "Piraeus",
+      "Larissa",
+      "Heraklion",
+      "Peristeri",
+      "Kallithea",
+      "Acharnes",
+      "Kalamaria"
+    ],
+    "phone": "+30"
+  },
+  {
+    "country": "Grenada",
+    "cities": [
+      "St. George's",
+      "Gouyave",
+      "Grenville",
+      "Victoria",
+      "Sauteurs",
+      "Hillsborough",
+      "St. David's",
+      "Tivoli",
+      "Grand Anse",
+      "L'Anse aux Épines"
+    ],
+    "phone": "+1-473"
+  },
+  {
+    "country": "Guatemala",
+    "cities": [
+      "Guatemala City",
+      "Mixco",
+      "Villa Nueva",
+      "Quetzaltenango",
+      "San Juan Sacatepéquez",
+      "Escuintla",
+      "Villa Canales",
+      "Petapa",
+      "Chinautla",
+      "Chimaltenango"
+    ],
+    "phone": "+502"
+  },
+  {
+    "country": "Guinea",
+    "cities": [
+      "Conakry",
+      "Nzérékoré",
+      "Kankan",
+      "Manéah",
+      "Dubréka",
+      "Kindia",
+      "Siguiri",
+      "Kissidougou",
+      "Labé",
+      "Faranah"
+    ],
+    "phone": "+224"
+  },
+  {
+    "country": "Guinea-Bissau",
+    "cities": [
+      "Bissau",
+      "Bafatá",
+      "Gabú",
+      "Bissorã",
+      "Bolama",
+      "Cacheu",
+      "Catió",
+      "Mansôa",
+      "Buba",
+      "Canchungo"
+    ],
+    "phone": "+245"
+  },
+  {
+    "country": "Guyana",
+    "cities": [
+      "Georgetown",
+      "Linden",
+      "New Amsterdam",
+      "Anna Regina",
+      "Bartica",
+      "Skeldon",
+      "Rosignol",
+      "Mahaica Village",
+      "Parika",
+      "Lethem"
+    ],
+    "phone": "+592"
+  },
+  {
+    "country": "Haiti",
+    "cities": [
+      "Port-au-Prince",
+      "Carrefour",
+      "Delmas",
+      "Pétion-Ville",
+      "Port-de-Paix",
+      "Gonaïves",
+      "Cap-Haïtien",
+      "Saint-Marc",
+      "Les Cayes",
+      "Verrettes"
+    ],
+    "phone": "+509"
+  },
+  {
+    "country": "Honduras",
+    "cities": [
+      "Tegucigalpa",
+      "San Pedro Sula",
+      "Choloma",
+      "La Ceiba",
+      "El Progreso",
+      "Choluteca",
+      "Comayagua",
+      "Puerto Cortés",
+      "La Lima",
+      "Danlí"
+    ],
+    "phone": "+504"
+  },
+  {
+    "country": "Hungary",
+    "cities": [
+      "Budapest",
+      "Debrecen",
+      "Szeged",
+      "Miskolc",
+      "Pécs",
+      "Győr",
+      "Nyíregyháza",
+      "Kecskemét",
+      "Székesfehérvár",
+      "Szombathely"
+    ],
+    "phone": "+36"
+  },
+  {
+    "country": "Iceland",
+    "cities": [
+      "Reykjavík",
+      "Kópavogur",
+      "Hafnarfjörður",
+      "Akureyri",
+      "Garðabær",
+      "Mosfellsbær",
+      "Selfoss",
+      "Akranes",
+      "Seltjarnarnes",
+      "Ísafjörður"
+    ],
+    "phone": "+354"
+  },
+  {
+    "country": "India",
+    "cities": [
+      "New Delhi",
+      "Mumbai",
+      "Bangalore",
+      "Chennai",
+      "Kolkata",
+      "Hyderabad",
+      "Pune",
+      "Ahmedabad",
+      "Jaipur",
+      "Surat",
+      "Lucknow",
+      "Kanpur",
+      "Nagpur",
+      "Indore",
+      "Thane",
+      "Bhopal",
+      "Visakhapatnam",
+      "Pimpri-Chinchwad",
+      "Patna",
+      "Vadodara",
+      "Ghaziabad",
+      "Ludhiana",
+      "Agra",
+      "Nashik",
+      "Faridabad",
+      "Meerut",
+      "Rajkot",
+      "Varanasi",
+      "Srinagar"
+    ],
+    "phone": "+91"
+  },
+  {
+    "country": "Indonesia",
+    "cities": [
+      "Jakarta",
+      "Surabaya",
+      "Bandung",
+      "Medan",
+      "Semarang",
+      "Palembang",
+      "Makassar",
+      "Tangerang",
+      "Depok",
+      "Bekasi"
+    ],
+    "phone": "+62"
+  },
+  {
+    "country": "Iran",
+    "cities": [
+      "Tehran",
+      "Mashhad",
+      "Isfahan",
+      "Karaj",
+      "Tabriz",
+      "Shiraz",
+      "Qom",
+      "Ahvaz",
+      "Kermanshah",
+      "Urmia"
+    ],
+    "phone": "+98"
+  },
+  {
+    "country": "Iraq",
+    "cities": [
+      "Baghdad",
+      "Basra",
+      "Mosul",
+      "Erbil",
+      "Najaf",
+      "Karbala",
+      "Sulaymaniyah",
+      "Nasiriyah",
+      "Amara",
+      "Kirkuk"
+    ],
+    "phone": "+964"
+  },
+  {
+    "country": "Ireland",
+    "cities": [
+      "Dublin",
+      "Cork",
+      "Limerick",
+      "Galway",
+      "Waterford",
+      "Drogheda",
+      "Dundalk",
+      "Swords",
+      "Bray",
+      "Navan"
+    ],
+    "phone": "+353"
+  },
+  {
+    "country": "Israel",
+    "cities": [
+      "Jerusalem",
+      "Tel Aviv",
+      "Haifa",
+      "Rishon LeZion",
+      "Petah Tikva",
+      "Ashdod",
+      "Netanya",
+      "Beersheba",
+      "Bnei Brak",
+      "Holon"
+    ],
+    "phone": "+972"
+  },
+  {
+    "country": "Italy",
+    "cities": [
+      "Rome",
+      "Milan",
+      "Naples",
+      "Turin",
+      "Palermo",
+      "Genoa",
+      "Bologna",
+      "Florence",
+      "Bari",
+      "Catania"
+    ],
+    "phone": "+39"
+  },
+  {
+    "country": "Jamaica",
+    "cities": [
+      "Kingston",
+      "Montego Bay",
+      "Spanish Town",
+      "Portmore",
+      "Mandeville",
+      "May Pen",
+      "Old Harbour",
+      "Linstead",
+      "Half Way Tree",
+      "Savanna-la-Mar"
+    ],
+    "phone": "+1-876"
+  },
+  {
+    "country": "Japan",
+    "cities": [
+      "Tokyo",
+      "Yokohama",
+      "Osaka",
+      "Nagoya",
+      "Sapporo",
+      "Kobe",
+      "Kyoto",
+      "Fukuoka",
+      "Kawasaki",
+      "Saitama"
+    ],
+    "phone": "+81"
+  },
+  {
+    "country": "Jordan",
+    "cities": [
+      "Amman",
+      "Zarqa",
+      "Irbid",
+      "Russeifa",
+      "Al Quwaysimah",
+      "Wadi as Sir",
+      "Tila al Ali",
+      "Aqaba",
+      "Madaba",
+      "As-Salt"
+    ],
+    "phone": "+962"
+  },
+  {
+    "country": "Kazakhstan",
+    "cities": [
+      "Nur-Sultan",
+      "Almaty",
+      "Shymkent",
+      "Karaganda",
+      "Aktobe",
+      "Taraz",
+      "Pavlodar",
+      "Ust-Kamenogorsk",
+      "Semey",
+      "Atyrau"
+    ],
+    "phone": "+7"
+  },
+  {
+    "country": "Kenya",
+    "cities": [
+      "Nairobi",
+      "Mombasa",
+      "Kisumu",
+      "Nakuru",
+      "Eldoret",
+      "Malindi",
+      "Kitale",
+      "Garissa",
+      "Kakamega",
+      "Nyeri"
+    ],
+    "phone": "+254"
+  },
+  {
+    "country": "Kiribati",
+    "cities": [
+      "Tarawa",
+      "Betio",
+      "Bikenibeu",
+      "Teaoraereke",
+      "Bairiki",
+      "Eita",
+      "Taburao",
+      "Temaiku",
+      "Makin",
+      "Banraeaba"
+    ],
+    "phone": "+686"
+  },
+  {
+    "country": "Korea, North",
+    "cities": [
+      "Pyongyang",
+      "Hamhung",
+      "Chongjin",
+      "Nampo",
+      "Wonsan",
+      "Sinuiju",
+      "Tanchon",
+      "Kaechon",
+      "Kaesong",
+      "Sariwon"
+    ],
+    "phone": "+850"
+  },
+  {
+    "country": "Korea, South",
+    "cities": [
+      "Seoul",
+      "Busan",
+      "Incheon",
+      "Daegu",
+      "Daejeon",
+      "Gwangju",
+      "Suwon",
+      "Ulsan",
+      "Yongin",
+      "Goyang"
+    ],
+    "phone": "+82"
+  },
+  {
+    "country": "Kosovo",
+    "cities": [
+      "Pristina",
+      "Prizren",
+      "Mitrovica",
+      "Peja",
+      "Gjakova",
+      "Gjilan",
+      "Ferizaj",
+      "Podujeva",
+      "Vushtrri",
+      "Suhareka"
+    ],
+    "phone": "+383"
+  },
+  {
+    "country": "Kuwait",
+    "cities": [
+      "Kuwait City",
+      "Salmiya",
+      "Hawalli",
+      "Farwaniya",
+      "Abu Halifa",
+      "Jahra",
+      "Ahmadi",
+      "Sabah Al-Salem",
+      "Mangaf",
+      "Fnaitees"
+    ],
+    "phone": "+965"
+  },
+  {
+    "country": "Kyrgyzstan",
+    "cities": [
+      "Bishkek",
+      "Osh",
+      "Jalal-Abad",
+      "Karakol",
+      "Tokmok",
+      "Kara-Balta",
+      "Naryn",
+      "Balykchy",
+      "Talas",
+      "Isfana"
+    ],
+    "phone": "+996"
+  },
+  {
+    "country": "Laos",
+    "cities": [
+      "Vientiane",
+      "Pakse",
+      "Savannakhet",
+      "Luang Prabang",
+      "Xam Neua",
+      "Thakhek",
+      "Muang Xay",
+      "Phonsavan",
+      "Vang Vieng",
+      "Pakxan"
+    ],
+    "phone": "+856"
+  },
+  {
+    "country": "Latvia",
+    "cities": [
+      "Riga",
+      "Daugavpils",
+      "Liepāja",
+      "Jelgava",
+      "Jūrmala",
+      "Ventspils",
+      "Rēzekne",
+      "Valmiera",
+      "Ogre",
+      "Cēsis"
+    ],
+    "phone": "+371"
+  },
+  {
+    "country": "Lebanon",
+    "cities": [
+      "Beirut",
+      "Tripoli",
+      "Sidon",
+      "Tyre",
+      "Nabatieh",
+      "Jounieh",
+      "Zahle",
+      "Baalbek",
+      "Aley",
+      "Batroun"
+    ],
+    "phone": "+961"
+  },
+  {
+    "country": "Lesotho",
+    "cities": [
+      "Maseru",
+      "Mafeteng",
+      "Leribe",
+      "Maputsoe",
+      "Mohale's Hoek",
+      "Quthing",
+      "Qacha's Nek",
+      "Butha-Buthe",
+      "Teyateyaneng",
+      "Mokhotlong"
+    ],
+    "phone": "+266"
+  },
+  {
+    "country": "Liberia",
+    "cities": [
+      "Monrovia",
+      "Gbarnga",
+      "Buchanan",
+      "Kakata",
+      "Voinjama",
+      "Harper",
+      "Zwedru",
+      "Pleebo",
+      "Foya",
+      "Robertsport"
+    ],
+    "phone": "+231"
+  },
+  {
+    "country": "Libya",
+    "cities": [
+      "Tripoli",
+      "Benghazi",
+      "Misrata",
+      "Tarhuna",
+      "Al Khums",
+      "Zawiya",
+      "Ajdabiya",
+      "Bayda",
+      "Tobruk",
+      "Sabha"
+    ],
+    "phone": "+218"
+  },
+  {
+    "country": "Liechtenstein",
+    "cities": [
+      "Vaduz",
+      "Schaan",
+      "Triesen",
+      "Balzers",
+      "Eschen",
+      "Mauren",
+      "Triesenberg",
+      "Ruggell",
+      "Gamprin",
+      "Schellenberg"
+    ],
+    "phone": "+423"
+  },
+  {
+    "country": "Lithuania",
+    "cities": [
+      "Vilnius",
+      "Kaunas",
+      "Klaipėda",
+      "Šiauliai",
+      "Panevėžys",
+      "Alytus",
+      "Marijampolė",
+      "Mažeikiai",
+      "Jonava",
+      "Utena"
+    ],
+    "phone": "+370"
+  },
+  {
+    "country": "Luxembourg",
+    "cities": [
+      "Luxembourg City",
+      "Esch-sur-Alzette",
+      "Differdange",
+      "Dudelange",
+      "Ettelbruck",
+      "Diekirch",
+      "Wiltz",
+      "Echternach",
+      "Rumelange",
+      "Grevenmacher"
+    ],
+    "phone": "+352"
+  },
+  {
+    "country": "Madagascar",
+    "cities": [
+      "Antananarivo",
+      "Toamasina",
+      "Antsirabe",
+      "Fianarantsoa",
+      "Mahajanga",
+      "Toliara",
+      "Antsiranana",
+      "Antanifotsy",
+      "Ambovombe",
+      "Amparafaravola"
+    ],
+    "phone": "+261"
+  },
+  {
+    "country": "Malawi",
+    "cities": [
+      "Lilongwe",
+      "Blantyre",
+      "Mzuzu",
+      "Zomba",
+      "Kasungu",
+      "Mangochi",
+      "Karonga",
+      "Salima",
+      "Nkhotakota",
+      "Liwonde"
+    ],
+    "phone": "+265"
+  },
+  {
+    "country": "Malaysia",
+    "cities": [
+      "Kuala Lumpur",
+      "George Town",
+      "Ipoh",
+      "Shah Alam",
+      "Petaling Jaya",
+      "Johor Bahru",
+      "Malacca City",
+      "Kota Kinabalu",
+      "Kuala Terengganu",
+      "Kuching"
+    ],
+    "phone": "+60"
+  },
+  {
+    "country": "Maldives",
+    "cities": [
+      "Malé",
+      "Addu City",
+      "Fuvahmulah",
+      "Kulhudhuffushi",
+      "Thinadhoo",
+      "Naifaru",
+      "Hinnavaru",
+      "Dhidhdhoo",
+      "Eydhafushi",
+      "Mahibadhoo"
+    ],
+    "phone": "+960"
+  },
+  {
+    "country": "Mali",
+    "cities": [
+      "Bamako",
+      "Sikasso",
+      "Mopti",
+      "Koutiala",
+      "Ségou",
+      "Kayes",
+      "Gao",
+      "Markala",
+      "Kolokani",
+      "Kati"
+    ],
+    "phone": "+223"
+  },
+  {
+    "country": "Malta",
+    "cities": [
+      "Valletta",
+      "Birkirkara",
+      "Mosta",
+      "Qormi",
+      "Żabbar",
+      "San Pawl il-Baħar",
+      "Sliema",
+      "Żejtun",
+      "Attard",
+      "Paola"
+    ],
+    "phone": "+356"
+  },
+  {
+    "country": "Marshall Islands",
+    "cities": [
+      "Majuro",
+      "Ebeye",
+      "Arno",
+      "Jaluit",
+      "Wotje",
+      "Kwajalein",
+      "Ailinglaplap",
+      "Enewetak",
+      "Namdrik",
+      "Lae"
+    ],
+    "phone": "+692"
+  },
+  {
+    "country": "Mauritania",
+    "cities": [
+      "Nouakchott",
+      "Nouadhibou",
+      "Kiffa",
+      "Kaédi",
+      "Rosso",
+      "Zouérat",
+      "Atar",
+      "Aleg",
+      "Bogué",
+      "Tidjikja"
+    ],
+    "phone": "+222"
+  },
+  {
+    "country": "Mauritius",
+    "cities": [
+      "Port Louis",
+      "Beau Bassin-Rose Hill",
+      "Vacoas-Phoenix",
+      "Curepipe",
+      "Quatre Bornes",
+      "Triolet",
+      "Goodlands",
+      "Centre de Flacq",
+      "Mahebourg",
+      "Saint Pierre"
+    ],
+    "phone": "+230"
+  },
+  {
+    "country": "Mexico",
+    "cities": [
+      "Mexico City",
+      "Guadalajara",
+      "Monterrey",
+      "Puebla",
+      "Tijuana",
+      "León",
+      "Ciudad Juárez",
+      "Zapopan",
+      "Cancún",
+      "Mérida"
+    ],
+    "phone": "+52"
+  },
+  {
+    "country": "Micronesia",
+    "cities": [
+      "Palikir",
+      "Weno",
+      "Colonia",
+      "Tofol",
+      "Kolonia",
+      "Tonoas",
+      "Nett",
+      "Lelu",
+      "Madolenihmw",
+      "Kitti"
+    ],
+    "phone": "+691"
+  },
+  {
+    "country": "Moldova",
+    "cities": [
+      "Chișinău",
+      "Tiraspol",
+      "Bălți",
+      "Bender",
+      "Rîbnița",
+      "Cahul",
+      "Ungheni",
+      "Soroca",
+      "Orhei",
+      "Dubăsari"
+    ],
+    "phone": "+373"
+  },
+  {
+    "country": "Monaco",
+    "cities": [
+      "Monaco",
+      "Monte Carlo",
+      "La Condamine",
+      "Fontvieille",
+      "Moneghetti",
+      "Saint-Roman",
+      "Larvotto",
+      "La Colle",
+      "Les Révoires",
+      "Saint Michel"
+    ],
+    "phone": "+377"
+  },
+  {
+    "country": "Mongolia",
+    "cities": [
+      "Ulaanbaatar",
+      "Erdenet",
+      "Darkhan",
+      "Choibalsan",
+      "Mörön",
+      "Nalaikh",
+      "Khovd",
+      "Ölgii",
+      "Bayankhongor",
+      "Baganuur"
+    ],
+    "phone": "+976"
+  },
+  {
+    "country": "Montenegro",
+    "cities": [
+      "Podgorica",
+      "Nikšić",
+      "Herceg Novi",
+      "Pljevlja",
+      "Bar",
+      "Bijelo Polje",
+      "Cetinje",
+      "Berane",
+      "Budva",
+      "Ulcinj"
+    ],
+    "phone": "+382"
+  },
+  {
+    "country": "Morocco",
+    "cities": [
+      "Rabat",
+      "Casablanca",
+      "Fes",
+      "Marrakesh",
+      "Tangier",
+      "Agadir",
+      "Meknes",
+      "Oujda",
+      "Kenitra",
+      "Tetouan"
+    ],
+    "phone": "+212"
+  },
+  {
+    "country": "Mozambique",
+    "cities": [
+      "Maputo",
+      "Matola",
+      "Beira",
+      "Nampula",
+      "Chimoio",
+      "Nacala",
+      "Quelimane",
+      "Tete",
+      "Xai-Xai",
+      "Gurué"
+    ],
+    "phone": "+258"
+  },
+  {
+    "country": "Myanmar",
+    "cities": [
+      "Naypyidaw",
+      "Yangon",
+      "Mandalay",
+      "Mawlamyine",
+      "Bago",
+      "Pathein",
+      "Monywa",
+      "Sittwe",
+      "Meiktila",
+      "Taunggyi"
+    ],
+    "phone": "+95"
+  },
+  {
+    "country": "Namibia",
+    "cities": [
+      "Windhoek",
+      "Rundu",
+      "Walvis Bay",
+      "Oshakati",
+      "Swakopmund",
+      "Katima Mulilo",
+      "Grootfontein",
+      "Rehoboth",
+      "Otjiwarongo",
+      "Okahandja"
+    ],
+    "phone": "+264"
+  },
+  {
+    "country": "Nauru",
+    "cities": [
+      "Yaren",
+      "Denigomodu",
+      "Meneng",
+      "Aiwo",
+      "Anabar",
+      "Anetan",
+      "Anibare",
+      "Baiti",
+      "Boe",
+      "Buada"
+    ],
+    "phone": "+674"
+  },
+  {
+    "country": "Nepal",
+    "cities": [
+      "Kathmandu",
+      "Pokhara",
+      "Lalitpur",
+      "Bharatpur",
+      "Biratnagar",
+      "Birgunj",
+      "Janakpur",
+      "Ghorahi",
+      "Hetauda",
+      "Dharan"
+    ],
+    "phone": "+977"
+  },
+  {
+    "country": "Netherlands",
+    "cities": [
+      "Amsterdam",
+      "Rotterdam",
+      "The Hague",
+      "Utrecht",
+      "Eindhoven",
+      "Tilburg",
+      "Groningen",
+      "Almere",
+      "Breda",
+      "Nijmegen"
+    ],
+    "phone": "+31"
+  },
+  {
+    "country": "New Zealand",
+    "cities": [
+      "Wellington",
+      "Auckland",
+      "Christchurch",
+      "Hamilton",
+      "Tauranga",
+      "Napier",
+      "Dunedin",
+      "Palmerston North",
+      "Nelson",
+      "Rotorua"
+    ],
+    "phone": "+64"
+  },
+  {
+    "country": "Nicaragua",
+    "cities": [
+      "Managua",
+      "León",
+      "Masaya",
+      "Tipitapa",
+      "Chinandega",
+      "Matagalpa",
+      "Estelí",
+      "Granada",
+      "Ciudad Sandino",
+      "Juigalpa"
+    ],
+    "phone": "+505"
+  },
+  {
+    "country": "Niger",
+    "cities": [
+      "Niamey",
+      "Zinder",
+      "Maradi",
+      "Agadez",
+      "Tahoua",
+      "Dosso",
+      "Arlit",
+      "Birni Nkonni",
+      "Tessaoua",
+      "Gaya"
+    ],
+    "phone": "+227"
+  },
+  {
+    "country": "Nigeria",
+    "cities": [
+      "Abuja",
+      "Lagos",
+      "Kano",
+      "Ibadan",
+      "Port Harcourt",
+      "Benin City",
+      "Maiduguri",
+      "Zaria",
+      "Aba",
+      "Jos"
+    ],
+    "phone": "+234"
+  },
+  {
+    "country": "North Macedonia",
+    "cities": [
+      "Skopje",
+      "Bitola",
+      "Kumanovo",
+      "Prilep",
+      "Tetovo",
+      "Veles",
+      "Štip",
+      "Ohrid",
+      "Gostivar",
+      "Strumica"
+    ],
+    "phone": "+389"
+  },
+  {
+    "country": "Norway",
+    "cities": [
+      "Oslo",
+      "Bergen",
+      "Trondheim",
+      "Stavanger",
+      "Drammen",
+      "Fredrikstad",
+      "Porsgrunn",
+      "Kristiansand",
+      "Tromsø",
+      "Tønsberg"
+    ],
+    "phone": "+47"
+  },
+  {
+    "country": "Oman",
+    "cities": [
+      "Muscat",
+      "Seeb",
+      "Salalah",
+      "Bawshar",
+      "Sohar",
+      "As Suwayq",
+      "Ibri",
+      "Saham",
+      "Barka",
+      "Rustaq"
+    ],
+    "phone": "+968"
+  },
+  {
+    "country": "Pakistan",
+    "cities": [
+      "Islamabad",
+      "Karachi",
+      "Lahore",
+      "Faisalabad",
+      "Rawalpindi",
+      "Multan",
+      "Gujranwala",
+      "Peshawar",
+      "Quetta",
+      "Sargodha"
+    ],
+    "phone": "+92"
+  },
+  {
+    "country": "Palau",
+    "cities": [
+      "Ngerulmud",
+      "Koror",
+      "Melekeok",
+      "Ngaraard",
+      "Ngarchelong",
+      "Ngatpang",
+      "Ngchesar",
+      "Airai",
+      "Kloulklubed",
+      "Aimeliik"
+    ],
+    "phone": "+680"
+  },
+  {
+    "country": "Panama",
+    "cities": [
+      "Panama City",
+      "San Miguelito",
+      "Tocumen",
+      "David",
+      "Arraiján",
+      "Colón",
+      "Las Cumbres",
+      "La Chorrera",
+      "Pacora",
+      "Santiago"
+    ],
+    "phone": "+507"
+  },
+  {
+    "country": "Papua New Guinea",
+    "cities": [
+      "Port Moresby",
+      "Lae",
+      "Arawa",
+      "Mount Hagen",
+      "Popondetta",
+      "Madang",
+      "Kokopo",
+      "Mendi",
+      "Kimbe",
+      "Goroka"
+    ],
+    "phone": "+675"
+  },
+  {
+    "country": "Paraguay",
+    "cities": [
+      "Asunción",
+      "Ciudad del Este",
+      "San Lorenzo",
+      "Luque",
+      "Capiatá",
+      "Lambaré",
+      "Fernando de la Mora",
+      "Limpio",
+      "Ñemby",
+      "Encarnación"
+    ],
+    "phone": "+595"
+  },
+  {
+    "country": "Peru",
+    "cities": [
+      "Lima",
+      "Arequipa",
+      "Callao",
+      "Trujillo",
+      "Chiclayo",
+      "Iquitos",
+      "Huancayo",
+      "Piura",
+      "Chimbote",
+      "Cusco"
+    ],
+    "phone": "+51"
+  },
+  {
+    "country": "Philippines",
+    "cities": [
+      "Manila",
+      "Quezon City",
+      "Davao City",
+      "Caloocan",
+      "Cebu City",
+      "Zamboanga City",
+      "Taguig",
+      "Pasig",
+      "Antipolo",
+      "Valenzuela"
+    ],
+    "phone": "+63"
+  },
+  {
+    "country": "Poland",
+    "cities": [
+      "Warsaw",
+      "Kraków",
+      "Łódź",
+      "Wrocław",
+      "Poznań",
+      "Gdańsk",
+      "Szczecin",
+      "Bydgoszcz",
+      "Lublin",
+      "Katowice"
+    ],
+    "phone": "+48"
+  },
+  {
+    "country": "Portugal",
+    "cities": [
+      "Lisbon",
+      "Porto",
+      "Vila Nova de Gaia",
+      "Amadora",
+      "Braga",
+      "Funchal",
+      "Coimbra",
+      "Setúbal",
+      "Almada",
+      "Agualva-Cacém"
+    ],
+    "phone": "+351"
+  },
+  {
+    "country": "Qatar",
+    "cities": [
+      "Doha",
+      "Al Rayyan",
+      "Umm Salal Muhammad",
+      "Al Wakrah",
+      "Al Khor",
+      "Dukhan",
+      "Mesaieed",
+      "Al Shahaniya",
+      "Al Daayen",
+      "Lusail"
+    ],
+    "phone": "+974"
+  },
+  {
+    "country": "Romania",
+    "cities": [
+      "Bucharest",
+      "Cluj-Napoca",
+      "Timișoara",
+      "Iași",
+      "Constanța",
+      "Craiova",
+      "Brașov",
+      "Galați",
+      "Ploiești",
+      "Oradea"
+    ],
+    "phone": "+40"
+  },
+  {
+    "country": "Russia",
+    "cities": [
+      "Moscow",
+      "Saint Petersburg",
+      "Novosibirsk",
+      "Yekaterinburg",
+      "Nizhny Novgorod",
+      "Kazan",
+      "Chelyabinsk",
+      "Omsk",
+      "Samara",
+      "Rostov-on-Don"
+    ],
+    "phone": "+7"
+  },
+  {
+    "country": "Rwanda",
+    "cities": [
+      "Kigali",
+      "Butare",
+      "Gitarama",
+      "Musanze",
+      "Gisenyi",
+      "Byumba",
+      "Cyangugu",
+      "Kibuye",
+      "Kibungo",
+      "Ruhengeri"
+    ],
+    "phone": "+250"
+  },
+  {
+    "country": "Saint Kitts and Nevis",
+    "cities": [
+      "Basseterre",
+      "Charlestown",
+      "Sadlers",
+      "Cayon",
+      "Sandy Point Town",
+      "Mansion",
+      "Dieppe Bay Town",
+      "Cotton Ground",
+      "Fig Tree",
+      "Newcastle"
+    ],
+    "phone": "+1-869"
+  },
+  {
+    "country": "Saint Lucia",
+    "cities": [
+      "Castries",
+      "Gros Islet",
+      "Vieux Fort",
+      "Micoud",
+      "Soufrière",
+      "Dennery",
+      "Anse La Raye",
+      "Canaries",
+      "Laborie",
+      "Choiseul"
+    ],
+    "phone": "+1-758"
+  },
+  {
+    "country": "Saint Vincent and the Grenadines",
+    "cities": [
+      "Kingstown",
+      "Kingstown Park",
+      "Arnos Vale",
+      "Barrouallie",
+      "Port Elizabeth",
+      "Chateaubelair",
+      "Georgetown",
+      "Byera Village",
+      "Biabou",
+      "Layou"
+    ],
+    "phone": "+1-784"
+  },
+  {
+    "country": "Samoa",
+    "cities": [
+      "Apia",
+      "Vaitele",
+      "Faleula",
+      "Siusega",
+      "Malie",
+      "Vaiusu",
+      "Mulifanua",
+      "Leulumoega",
+      "Afega",
+      "Nofoalii"
+    ],
+    "phone": "+685"
+  },
+  {
+    "country": "San Marino",
+    "cities": [
+      "San Marino",
+      "Serravalle",
+      "Borgo Maggiore",
+      "Domagnano",
+      "Fiorentino",
+      "Acquaviva",
+      "Faetano",
+      "Chiesanuova",
+      "Montegiardino"
+    ],
+    "phone": "+378"
+  },
+  {
+    "country": "Sao Tome and Principe",
+    "cities": [
+      "São Tomé",
+      "Santo Amaro",
+      "Neves",
+      "Santana",
+      "Trindade",
+      "Guadalupe",
+      "São João dos Angolares",
+      "Santa Cruz",
+      "Pantufo",
+      "Almeirim"
+    ],
+    "phone": "+239"
+  },
+  {
+    "country": "Saudi Arabia",
+    "cities": [
+      "Riyadh",
+      "Jeddah",
+      "Mecca",
+      "Medina",
+      "Dammam",
+      "Al Khobar",
+      "Taif",
+      "Tabuk",
+      "Buraydah",
+      "Jubail"
+    ],
+    "phone": "+966"
+  },
+  {
+    "country": "Senegal",
+    "cities": [
+      "Dakar",
+      "Pikine",
+      "Touba",
+      "Thiès",
+      "Saint-Louis",
+      "Kaolack",
+      "Ziguinchor",
+      "Rufisque",
+      "Mbour",
+      "Diourbel"
+    ],
+    "phone": "+221"
+  },
+  {
+    "country": "Serbia",
+    "cities": [
+      "Belgrade",
+      "Novi Sad",
+      "Niš",
+      "Kragujevac",
+      "Subotica",
+      "Zrenjanin",
+      "Pančevo",
+      "Čačak",
+      "Novi Pazar",
+      "Kraljevo"
+    ],
+    "phone": "+381"
+  },
+  {
+    "country": "Seychelles",
+    "cities": [
+      "Victoria",
+      "Anse Boileau",
+      "Bel Ombre",
+      "Cascade",
+      "Takamaka",
+      "Anse Royale",
+      "Port Glaud",
+      "Baie Lazare",
+      "Beau Vallon",
+      "Grand Anse"
+    ],
+    "phone": "+248"
+  },
+  {
+    "country": "Sierra Leone",
+    "cities": [
+      "Freetown",
+      "Bo",
+      "Kenema",
+      "Makeni",
+      "Koidu",
+      "Lunsar",
+      "Port Loko",
+      "Waterloo",
+      "Kabala",
+      "Segbwema"
+    ],
+    "phone": "+232"
+  },
+  {
+    "country": "Singapore",
+    "cities": [
+      "Singapore",
+      "Jurong East",
+      "Woodlands",
+      "Tampines",
+      "Bedok",
+      "Pasir Ris",
+      "Clementi",
+      "Bishan",
+      "Serangoon",
+      "Ang Mo Kio"
+    ],
+    "phone": "+65"
+  },
+  {
+    "country": "Slovakia",
+    "cities": [
+      "Bratislava",
+      "Košice",
+      "Prešov",
+      "Žilina",
+      "Banská Bystrica",
+      "Nitra",
+      "Trnava",
+      "Martin",
+      "Trenčín",
+      "Poprad"
+    ],
+    "phone": "+421"
+  },
+  {
+    "country": "Slovenia",
+    "cities": [
+      "Ljubljana",
+      "Maribor",
+      "Celje",
+      "Kranj",
+      "Velenje",
+      "Koper",
+      "Novo Mesto",
+      "Ptuj",
+      "Trbovlje",
+      "Kamnik"
+    ],
+    "phone": "+386"
+  },
+  {
+    "country": "Solomon Islands",
+    "cities": [
+      "Honiara",
+      "Gizo",
+      "Auki",
+      "Kirakira",
+      "Buala",
+      "Tulagi",
+      "Tigoa",
+      "Lata",
+      "Norofi",
+      "Munda"
+    ],
+    "phone": "+677"
+  },
+  {
+    "country": "Somalia",
+    "cities": [
+      "Mogadishu",
+      "Hargeisa",
+      "Bosaso",
+      "Kismayo",
+      "Berbera",
+      "Marka",
+      "Jowhar",
+      "Baidoa",
+      "Burao",
+      "Galcaio"
+    ],
+    "phone": "+252"
+  },
+  {
+    "country": "South Africa",
+    "cities": [
+      "Pretoria",
+      "Cape Town",
+      "Durban",
+      "Johannesburg",
+      "Port Elizabeth",
+      "Bloemfontein",
+      "East London",
+      "Pietermaritzburg",
+      "Benoni",
+      "Tembisa"
+    ],
+    "phone": "+27"
+  },
+  {
+    "country": "South Sudan",
+    "cities": [
+      "Juba",
+      "Malakal",
+      "Wau",
+      "Yambio",
+      "Aweil",
+      "Bentiu",
+      "Yei",
+      "Rumbek",
+      "Torit",
+      "Bor"
+    ],
+    "phone": "+211"
+  },
+  {
+    "country": "Spain",
+    "cities": [
+      "Madrid",
+      "Barcelona",
+      "Valencia",
+      "Seville",
+      "Zaragoza",
+      "Málaga",
+      "Murcia",
+      "Palma",
+      "Las Palmas",
+      "Bilbao"
+    ],
+    "phone": "+34"
+  },
+  {
+    "country": "Sri Lanka",
+    "cities": [
+      "Colombo",
+      "Dehiwala-Mount Lavinia",
+      "Moratuwa",
+      "Jaffna",
+      "Negombo",
+      "Sri Jayawardenepura Kotte",
+      "Kandy",
+      "Trincomalee",
+      "Kalmunai",
+      "Galle"
+    ],
+    "phone": "+94"
+  },
+  {
+    "country": "Sudan",
+    "cities": [
+      "Khartoum",
+      "Omdurman",
+      "Khartoum North",
+      "Port Sudan",
+      "Kassala",
+      "El Obeid",
+      "Nyala",
+      "Wad Madani",
+      "Al Qadarif",
+      "Kosti"
+    ],
+    "phone": "+249"
+  },
+  {
+    "country": "Suriname",
+    "cities": [
+      "Paramaribo",
+      "Lelydorp",
+      "Nieuw Nickerie",
+      "Moengo",
+      "Meerzorg",
+      "Mariënburg",
+      "Wageningen",
+      "Albina",
+      "Groningen",
+      "Brownsweg"
+    ],
+    "phone": "+597"
+  },
+  {
+    "country": "Sweden",
+    "cities": [
+      "Stockholm",
+      "Gothenburg",
+      "Malmö",
+      "Uppsala",
+      "Linköping",
+      "Västerås",
+      "Örebro",
+      "Helsingborg",
+      "Jönköping",
+      "Norrköping"
+    ],
+    "phone": "+46"
+  },
+  {
+    "country": "Switzerland",
+    "cities": [
+      "Bern",
+      "Zurich",
+      "Geneva",
+      "Basel",
+      "Lausanne",
+      "Lucerne",
+      "St. Gallen",
+      "Lugano",
+      "Biel/Bienne",
+      "Thun"
+    ],
+    "phone": "+41"
+  },
+  {
+    "country": "Syria",
+    "cities": [
+      "Damascus",
+      "Aleppo",
+      "Homs",
+      "Hama",
+      "Latakia",
+      "Deir ez-Zor",
+      "Raqqa",
+      "Al-Hasakah",
+      "Qamishli",
+      "Tartus"
+    ],
+    "phone": "+963"
+  },
+  {
+    "country": "Taiwan",
+    "cities": [
+      "Taipei",
+      "New Taipei",
+      "Kaohsiung",
+      "Taichung",
+      "Tainan",
+      "Hsinchu",
+      "Keelung",
+      "Taoyuan",
+      "Changhua",
+      "Pingtung"
+    ],
+    "phone": "+886"
+  },
+  {
+    "country": "Tajikistan",
+    "cities": [
+      "Dushanbe",
+      "Khujand",
+      "Kulob",
+      "Qurghonteppa",
+      "Istaravshan",
+      "Vahdat",
+      "Tursunzoda",
+      "Konibodom",
+      "Isfara",
+      "Panjakent"
+    ],
+    "phone": "+992"
+  },
+  {
+    "country": "Tanzania",
+    "cities": [
+      "Dodoma",
+      "Dar es Salaam",
+      "Mwanza",
+      "Arusha",
+      "Mbeya",
+      "Morogoro",
+      "Tanga",
+      "Kahama",
+      "Zanzibar City",
+      "Tabora"
+    ],
+    "phone": "+255"
+  },
+  {
+    "country": "Thailand",
+    "cities": [
+      "Bangkok",
+      "Nonthaburi",
+      "Nakhon Ratchasima",
+      "Chiang Mai",
+      "Hat Yai",
+      "Udon Thani",
+      "Pak Kret",
+      "Khon Kaen",
+      "Chaophraya Surasak",
+      "Phitsanulok"
+    ],
+    "phone": "+66"
+  },
+  {
+    "country": "Togo",
+    "cities": [
+      "Lomé",
+      "Sokodé",
+      "Kara",
+      "Atakpamé",
+      "Kpalimé",
+      "Dapaong",
+      "Tsévié",
+      "Aného",
+      "Sansanné-Mango",
+      "Tchamba"
+    ],
+    "phone": "+228"
+  },
+  {
+    "country": "Tonga",
+    "cities": [
+      "Nuku'alofa",
+      "Neiafu",
+      "Haveluloto",
+      "Vaini",
+      "Pangai",
+      "Ohonua",
+      "Hihifo",
+      "Nukunuku",
+      "Mu'a",
+      "Kolovai"
+    ],
+    "phone": "+676"
+  },
+  {
+    "country": "Trinidad and Tobago",
+    "cities": [
+      "Port of Spain",
+      "San Fernando",
+      "Chaguanas",
+      "Arima",
+      "Couva",
+      "Point Fortin",
+      "Tunapuna",
+      "Scarborough",
+      "Princes Town",
+      "Diego Martin"
+    ],
+    "phone": "+1-868"
+  },
+  {
+    "country": "Tunisia",
+    "cities": [
+      "Tunis",
+      "Sfax",
+      "Sousse",
+      "Kairouan",
+      "Bizerte",
+      "Gabès",
+      "Ariana",
+      "Gafsa",
+      "La Goulette",
+      "Zarzis"
+    ],
+    "phone": "+216"
+  },
+  {
+    "country": "Turkey",
+    "cities": [
+      "Ankara",
+      "Istanbul",
+      "Izmir",
+      "Bursa",
+      "Adana",
+      "Gaziantep",
+      "Konya",
+      "Antalya",
+      "Diyarbakır",
+      "Mersin"
+    ],
+    "phone": "+90"
+  },
+  {
+    "country": "Turkmenistan",
+    "cities": [
+      "Ashgabat",
+      "Türkmenabat",
+      "Daşoguz",
+      "Mary",
+      "Balkanabat",
+      "Bayramaly",
+      "Türkmenbaşy",
+      "Tejen",
+      "Abadan",
+      "Gumdag"
+    ],
+    "phone": "+993"
+  },
+  {
+    "country": "Tuvalu",
+    "cities": [
+      "Funafuti",
+      "Asau",
+      "Savave",
+      "Tanrake",
+      "Tonga",
+      "Kulia",
+      "Niulakita",
+      "Vaitupu",
+      "Nanumanga",
+      "Nui"
+    ],
+    "phone": "+688"
+  },
+  {
+    "country": "Uganda",
+    "cities": [
+      "Kampala",
+      "Gulu",
+      "Lira",
+      "Mbarara",
+      "Jinja",
+      "Bwizibwera",
+      "Mbale",
+      "Mukono",
+      "Kasese",
+      "Masaka"
+    ],
+    "phone": "+256"
+  },
+  {
+    "country": "Ukraine",
+    "cities": [
+      "Kyiv",
+      "Kharkiv",
+      "Odesa",
+      "Dnipro",
+      "Donetsk",
+      "Zaporizhzhia",
+      "Lviv",
+      "Kryvyi Rih",
+      "Mykolaiv",
+      "Mariupol"
+    ],
+    "phone": "+380"
+  },
+  {
+    "country": "United Arab Emirates",
+    "cities": [
+      "Abu Dhabi",
+      "Dubai",
+      "Sharjah",
+      "Al Ain",
+      "Ajman",
+      "Ras Al Khaimah",
+      "Fujairah",
+      "Umm Al Quwain",
+      "Khor Fakkan",
+      "Dibba Al-Fujairah"
+    ],
+    "phone": "+971"
+  },
+  {
+    "country": "United Kingdom",
+    "cities": [
+      "London",
+      "Birmingham",
+      "Glasgow",
+      "Liverpool",
+      "Bristol",
+      "Manchester",
+      "Sheffield",
+      "Leeds",
+      "Edinburgh",
+      "Leicester"
+    ],
+    "phone": "+44"
+  },
+  {
+    "country": "United States",
+    "cities": [
+      "Washington, D.C.",
+      "New York",
+      "Los Angeles",
+      "Chicago",
+      "Houston",
+      "Phoenix",
+      "Philadelphia",
+      "San Antonio",
+      "San Diego",
+      "Dallas"
+    ],
+    "phone": "+1"
+  },
+  {
+    "country": "Uruguay",
+    "cities": [
+      "Montevideo",
+      "Salto",
+      "Ciudad de la Costa",
+      "Paysandú",
+      "Las Piedras",
+      "Rivera",
+      "Maldonado",
+      "Tacuarembó",
+      "Melo",
+      "Mercedes"
+    ],
+    "phone": "+598"
+  },
+  {
+    "country": "Uzbekistan",
+    "cities": [
+      "Tashkent",
+      "Namangan",
+      "Samarkand",
+      "Andijan",
+      "Bukhara",
+      "Nukus",
+      "Qarshi",
+      "Fergana",
+      "Kokand",
+      "Margilan"
+    ],
+    "phone": "+998"
+  },
+  {
+    "country": "Vanuatu",
+    "cities": [
+      "Port Vila",
+      "Luganville",
+      "Norsup",
+      "Sola",
+      "Port-Olry",
+      "Isangel",
+      "Lakatoro",
+      "Longana",
+      "Tevai",
+      "Bwatnapni"
+    ],
+    "phone": "+678"
+  },
+  {
+    "country": "Vatican City",
+    "cities": ["Vatican City"],
+    "phone": "+379"
+  },
+  {
+    "country": "Venezuela",
+    "cities": [
+      "Caracas",
+      "Maracaibo",
+      "Valencia",
+      "Barquisimeto",
+      "Maracay",
+      "Ciudad Guayana",
+      "Barcelona",
+      "Maturín",
+      "Turmero",
+      "Barinas"
+    ],
+    "phone": "+58"
+  },
+  {
+    "country": "Vietnam",
+    "cities": [
+      "Hanoi",
+      "Ho Chi Minh City",
+      "Da Nang",
+      "Haiphong",
+      "Can Tho",
+      "Bien Hoa",
+      "Hue",
+      "Nha Trang",
+      "Vung Tau",
+      "Qui Nhon"
+    ],
+    "phone": "+84"
+  },
+  {
+    "country": "Yemen",
+    "cities": [
+      "Sana'a",
+      "Aden",
+      "Taiz",
+      "Al Hudaydah",
+      "Ibb",
+      "Dhamar",
+      "Al Mukalla",
+      "Zinjibar",
+      "Sayyan",
+      "Ash Shihr"
+    ],
+    "phone": "+967"
+  },
+  {
+    "country": "Zambia",
+    "cities": [
+      "Lusaka",
+      "Kitwe",
+      "Ndola",
+      "Kabwe",
+      "Chingola",
+      "Mufulira",
+      "Livingstone",
+      "Luanshya",
+      "Chipata",
+      "Kasama"
+    ],
+    "phone": "+260"
+  },
+  {
+    "country": "Zimbabwe",
+    "cities": [
+      "Harare",
+      "Bulawayo",
+      "Chitungwiza",
+      "Mutare",
+      "Gweru",
+      "Epworth",
+      "Kwekwe",
+      "Kadoma",
+      "Masvingo",
+      "Chinhoyi"
+    ],
+    "phone": "+263"
+  }
+]

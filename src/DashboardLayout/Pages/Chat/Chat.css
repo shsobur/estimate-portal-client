@@ -1,0 +1,56 @@
+/* Security/Loading Styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #e2e8f0;
+  border-top: 5px solid #4299e1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fed7d7;
+  border-radius: 10px;
+  border-left: 5px solid #c53030;
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.error-container h3 {
+  color: #c53030;
+  margin-bottom: 10px;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background: #fc8181;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+  background: #f56565;
+}
+
+.chat-page {
+  height: 100%;
+}

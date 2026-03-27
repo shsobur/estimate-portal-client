@@ -1,0 +1,25 @@
+/* Add to your CSS file */
+.slider {
+  background: #e5e7eb;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #3c8f63;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px #00000033;
+}
+
+.slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #3c8f63;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px #00000033;
+}

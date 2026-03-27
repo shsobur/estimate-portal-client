@@ -1,0 +1,333 @@
+/* Why Choose Us Section */
+.wcu_section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+  background: transparent;
+}
+
+.wcu_container {
+  max-width: 1536px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Section Header - Fixed Alignment */
+.wcu_header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wcu_header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #3c8f631a;
+  color: #3c8f63;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid #3c8f6333;
+}
+
+.wcu_badge-icon {
+  font-size: 16px;
+}
+
+.wcu_header-title {
+  max-width: 600px;
+  margin: auto;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #1a202c;
+}
+
+.wcu_highlighted-text {
+  color: #3c8f63;
+  position: relative;
+  display: inline-block;
+}
+
+.wcu_highlighted-text::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #3c8f6333;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.wcu_header-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Stats Section */
+.wcu_stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+.wcu_stat-item {
+  text-align: center;
+  padding: 25px 15px;
+  background: #ffffffe6;
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid #ffffffcc;
+  box-shadow: 0 4px 20px #00000014;
+  transition: all 0.3s ease;
+}
+
+.wcu_stat-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px #3c8f631f;
+}
+
+.wcu_stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #3c8f63;
+  margin-bottom: 6px;
+}
+
+.wcu_stat-label {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Features Grid - Smaller Cards */
+.wcu_features-grid {
+  display: grid;
+  cursor: pointer;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.wcu_feature-card {
+  background: #fffffff2;
+  padding: 30px 25px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #ffffffe6;
+  box-shadow: 0 4px 20px #00000014;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.wcu_feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3c8f63, #2a6b4a);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.wcu_feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(60, 143, 99, 0.15);
+}
+
+.wcu_feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.wcu_feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.wcu_feature-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1a202c;
+}
+
+.wcu_feature-description {
+  color: #64748b;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* CTA Section */
+.wcu_cta {
+  text-align: center;
+}
+
+.wcu_cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.wcu_primary-btn {
+  background: #3c8f63;
+  color: white;
+  box-shadow: 0 4px 14px rgba(60, 143, 99, 0.3);
+}
+
+.wcu_primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(60, 143, 99, 0.4);
+  background: #2a6b4a;
+}
+
+.wcu_btn-icon {
+  transition: transform 0.3s ease;
+}
+
+.wcu_primary-btn:hover .wcu_btn-icon {
+  transform: translateX(4px);
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 1536px) {
+  .wcu_container {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .wcu_header-title {
+    font-size: 2.5rem;
+  }
+  .wcu_features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .wcu_stats {
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .wcu_header-title {
+    font-size: 2.2rem;
+  }
+  .wcu_header-description {
+    font-size: 1rem;
+  }
+  .wcu_stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .wcu_features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wcu_section {
+    padding: 60px 0;
+  }
+  .wcu_header {
+    margin-bottom: 40px;
+  }
+  .wcu_header-title {
+    font-size: 2rem;
+  }
+  .wcu_stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .wcu_stat-item {
+    padding: 20px 12px;
+  }
+  .wcu_stat-number {
+    font-size: 1.8rem;
+  }
+  .wcu_features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .wcu_feature-card {
+    padding: 25px 20px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wcu_header-title {
+    font-size: 1.8rem;
+  }
+  .wcu_stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .wcu_stat-item {
+    padding: 15px 10px;
+  }
+  .wcu_stat-number {
+    font-size: 1.6rem;
+  }
+  .wcu_stat-label {
+    font-size: 0.85rem;
+  }
+  .wcu_feature-icon {
+    font-size: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .wcu_container {
+    padding: 0 15px;
+  }
+  .wcu_header-title {
+    font-size: 1.6rem;
+  }
+  .wcu_header-badge {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+  .wcu_stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .wcu_feature-card {
+    padding: 20px 15px;
+  }
+  .wcu_cta-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}

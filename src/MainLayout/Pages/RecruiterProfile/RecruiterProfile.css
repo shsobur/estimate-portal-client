@@ -1,0 +1,876 @@
+#rp_recruiter_profile_container {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+.rp_recruiter-container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.rp_recruiter-content {
+  width: 100%;
+}
+
+/* All edit button style */
+.rp_rec-profile-edit-btn {
+  background: #3c8f631a;
+  border: 1px solid #3c8f6333;
+  padding: 10px;
+  border-radius: 12px;
+  color: #3c8f63;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.rp_rec-profile-edit-btn:hover {
+  background: #3c8f63;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Red button styles for Pending status */
+.rp_rec-profile-edit-btn.rp_pending {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+.rp_rec-profile-edit-btn.rp_pending:hover {
+  background: #dc2626;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.rp_rec-profile-edit-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.rp_rec-profile-edit-btn:disabled:hover {
+  transform: none;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* Header Section */
+.rp_profile-header {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px #00000014;
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid #3c8f631a;
+}
+.rp_header-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  position: relative;
+}
+.rp_company-avatar-container {
+  flex-shrink: 0;
+}
+.rp_company-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 30px #0000001f;
+}
+.rp_company-info {
+  flex: 1;
+  min-width: 0;
+}
+.rp_company-name {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.rp_company-meta {
+  font-size: 1.125rem;
+  color: #6b7280;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.rp_status-badges {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.rp_status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #3c8f631a;
+  color: #166534;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid #3c8f6333;
+}
+
+.rp_badge-icon {
+  font-size: 0.875rem;
+}
+
+.rp_header-edit-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #3c8f631a;
+  border: 1px solid #3c8f6333;
+  padding: 10px;
+  border-radius: 12px;
+  color: #3c8f63;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.rp_header-edit-btn:hover {
+  background: #3c8f63;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.rp_header-edit-btn.rp_pending {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  opacity: 0.7;
+}
+
+.rp_header-edit-btn.rp_pending:hover {
+  cursor: not-allowed;
+}
+
+.rp_profile_verify_btn {
+  color: blue;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid blue;
+}
+
+.rp_profile_verify_btn:hover {
+  color: #4040f7;
+}
+
+/* Navigation */
+.rp_profile-navigation {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px #00000014;
+  margin-bottom: 24px;
+  border: 1px solid #3c8f631a;
+  overflow-x: auto;
+}
+.rp_nav-tabs {
+  display: flex;
+  padding: 0 20px;
+  min-width: max-content;
+}
+.rp_nav-tab {
+  padding: 20px 24px;
+  font-weight: 600;
+  color: #6b7280;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.rp_nav-tab:hover {
+  color: #3c8f63;
+}
+.rp_nav-tab.rp_active {
+  color: #3c8f63;
+  border-bottom-color: #3c8f63;
+} /* Main Grid Layout */
+.rp_profile-main-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.rp_profile-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.rp_profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Profile Sections */
+
+.rp_profile-section {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px #00000014;
+  padding: 30px;
+  border: 1px solid #3c8f631a;
+}
+.rp_section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.rp_section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+.rp_section-edit-btn {
+  background: #3c8f631a;
+  border: 1px solid #3c8f6333;
+  padding: 8px;
+  border-radius: 10px;
+  color: #3c8f63;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.rp_section-edit-btn:hover {
+  background: #3c8f63;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+.rp_edit-icon {
+  font-size: 1.125rem;
+} /* About Section */
+.rp_about-description {
+  color: #4b5563;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.rp_mission-vision-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.rp_mission-card,
+.rp_vision-card {
+  background: #3c8f630d;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #3c8f631a;
+}
+.rp_card-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #3c8f631a;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.rp_card-icon {
+  font-size: 1.5rem;
+  color: #3c8f63;
+}
+.rp_card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+.rp_card-description {
+  color: #4b5563;
+  line-height: 1.6;
+} /* Departments Section */
+.rp_departments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.rp_department-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: #3c8f630d;
+  border: 1px solid #3c8f631a;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.rp_department-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px #0000001a;
+  border-color: #3c8f634d;
+}
+.rp_department-icon {
+  font-size: 1.5rem;
+  color: #3c8f63;
+  flex-shrink: 0;
+}
+.rp_department-name {
+  font-weight: 600;
+  color: #1f2937;
+} /* Gallery Section */
+.rp_gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.rp_gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #f3f4f6;
+}
+.rp_gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.rp_gallery-item.rp_featured {
+  grid-column: 1 / -1;
+  aspect-ratio: 2 / 1;
+}
+.rp_gallery-item:not(.rp_featured) {
+  aspect-ratio: 1.5 / 1;
+}
+.rp_gallery-item.rp_more-items {
+  position: relative;
+}
+.rp_more-overlay {
+  position: absolute;
+  inset: 0;
+  background: #00000099;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rp_more-text {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+} /* Sidebar Cards */
+.rp_sidebar-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px #00000014;
+  padding: 24px;
+  border: 1px solid #3c8f631a;
+}
+.rp_card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.rp_card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+.rp_card-edit-btn {
+  background: #3c8f631a;
+  border: 1px solid #3c8f6333;
+  padding: 6px;
+  border-radius: 8px;
+  color: #3c8f63;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.rp_card-edit-btn:hover {
+  background: #3c8f63;
+  color: #ffffff;
+  transform: scale(1.05);
+} /* Details List */
+.rp_details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rp_detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #3c8f631a;
+}
+.rp_detail-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.rp_detail-label {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.rp_detail-value {
+  color: #1f2937;
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+}
+.rp_detail-value.rp_link {
+  color: #3c8f63;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.rp_detail-value.rp_link:hover {
+  color: #2a6b4a;
+  text-decoration: underline;
+} /* People List */
+.rp_people-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rp_person-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.rp_person-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 15px #0000001a;
+  flex-shrink: 0;
+}
+.rp_person-info {
+  flex: 1;
+  min-width: 0;
+}
+.rp_person-name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+.rp_person-role {
+  color: #6b7280;
+  font-size: 0.875rem;
+} /* Social Links */
+.rp_social-links {
+  display: flex;
+  gap: 16px;
+}
+.rp_social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #3c8f631a;
+  border: 1px solid #3c8f6333;
+  border-radius: 12px;
+  color: #3c8f63;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.rp_social-link:hover {
+  background: #3c8f63;
+  color: #ffffff;
+  transform: translateY(-2px);
+} /* Empty State Styles */
+.rp_empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  border: 2px dashed #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+.rp_empty-state-small {
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 2px dashed #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+.rp_empty-state-icon {
+  font-size: 3rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+.rp_empty-state-small .rp_empty-state-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.rp_empty-state-text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+.rp_empty-state-subtext {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+.rp_empty-state-small .rp_empty-state-text {
+  font-size: 1rem;
+}
+.rp_empty-state-small .rp_empty-state-subtext {
+  font-size: 0.75rem;
+} /* Status Badge Styles */
+.rp_status-badge-unverified {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #f59e0b;
+}
+.rp_status-badge-unverified .rp_badge-icon {
+  color: #d97706;
+} /* Detail Item Styles */
+.rp_detail-item {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.rp_detail-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #374151;
+  flex: 1;
+}
+.rp_detail-icon {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+.rp_detail-value {
+  color: #111827;
+  font-weight: 400;
+}
+.rp_detail-value.rp_link {
+  color: #3c8f63;
+  text-decoration: none;
+}
+.rp_detail-value.rp_link:hover {
+  text-decoration: underline;
+}
+.rp_text-gray-500 {
+  color: #6b7280;
+}
+.rp_italic {
+  font-style: italic;
+}
+.rp_w-full {
+  width: 100%;
+} /* ===== RESPONSIVE DESIGN ===== */ /* 1536px and above - Large Desktop */
+@media screen and (min-width: 1536px) {
+  .rp_recruiter-container {
+    padding: 0 20px;
+  }
+} /* 1280px - Desktop */
+@media screen and (max-width: 1280px) {
+  .rp_profile-header {
+    padding: 24px;
+  }
+  .rp_company-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  .rp_company-name {
+    font-size: 2rem;
+  }
+  .rp_profile-section {
+    padding: 24px;
+  }
+} /* 1024px - Small Desktop / Tablet Landscape */
+@media screen and (min-width: 1024px) {
+  .rp_profile-main-grid {
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+  }
+  .rp_mission-vision-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .rp_recruiter-container {
+    padding: 0 16px;
+  }
+  .rp_header-content {
+    gap: 20px;
+  }
+  .rp_company-avatar {
+    width: 90px;
+    height: 90px;
+  }
+  .rp_company-name {
+    font-size: 1.75rem;
+  }
+  .rp_company-meta {
+    font-size: 1rem;
+  }
+  .rp_departments-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+} /* 768px - Tablet */
+@media screen and (max-width: 768px) {
+  .rp_profile-header {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .rp_header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .rp_company-avatar-container {
+    width: 100%;
+  }
+  .rp_company-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+  .rp_company-info {
+    width: 100%;
+  }
+  .rp_header-edit-btn {
+    position: static;
+    align-self: flex-end;
+    margin-top: -60px;
+  }
+  .rp_status-badges {
+    justify-content: center;
+  }
+  .rp_profile-section {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .rp_section-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .rp_section-edit-btn {
+    align-self: flex-end;
+  }
+  .rp_gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .rp_gallery-item.rp_featured {
+    grid-column: 1;
+    aspect-ratio: 1.5 / 1;
+  }
+  .rp_sidebar-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .rp_card-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .rp_card-edit-btn {
+    align-self: flex-end;
+  }
+} /* 640px - Large Mobile */
+@media screen and (max-width: 640px) {
+  .rp_recruiter-container {
+    padding: 0 12px;
+  }
+  .rp_profile-header {
+    padding: 16px;
+  }
+  .rp_company-name {
+    font-size: 1.5rem;
+  }
+
+  .rp_company-meta {
+    font-size: 0.95rem;
+  }
+
+  .rp_status-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .rp_nav-tabs {
+    padding: 0 16px;
+  }
+
+  .rp_nav-tab {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+  }
+
+  .rp_profile-section {
+    padding: 16px;
+  }
+
+  .rp_section-title {
+    font-size: 1.5rem;
+  }
+
+  .rp_about-description {
+    font-size: 1rem;
+  }
+
+  .rp_mission-card,
+  .rp_vision-card {
+    padding: 20px;
+  }
+
+  .rp_departments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rp_details-list {
+    gap: 12px;
+  }
+
+  .rp_detail-item {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  .rp_detail-value {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .rp_people-list {
+    gap: 16px;
+  }
+
+  .rp_person-card {
+    gap: 12px;
+  }
+
+  .rp_person-avatar {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* 475px - Small Mobile */
+@media screen and (max-width: 475px) {
+  .rp_recruiter-container {
+    padding: 0 8px;
+  }
+
+  .rp_profile-header {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .rp_company-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .rp_company-name {
+    font-size: 1.375rem;
+  }
+
+  .rp_company-meta {
+    font-size: 0.9rem;
+  }
+
+  .rp_status-badges {
+    gap: 8px;
+  }
+
+  .rp_status-badge {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  .rp_nav-tab {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+
+  .rp_profile-section {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .rp_section-title {
+    font-size: 1.375rem;
+  }
+
+  .rp_mission-card,
+  .rp_vision-card {
+    padding: 16px;
+  }
+
+  .rp_card-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rp_card-icon {
+    font-size: 1.25rem;
+  }
+
+  .rp_card-title {
+    font-size: 1.125rem;
+  }
+
+  .rp_sidebar-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .rp_gallery-grid {
+    gap: 8px;
+  }
+
+  .rp_more-text {
+    font-size: 1rem;
+  }
+
+  .rp_social-link {
+    width: 44px;
+    height: 44px;
+    font-size: 1.125rem;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  .rp_header-edit-btn,
+  .rp_section-edit-btn,
+  .rp_card-edit-btn,
+  .rp_department-card,
+  .rp_social-link {
+    transition: none;
+  }
+
+  .rp_header-edit-btn:hover,
+  .rp_section-edit-btn:hover,
+  .rp_card-edit-btn:hover,
+  .rp_department-card:hover,
+  .rp_social-link:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .rp_profile-header,
+  .rp_profile-section,
+  .rp_sidebar-card {
+    border: 2px solid #3c8f63;
+  }
+
+  .rp_status-badge {
+    border: 2px solid #166534;
+  }
+}

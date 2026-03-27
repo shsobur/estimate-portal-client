@@ -1,0 +1,321 @@
+/* RecApplications Section */
+.ra_section {
+  padding: 10px 0;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+}
+
+.ra_container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Section Header */
+.ra_header {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ra_header-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #1a202c;
+}
+
+.ra_highlighted-text {
+  color: #3c8f63;
+  position: relative;
+  display: inline-block;
+}
+
+.ra_highlighted-text::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #3c8f6333;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.ra_header-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+/* Applications List */
+.ra_applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* Application Card */
+.ra_application-card {
+  background: #fffffff2;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #ffffffe6;
+  box-shadow: 0 4px 20px #00000014;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ra_application-card:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 12px 35px #3c8f6326;
+  border-color: #3c8f6333;
+}
+
+/* Status Badges */
+.ra_status-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ra_status-new {
+  background: linear-gradient(135deg, #3c8f63, #2a6b4a);
+  color: white;
+}
+
+.ra_status-reviewed {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.ra_status-shortlisted {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+}
+
+/* Candidate Info */
+.ra_candidate-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-right: 100px; /* Space for status badge */
+}
+
+.ra_candidate-avatar {
+  width: 60px;
+  height: 60px;
+  background: #3c8f631a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ra_candidate-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.ra_candidate-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 6px;
+}
+
+.ra_candidate-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.ra_candidate-title,
+.ra_candidate-experience {
+  font-size: 0.9rem;
+  color: #64748b;
+  background: rgba(107, 114, 128, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.ra_candidate-experience {
+  background: #3c8f631a;
+  color: #3c8f63;
+}
+
+/* Applied Job */
+.ra_job-applied {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(60, 143, 99, 0.05);
+  border-radius: 12px;
+}
+
+.ra_applied-job-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a202c;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ra_job-icon {
+  color: #3c8f63;
+  font-size: 1rem;
+}
+
+/* Application Details */
+.ra_application-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.ra_detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+.ra_detail-icon {
+  color: #3c8f63;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ra_detail-label {
+  font-weight: 500;
+  color: #64748b;
+}
+
+.ra_detail-value {
+  font-weight: 600;
+  color: #1a202c;
+  margin-left: 5px;
+}
+
+/* Card Footer */
+.ra_card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ra_view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #3c8f63;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.ra_view-btn:hover {
+  background: #2a6b4a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(60, 143, 99, 0.3);
+}
+
+.ra_btn-icon {
+  transition: transform 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.ra_view-btn:hover .ra_btn-icon {
+  transform: translateX(3px);
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 1024px) {
+  .ra_header-title {
+    font-size: 2.2rem;
+  }
+  .ra_application-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ra_section {
+    padding: 60px 0;
+  }
+  .ra_header {
+    margin-bottom: 40px;
+  }
+  .ra_header-title {
+    font-size: 2rem;
+  }
+  .ra_candidate-info {
+    flex-direction: column;
+    text-align: center;
+    padding-right: 0;
+    padding-top: 50px; /* Space for mobile status badge */
+  }
+  .ra_status-badge {
+    top: 15px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .ra_view-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .ra_header-title {
+    font-size: 1.8rem;
+  }
+  .ra_candidate-meta {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  .ra_application-card {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .ra_container {
+    padding: 0 15px;
+  }
+  .ra_header-title {
+    font-size: 1.6rem;
+  }
+  .ra_view-all-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}

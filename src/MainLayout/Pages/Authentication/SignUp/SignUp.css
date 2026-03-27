@@ -1,0 +1,885 @@
+#su_main_signUp_container {
+  min-height: calc(100vh - 81px);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.su_signUp_container {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px #0000001f;
+  border: 1px solid #3c8f631a;
+  width: 100%;
+  max-width: 1000px;
+  height: 85vh;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Progress Bar - Compact */
+.su_progress_container {
+  padding: 20px 30px 15px;
+  background: #3c8f6305;
+  border-bottom: 1px solid #3c8f631a;
+}
+
+.su_step_indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.su_step_indicator_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.su_step_indicator {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.su_step_indicator.su_active {
+  border-color: #3c8f63;
+  background: #3c8f63;
+}
+
+.su_step_check_icon {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.su_step_connector {
+  width: 40px;
+  height: 2px;
+  background: #e5e7eb;
+  margin: 0 8px;
+  transition: all 0.3s ease;
+}
+
+.su_step_connector.su_active {
+  background: #3c8f63;
+}
+
+.su_step_labels {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.su_step_labels span {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.su_step_labels span.su_active {
+  color: #3c8f63;
+  font-weight: 600;
+}
+
+/* Main Content Layout */
+.su_signUp_content_wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  flex: 1;
+  min-height: 0;
+}
+
+.su_signUp_form_section {
+  padding: 20px 30px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.su_form_slider {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  width: 100%;
+}
+
+.su_form_step {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.su_step_content_centered {
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.su_step_content_centered h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #3c8f63 0%, #2a6b4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.su_step_content_centered p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 0 0 30px 0;
+  line-height: 1.5;
+}
+
+/* Step 1: Compact Signup Methods */
+.su_signup_methods_compact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.su_method_btn_compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.su_method_btn_compact:hover:not(:disabled) {
+  border-color: #3c8f63;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.su_method_btn_compact:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.su_google_btn {
+  border-color: #e5e7eb;
+}
+
+.su_email_btn {
+  border-color: #3c8f63;
+  background: rgba(60, 143, 99, 0.05);
+  color: #3c8f63;
+  font-weight: 600;
+}
+
+.su_method_icon {
+  font-size: 1.25rem;
+}
+
+.su_arrow_icon {
+  font-size: 1rem;
+  color: #3c8f63;
+}
+
+.su_divider_compact {
+  position: relative;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.su_divider_compact::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.su_divider_compact span {
+  background: #ffffff;
+  padding: 0 12px;
+  color: #6b7280;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.su_step_tips_compact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.su_tip_item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.su_tip_icon {
+  color: #3c8f63;
+  font-size: 0.9rem;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+/* Step 2: Compact Options */
+.su_options_grid_compact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.su_option_btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.su_option_btn:hover {
+  border-color: #3c8f63;
+}
+
+.su_option_btn.su_selected {
+  border-color: #3c8f63;
+  background: rgba(60, 143, 99, 0.05);
+}
+
+.su_check_icon {
+  font-size: 1rem;
+  color: #3c8f63;
+}
+
+/* Step 3: Compact Role Selection */
+.su_role_selection_compact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.su_role_btn {
+  padding: 16px 18px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.su_role_btn:hover {
+  border-color: #3c8f63;
+  transform: translateY(-1px);
+}
+
+.su_role_btn.su_selected {
+  border-color: #3c8f63;
+  background: rgba(60, 143, 99, 0.05);
+}
+
+.su_role_btn_content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.su_role_btn_icon {
+  font-size: 1.5rem;
+  color: #3c8f63;
+  flex-shrink: 0;
+}
+
+.su_role_btn_text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.su_role_btn_text strong {
+  color: #1f2937;
+  font-size: 0.95rem;
+}
+
+.su_role_btn_text span {
+  color: #6b7280;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.su_role_check_icon {
+  font-size: 1.25rem;
+  color: #3c8f63;
+  flex-shrink: 0;
+}
+
+/* Step 4: Compact Final Form */
+.su_final_form_compact {
+  width: 100%;
+}
+
+.su_form_inputs_compact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.su_input_group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.su_form_input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.su_form_input:focus {
+  outline: none;
+  border-color: #3c8f63;
+  box-shadow: 0 0 0 3px rgba(60, 143, 99, 0.1);
+}
+
+.su_form_input::placeholder {
+  color: #9ca3af;
+}
+
+.su_error_message {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 2px 0 0 4px;
+  text-align: left;
+}
+
+.su_captcha_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.su_terms_checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #374151;
+  font-size: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.su_checkbox_input {
+  display: none;
+}
+
+.su_custom_checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.su_checkbox_input:checked + .su_custom_checkbox {
+  background: #3c8f63;
+  border-color: #3c8f63;
+}
+
+.su_checkbox_input:checked + .su_custom_checkbox::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.su_terms_text {
+  line-height: 1.4;
+}
+
+.su_terms_link {
+  color: #3c8f63;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.su_terms_link:hover {
+  text-decoration: underline;
+}
+
+.su_submit_btn {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #3c8f63 0%, #2a6b4a 100%);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(60, 143, 99, 0.3);
+}
+
+.su_submit_btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(60, 143, 99, 0.4);
+}
+
+.su_submit_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.su_loading_spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: su_spin 1s linear infinite;
+}
+
+.su_loading_spinner.su_small {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes su_spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Redesigned Sidebar */
+.su_signUp_sidebar {
+  background: linear-gradient(135deg, #3c8f63 0%, #2a6b4a 100%);
+  padding: 30px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.su_sidebar_content_centered {
+  text-align: center;
+  width: 100%;
+  max-width: 280px;
+}
+
+.su_sidebar_header {
+  margin-bottom: 30px;
+}
+
+.su_sidebar_logo {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+}
+
+.su_sidebar_header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+}
+
+.su_sidebar_features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.su_feature_item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+}
+
+.su_feature_icon {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.su_feature_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.su_feature_content strong {
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.su_feature_content span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+}
+
+.su_sidebar_stats {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 20px;
+}
+
+.su_stat_item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.su_stat_item strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.su_stat_item span {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation Buttons */
+.su_navigation_buttons {
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(60, 143, 99, 0.02);
+  border-top: 1px solid rgba(60, 143, 99, 0.1);
+}
+
+.su_nav_btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.su_nav_btn:hover:not(:disabled) {
+  border-color: #3c8f63;
+  color: #3c8f63;
+}
+
+.su_nav_btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.su_nav_icon {
+  font-size: 0.9rem;
+}
+
+.su_next_btn {
+  border-color: #3c8f63;
+  background: #3c8f63;
+  color: #ffffff;
+}
+
+.su_next_btn:hover:not(:disabled) {
+  background: #2a6b4a;
+  border-color: #2a6b4a;
+}
+
+/* ===== RESPONSIVE DESIGN - FIXED ===== */
+
+/* 1024px - Hide Sidebar */
+@media screen and (max-width: 1024px) {
+  .su_signUp_content_wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .su_signUp_sidebar {
+    display: none;
+  }
+}
+
+/* 768px - Tablet */
+@media screen and (max-width: 768px) {
+  .su_signUp_container {
+    height: 90vh;
+    max-height: 85vh;
+    border-radius: 16px;
+  }
+
+  .su_signUp_form_section {
+    padding: 15px 20px;
+  }
+
+  .su_progress_container {
+    padding: 15px 20px 10px;
+  }
+
+  .su_step_content_centered h1 {
+    font-size: 1.5rem;
+  }
+
+  .su_step_content_centered p {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+
+  .su_navigation_buttons {
+    padding: 15px 20px;
+  }
+}
+
+/* 640px - Mobile - FIXED SLIDER ISSUE */
+@media screen and (max-width: 640px) {
+  #su_main_signUp_container {
+    padding: 10px;
+  }
+
+  .su_signUp_container {
+    height: 95vh;
+    max-height: 85vh;
+    min-height: 500px;
+  }
+
+  .su_signUp_form_section {
+    padding: 10px 10px;
+  }
+
+  .su_form_slider {
+    width: 100%;
+    height: 100%;
+  }
+
+  .su_form_step {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    /* Ensure no overflow */
+    overflow: hidden;
+  }
+
+  .su_step_content_centered {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .su_progress_container {
+    padding: 12px 15px 8px;
+  }
+
+  .su_step_connector {
+    width: 30px;
+  }
+
+  .su_step_labels span {
+    font-size: 0.7rem;
+  }
+
+  .su_method_btn_compact {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
+  .su_option_btn {
+    padding: 12px 16px;
+  }
+
+  .su_role_btn {
+    padding: 14px 16px;
+  }
+
+  .su_form_input {
+    padding: 12px 14px;
+  }
+
+  .su_navigation_buttons {
+    padding: 12px 15px;
+  }
+
+  .su_nav_btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+/* 475px - Small Mobile */
+@media screen and (max-width: 475px) {
+  .su_signUp_container {
+    border-radius: 12px;
+  }
+
+  .su_signUp_form_section {
+    padding: 8px 10px;
+  }
+
+  .su_step_content_centered h1 {
+    font-size: 1.375rem;
+  }
+
+  .su_step_content_centered p {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .su_signup_methods_compact {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .su_options_grid_compact {
+    gap: 8px;
+  }
+
+  .su_role_selection_compact {
+    gap: 10px;
+  }
+
+  .su_form_inputs_compact {
+    gap: 14px;
+  }
+
+  .su_progress_container {
+    padding: 10px 12px 6px;
+  }
+
+  .su_step_indicator {
+    width: 20px;
+    height: 20px;
+  }
+
+  .su_step_connector {
+    width: 25px;
+    margin: 0 6px;
+  }
+
+  .su_step_labels span {
+    font-size: 0.65rem;
+  }
+}
+
+/* 375px - Extra Small Mobile */
+@media screen and (max-width: 375px) {
+  .su_step_content_centered h1 {
+    font-size: 1.25rem;
+  }
+
+  .su_method_btn_compact {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .su_option_btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .su_role_btn {
+    padding: 12px 14px;
+  }
+
+  .su_form_input {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .su_submit_btn {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .su_form_slider,
+  .su_method_btn_compact,
+  .su_option_btn,
+  .su_role_btn,
+  .su_nav_btn,
+  .su_submit_btn {
+    transition: none;
+  }
+
+  .su_loading_spinner {
+    animation: none;
+  }
+}

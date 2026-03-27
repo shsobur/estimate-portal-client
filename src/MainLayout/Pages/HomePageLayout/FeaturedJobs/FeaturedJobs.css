@@ -1,0 +1,351 @@
+/* Featured Jobs Section */
+.fj_section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+}
+
+.fj_container {
+  max-width: 1536px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Section Header */
+.fj_header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fj_header-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  color: #1a202c;
+}
+
+.fj_highlighted-text {
+  color: #3c8f63;
+  position: relative;
+  display: inline-block;
+}
+
+.fj_highlighted-text::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #3c8f6333;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.fj_header-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+/* Jobs Grid */
+.fj_jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.fj_job-card {
+  background: #fffffff2;
+  padding: 30px 25px;
+  border-radius: 16px;
+  border: 1px solid #ffffffe6;
+  box-shadow: 0 4px 20px #00000014;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 380px;
+}
+
+.fj_job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px #3c8f6326;
+  border-color: #3c8f6333;
+}
+
+/* Featured Badge */
+.fj_featured-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #3c8f63, #2a6b4a);
+}
+
+/* Company Info */
+.fj_company-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.fj_company-logo {
+  width: 50px;
+  height: 50px;
+  background: #3c8f631a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fj_logo-icon {
+  font-size: 1.2rem;
+  color: #3c8f63;
+}
+
+.fj_company-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.fj_company-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fj_job-type {
+  font-size: 0.8rem;
+  color: #3c8f63;
+  background: #3c8f631a;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* Job Title */
+.fj_job-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 20px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+/* Job Meta */
+.fj_job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.fj_meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.fj_meta-icon {
+  font-size: 0.9rem;
+  color: #3c8f63;
+  flex-shrink: 0;
+}
+
+/* Skills - Limited to 3 tags */
+.fj_skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.fj_skill-tag {
+  background: rgba(60, 143, 99, 0.1);
+  color: #3c8f63;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.fj_more-skills {
+  background: rgba(107, 114, 128, 0.1);
+  color: #64748b;
+}
+
+/* Card Footer - Always at bottom */
+.fj_card-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* Apply Button */
+.fj_apply-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #3c8f63;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fj_apply-btn:hover {
+  background: #2a6b4a;
+  transform: translateY(-2px);
+}
+
+.fj_btn-icon {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.fj_apply-btn:hover .fj_btn-icon {
+  transform: translateX(3px);
+}
+
+/* View All CTA */
+.fj_cta {
+  text-align: center;
+}
+
+.fj_view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  color: #3c8f63;
+  border: 2px solid #3c8f63;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fj_view-all-btn:hover {
+  background: rgba(60, 143, 99, 0.1);
+  transform: translateY(-2px);
+}
+
+.fj_view-all-btn:hover .fj_btn-icon {
+  transform: translateX(3px) translateY(-2px);
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 1536px) {
+  .fj_container {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .fj_header-title {
+    font-size: 2.5rem;
+  }
+  .fj_jobs-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .fj_header-title {
+    font-size: 2.2rem;
+  }
+  .fj_header-description {
+    font-size: 1rem;
+  }
+  .fj_jobs-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fj_section {
+    padding: 60px 0;
+  }
+  .fj_header {
+    margin-bottom: 40px;
+  }
+  .fj_header-title {
+    font-size: 2rem;
+  }
+  .fj_jobs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .fj_job-card {
+    padding: 25px 20px;
+    min-height: 360px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .fj_header-title {
+    font-size: 1.8rem;
+  }
+  .fj_company-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  .fj_job-meta {
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .fj_container {
+    padding: 0 15px;
+  }
+  .fj_header-title {
+    font-size: 1.6rem;
+  }
+  .fj_job-card {
+    padding: 20px 15px;
+    min-height: 340px;
+  }
+  .fj_view-all-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,800 @@
+.jd_job-details-section {
+  min-height: 100vh;
+  padding: 20px 0;
+  background: transparent;
+}
+
+.jd_job-details-container {
+  max-width: 1536px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Breadcrumb */
+.jd_job-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.jd_breadcrumb-link {
+  color: #3c8f63;
+  text-decoration: none;
+}
+
+.jd_breadcrumb-link:hover {
+  color: #2a6b4a;
+}
+
+.jd_breadcrumb-separator {
+  color: #cbd5e0;
+}
+
+.jd_breadcrumb-current {
+  color: #4a5568;
+}
+
+/* Add this to your CSS file */
+.jd_apply-count {
+  color: #3c8f63;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Optional: Style for disabled button */
+.jd_apply-btn-large:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.jd_apply-btn-large:disabled:hover {
+  transform: none;
+  background: #a0aec0;
+}
+
+/* Main Job Card - PARENT (16px) */
+.jd_job-main-card {
+  background: #fffffff2;
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid #ffffffe6;
+  box-shadow: 0 4px 25px #00000014;
+  backdrop-filter: blur(10px);
+}
+
+/* Job Header */
+.jd_job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 30px;
+}
+
+.jd_company-info {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Company Logo - CHILD (8px) */
+.jd_company-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #dde0e4;
+  flex-shrink: 0;
+}
+
+.jd_company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jd_company-details {
+  flex: 1;
+}
+
+.jd_job-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.jd_company-name {
+  font-size: 1.4rem;
+  color: #3c8f63;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.jd_job-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+/* Job Actions */
+.jd_job-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 220px;
+}
+
+/* Buttons - CHILD (8px) */
+.jd_apply-btn,
+.jd_apply-btn-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 35px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: #3c8f63;
+  color: white;
+  box-shadow: 0 4px 14px #3c8f634d;
+  text-decoration: none;
+  justify-content: center;
+}
+
+.jd_secondary-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.jd_action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  color: #4a5568;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.jd_action-btn:hover {
+  border-color: #3c8f63;
+  color: #3c8f63;
+}
+
+.jd_action-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.jd_action-text {
+  white-space: nowrap;
+}
+
+/* Job Meta Grid - PARENT (16px) */
+.jd_job-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 25px;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px solid #dde0e4;
+}
+
+.jd_meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jd_meta-label {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.jd_meta-value {
+  font-size: 1.1rem;
+  color: #1a202c;
+  font-weight: 600;
+}
+
+/* Badge - CHILD (8px) */
+.jd_badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  background: #3c8f631a;
+  color: #2a6b4a;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #3c8f6333;
+  width: fit-content;
+}
+
+.jd_salary {
+  color: #3c8f63;
+  font-size: 1.15rem;
+}
+
+.jd_deadline {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+/* Job Content */
+.jd_job-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Content Section - PARENT (16px) */
+.jd_content-section {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #dde0e4;
+}
+
+.jd_section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.jd_section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #3c8f63;
+  border-radius: 2px;
+}
+
+.jd_section-text {
+  line-height: 1.7;
+  color: #4a5568;
+  font-size: 1.1rem;
+}
+
+.jd_section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.jd_list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.jd_list-icon {
+  color: #3c8f63;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Skills Container - PARENT (16px) */
+.jd_skills-container {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid #dde0e4;
+}
+
+.jd_skills-header {
+  margin-bottom: 20px;
+}
+
+.jd_skills-description {
+  color: #64748b;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.jd_skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Skill Badge - CHILD (8px) */
+.jd_skill-badge {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jd_primary-skill {
+  background: #3c8f63;
+  color: white;
+  border: 1px solid #2a6b4a;
+}
+
+.jd_secondary-skill {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+}
+
+.jd_secondary-skill:hover {
+  border-color: #3c8f63;
+  color: #2a6b4a;
+}
+
+/* Benefits Grid */
+.jd_benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Benefit Item - CHILD (8px) */
+.jd_benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 20px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.jd_benefit-text {
+  color: #4a5568;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Job CTA - PARENT (16px) */
+.jd_job-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #3c8f63, #2a6b4a);
+  border-radius: 16px;
+  color: white;
+  margin-top: 30px;
+}
+
+.jd_cta-content {
+  flex: 1;
+}
+
+.jd_cta-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.jd_cta-description {
+  opacity: 0.9;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.jd_apply-btn-large {
+  background: white;
+  color: #2a6b4a;
+  min-width: 240px;
+  font-size: 1.15rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large Desktop (1200px and above) - Default styles already cover this */
+
+/* Desktop (1024px - 1199px) */
+@media screen and (max-width: 1199px) {
+  .jd_job-details-container {
+    padding: 0 20px;
+  }
+
+  .jd_job-main-card {
+    padding: 25px;
+  }
+
+  .jd_job-title {
+    font-size: 2rem;
+  }
+
+  .jd_company-logo {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Tablet Landscape (900px - 1023px) */
+@media screen and (max-width: 1023px) {
+  .jd_job-header {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .jd_job-actions {
+    width: 100%;
+    flex-direction: row;
+    min-width: auto;
+  }
+
+  .jd_secondary-actions {
+    flex: 1;
+  }
+
+  .jd_action-btn {
+    justify-content: center;
+  }
+
+  .jd_job-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .jd_benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet Portrait (768px - 899px) */
+@media screen and (max-width: 899px) {
+  .jd_job-details-section {
+    padding: 15px 0;
+  }
+
+  .jd_job-main-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .jd_job-title {
+    font-size: 1.8rem;
+  }
+
+  .jd_company-name {
+    font-size: 1.2rem;
+  }
+
+  .jd_company-info {
+    gap: 15px;
+  }
+
+  .jd_company-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .jd_job-actions {
+    flex-direction: column;
+  }
+
+  .jd_secondary-actions {
+    flex-direction: row;
+  }
+
+  .jd_job-meta-grid {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .jd_content-section {
+    padding: 20px;
+  }
+
+  .jd_skills-container {
+    padding: 20px;
+  }
+
+  .jd_job-cta {
+    padding: 25px;
+    gap: 30px;
+  }
+}
+
+/* Large Mobile (600px - 767px) */
+@media screen and (max-width: 767px) {
+  .jd_job-details-container {
+    padding: 0 15px;
+  }
+
+  .jd_job-main-card {
+    padding: 18px;
+  }
+
+  .jd_job-header {
+    gap: 20px;
+    margin-bottom: 25px;
+  }
+
+  .jd_company-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .jd_company-logo {
+    align-self: center;
+    width: 80px;
+    height: 80px;
+  }
+
+  .jd_job-title {
+    font-size: 1.6rem;
+  }
+
+  .jd_job-actions {
+    gap: 12px;
+  }
+
+  .jd_apply-btn,
+  .jd_apply-btn-large {
+    padding: 14px 30px;
+    font-size: 1rem;
+  }
+
+  .jd_action-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .jd_job-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .jd_meta-item {
+    gap: 8px;
+  }
+
+  .jd_meta-label {
+    font-size: 0.9rem;
+  }
+
+  .jd_meta-value {
+    font-size: 1rem;
+  }
+
+  .jd_badge {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  .jd_job-content {
+    gap: 25px;
+  }
+
+  .jd_content-section {
+    padding: 18px;
+  }
+
+  .jd_section-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .jd_section-text,
+  .jd_list-item {
+    font-size: 1rem;
+  }
+
+  .jd_skills-grid {
+    gap: 10px;
+  }
+
+  .jd_skill-badge {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+
+  .jd_benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .jd_benefit-item {
+    padding: 15px;
+  }
+
+  .jd_benefit-text {
+    font-size: 1rem;
+  }
+
+  .jd_job-cta {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .jd_apply-btn-large {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .jd_cta-title {
+    font-size: 1.4rem;
+  }
+
+  .jd_cta-description {
+    font-size: 1rem;
+  }
+}
+
+/* Small Mobile (480px - 599px) */
+@media screen and (max-width: 599px) {
+  .jd_job-details-container {
+    padding: 0 12px;
+  }
+
+  .jd_job-main-card {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .jd_job-breadcrumb {
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+  }
+
+  .jd_job-title {
+    font-size: 1.4rem;
+  }
+
+  .jd_company-name {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .jd_job-location {
+    font-size: 1rem;
+  }
+
+  .jd_company-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .jd_secondary-actions {
+    flex-direction: column;
+  }
+
+  .jd_job-meta-grid {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .jd_content-section {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .jd_section-title {
+    font-size: 1.2rem;
+  }
+
+  .jd_section-list {
+    gap: 12px;
+  }
+
+  .jd_list-item {
+    gap: 12px;
+    font-size: 0.95rem;
+  }
+
+  .jd_skills-container {
+    padding: 15px;
+  }
+
+  .jd_skills-description {
+    font-size: 1rem;
+  }
+
+  .jd_skills-grid {
+    gap: 8px;
+  }
+
+  .jd_skill-badge {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .jd_benefit-item {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .jd_benefit-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra Small Mobile (below 480px) */
+@media screen and (max-width: 479px) {
+  .jd_job-details-container {
+    padding: 0 10px;
+  }
+
+  .jd_job-main-card {
+    padding: 12px;
+  }
+
+  .jd_job-title {
+    font-size: 1.3rem;
+  }
+
+  .jd_company-name {
+    font-size: 1rem;
+  }
+
+  .jd_job-location {
+    font-size: 0.9rem;
+  }
+
+  .jd_apply-btn,
+  .jd_apply-btn-large {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+
+  .jd_action-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .jd_section-title {
+    font-size: 1.1rem;
+  }
+
+  .jd_section-text,
+  .jd_list-item {
+    font-size: 0.9rem;
+  }
+
+  .jd_cta-title {
+    font-size: 1.2rem;
+  }
+
+  .jd_cta-description {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,43 @@
+/* JH Theme Toast Styles */
+.jh-toast-popup {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(60, 143, 99, 0.1) !important;
+  padding: 16px 20px !important;
+  min-height: auto !important;
+}
+
+.jh-toast-progress-bar {
+  background: linear-gradient(135deg, #3c8f63 0%, #2a6b4a 100%) !important;
+}
+
+/* Toast specific icon colors */
+.jh-toast-popup .swal2-icon {
+  border-color: #3c8f63 !important;
+  color: #3c8f63 !important;
+}
+
+.jh-toast-popup .swal2-success [class^="swal2-success-line"] {
+  background-color: #3c8f63 !important;
+}
+
+.jh-toast-popup .swal2-error [class^="swal2-x-mark-line"] {
+  background-color: #ef4444 !important;
+}
+
+.jh-toast-popup .swal2-warning {
+  border-color: #f59e0b !important;
+  color: #f59e0b !important;
+}
+
+.jh-toast-popup .swal2-info {
+  border-color: #3b82f6 !important;
+  color: #3b82f6 !important;
+}
+
+/* Info Icon Color */
+.swal2-info {
+  border-color: #3b82f6 !important;
+  color: #3b82f6 !important;
+}

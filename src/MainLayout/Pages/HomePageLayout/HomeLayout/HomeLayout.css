@@ -1,0 +1,96 @@
+/* Main Sections Container */
+.hl_main_sections_container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Background Layer - Fixed */
+.hl_sections_bg_layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hl_bg_gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+}
+
+.hl_bg_circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hl_bg_circle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3c8f63 0%, #2a6b4a 100%);
+  opacity: 0.1;
+  animation: hl_circleFloat 6s ease-in-out infinite;
+}
+
+.hl_circle1 {
+  width: 120px;
+  height: 120px;
+  top: 15%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.hl_circle2 {
+  width: 80px;
+  height: 80px;
+  top: 65%;
+  left: 82%;
+  animation-delay: 2s;
+}
+
+.hl_circle3 {
+  width: 160px;
+  height: 160px;
+  top: 25%;
+  left: 88%;
+  animation-delay: 4s;
+}
+
+.hl_circle4 {
+  width: 60px;
+  height: 60px;
+  top: 75%;
+  left: 12%;
+  animation-delay: 1s;
+}
+
+@keyframes hl_circleFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Content Layer - Scrolls over background */
+.hl_sections_content_layer {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+/* Make sure your sections have transparent background */
+.why-choose-us-section,
+.fj_section {
+  background: transparent !important;
+}
