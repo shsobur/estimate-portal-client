@@ -21,7 +21,6 @@ import RecApplications from "../DashboardLayout/Pages/Recruiter/RecApplications/
 // Package__
 import { createBrowserRouter } from "react-router-dom";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,7 +39,7 @@ const router = createBrowserRouter([
         element: <RecruiterProfile></RecruiterProfile>,
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/common-api/profile-data/${params.email}`
+            `http://localhost:5000/common-api/profile-data/${params.email}`,
           ),
       },
       {
@@ -119,8 +118,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/user-my-applications",
-        element: <MyApplication></MyApplication>
-      }
+        element: <MyApplication></MyApplication>,
+      },
     ],
   },
 ]);

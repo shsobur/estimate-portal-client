@@ -49,20 +49,40 @@ const RecApplications = () => {
 
     if (!seekerId) {
       jhToastError("This application have some problem!");
-      return
+      return;
     }
 
-    const res = await api.get(`/recruiter-api/resume-data/${seekerId}`)
-    if(res.status === 200) {
+    const res = await api.get(`/recruiter-api/resume-data/${seekerId}`);
+    if (res.status === 200) {
       setClickedApp(res.data);
       setAppDataLoading(false);
       document.getElementById("rec_digital_Resume").showModal();
     }
   };
 
+  const handleApplicationStatus = async (id, currentStatus) => {
+    try {
+      if (currentStatus !== "new") return; // Already seen, skip the patch
+
+      await api.patch(`/recruiter-api/job-applications/${id}`, {
+        status: "seen",
+      });
+
+      setApplications((prev) =>
+        prev.map((app) => (app._id === id ? { ...app, status: "seen" } : app)),
+      );
+    } catch (error) {
+      console.error("Error updating application status:", error);
+      jhToastError("Failed to update application status!");
+    }
+  };
+
   return (
     <>
-      <DigitalResume clickedApp={clickedApp} resumeLink={applications.resumeLink}></DigitalResume>
+      <DigitalResume
+        clickedApp={clickedApp}
+        resumeLink={applications.resumeLink}
+      ></DigitalResume>
       <section className="ra_section">
         <div className="ra_container">
           {/* Section Header */}
@@ -128,9 +148,15 @@ const RecApplications = () => {
                     <span>{timeAgo(app.applyTime)}</span>
                   </div>
                   <div className="ra_detail-item">
-                    <span className="py-1 px-2 bg-red-500 text-white rounded-lg font-bold">
-                      New
-                    </span>
+                    {app.status === "new" ? (
+                      <span className="py-1 px-2 bg-red-500 text-white rounded-lg font-bold">
+                        New
+                      </span>
+                    ) : (
+                      <span className="py-1 px-2 bg-blue-500 text-white rounded-lg font-bold">
+                        Seen
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -138,7 +164,10 @@ const RecApplications = () => {
                 <div className="ra_card-footer">
                   <button
                     disabled={appDataloading}
-                    onClick={() => handleSeekerData(app.seekerId)}
+                    onClick={() => {
+                      (handleSeekerData(app.seekerId),
+                        handleApplicationStatus(app._id, app.status));
+                    }}
                     className="ra_view-btn"
                   >
                     {appDataloading ? "Prosing..." : "View Full Application"}

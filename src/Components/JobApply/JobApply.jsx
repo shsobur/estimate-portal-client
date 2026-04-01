@@ -56,7 +56,8 @@ const JobApply = ({ jobData }) => {
       seekerName: profile.userName,
       seekerExp: profile.experience.length,
       seekerProject: profile.projects.length,
-      seekerLocation: profile.location
+      seekerLocation: profile.location,
+      status: "new",
     };
 
     const seekerId = profile._id;
