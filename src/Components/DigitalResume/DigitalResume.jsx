@@ -1,14 +1,24 @@
-import { MdDescription } from "react-icons/md";
-import SeekerModalHeader from "../../Shared/SeekerModalHeader/SeekerModalHeader";
-import { FaCheck, FaTimes } from "react-icons/fa";
-import DigitalResumeContent from "../DigitalResumeContent/DigitalResumeContent";
-import { useNavigate } from "react-router-dom";
+// Package__
 import { useContext } from "react";
+import { MdDescription } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { FaCheck, FaTimes } from "react-icons/fa";
+
+// File path__
+import useAxios from "../../Hooks/Axios";
 import useSocket from "../../Hooks/useSocket";
 import { AuthContext } from "../../Context/AuthContext";
-import { getRecruiterWelcomeMessage } from "../../utils";
+import {
+  getRecruiterWelcomeMessage,
+  jhConfirm,
+  jhToastError,
+  jhToastSuccess,
+} from "../../utils";
+import DigitalResumeContent from "../DigitalResumeContent/DigitalResumeContent";
+import SeekerModalHeader from "../../Shared/SeekerModalHeader/SeekerModalHeader";
 
-const DigitalResume = ({ clickedApp, resumeLink }) => {
+const DigitalResume = ({ clickedApp, resumeLink, applicationId }) => {
+  const api = useAxios();
   const navigate = useNavigate();
   const { socket, isConnected } = useSocket();
   const { user } = useContext(AuthContext);
@@ -26,28 +36,21 @@ const DigitalResume = ({ clickedApp, resumeLink }) => {
     }
 
     try {
-      // 1. Get candidate info
       const candidateEmail = clickedApp.userEmail;
       const candidateName = clickedApp.userName || "Candidate";
       const recruiterEmail = user?.email;
 
       if (!recruiterEmail) {
-        console.error("Recruiter email not found");
-        // Still redirect to chat
         redirectToChat();
         return;
       }
 
-      // 2. Prepare auto message
       const welcomeMessage = getRecruiterWelcomeMessage(
         candidateName,
-        recruiterEmail
+        recruiterEmail,
       );
 
-      // 3. Send auto message via socket
       if (socket && isConnected) {
-        console.log("📤 Sending auto message to:", candidateEmail);
-
         socket.emit("send_auto_message", {
           to: candidateEmail,
           from: recruiterEmail,
@@ -55,38 +58,27 @@ const DigitalResume = ({ clickedApp, resumeLink }) => {
           timestamp: new Date().toISOString(),
         });
 
-        // Listen for confirmation
         socket.once("auto_message_sent", (data) => {
           console.log("Auto message sent successfully:", data);
-          handleAcceptApplication();
         });
 
         socket.once("auto_message_error", (error) => {
           console.error("Auto message failed:", error);
         });
-      } else {
-        console.warn(
-          "Socket not connected, auto message will be sent when connected"
-        );
-        // You might want to store this message to send later
       }
 
-      // 4. Close modal
-      handleCloseModal();
+      // Update isAccept to true
+      await api.patch(`/recruiter-api/job-applications/${applicationId}`, {
+        isAccept: true,
+      });
 
-      // 5. Redirect to recruiter chat
+      handleCloseModal();
       redirectToChat();
     } catch (error) {
       console.error("Error accepting candidate:", error);
-      // Still redirect to chat even if message fails
       redirectToChat();
     }
   };
-
-  // After accept application__
-  const handleAcceptApplication = () => {
-    // __
-  }
 
   // Helper function to redirect to chat
   const redirectToChat = () => {
@@ -103,10 +95,34 @@ const DigitalResume = ({ clickedApp, resumeLink }) => {
     });
   };
 
-  const handleRejectCandidate = () => {
-    console.log("Candidate rejected:", clickedApp.userEmail);
+  const handleRejectCandidate = async () => {
+    // 1. Close modal first so alert appears on top
     handleCloseModal();
-    // Reject logic here__
+
+    // 2. Show confirmation alert
+    const result = await jhConfirm({
+      title: "Reject Application?",
+      text: "Are you sure you want to reject this candidate? This action cannot be undone.",
+      confirmButtonText: "Yes, Reject",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#ef4444",
+      icon: "warning",
+    });
+
+    // 3. If cancelled → reopen the modal
+    if (!result.isConfirmed) {
+      document.getElementById("rec_digital_Resume").showModal();
+      return;
+    }
+
+    // 4. If confirmed → call PUT route
+    try {
+      await api.put(`/recruiter-api/job-applications/${applicationId}`);
+      jhToastSuccess("Application rejected successfully!");
+    } catch (error) {
+      console.error("Error rejecting application:", error);
+      jhToastError("Failed to reject application!");
+    }
   };
 
   return (

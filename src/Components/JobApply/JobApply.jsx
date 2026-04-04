@@ -58,6 +58,7 @@ const JobApply = ({ jobData }) => {
       seekerProject: profile.projects.length,
       seekerLocation: profile.location,
       status: "new",
+      isAccepted: "Pending",
     };
 
     const seekerId = profile._id;
