@@ -20,6 +20,7 @@ import RecApplications from "../DashboardLayout/Pages/Recruiter/RecApplications/
 
 // Package__
 import { createBrowserRouter } from "react-router-dom";
+import RecAllJobPost from "../DashboardLayout/Pages/Recruiter/RecAllJobPost/RecAllJobPost";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/recruiter-job-applications",
         element: <RecApplications></RecApplications>,
+      },
+      {
+        path: "/dashboard/all-job-post",
+        element: <RecAllJobPost></RecAllJobPost>,
       },
       {
         path: "/dashboard/recruiter-chat",
