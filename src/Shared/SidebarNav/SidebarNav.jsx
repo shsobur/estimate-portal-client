@@ -66,7 +66,7 @@ const SidebarNav = ({
         {
           id: "all-job-post",
           path: "/dashboard/all-job-post",
-          label: "All Job Posts",
+          label: "Manage Jobs",
           icon: <MdOutlineContactPage size={22} />,
         },
       ],

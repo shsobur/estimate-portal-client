@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import {
   FaBriefcase,
   FaCalendarAlt,
@@ -16,70 +16,9 @@ import {
   FaTimes,
   FaInbox,
 } from "react-icons/fa";
-
-// ─── Mock Data ────────────────────────────────────────────────────────────────
-const MOCK_JOBS = [
-  {
-    _id: "1",
-    positionName: "Senior Frontend Developer",
-    jobTitle: "Senior Frontend Developer",
-    workplaceType: "Remote",
-    jobType: "Full-time",
-    totalApply: 24,
-    createdAt: "2025-12-01T14:03:01.171Z",
-    applicationDeadline: "2026-04-20T00:00:00.000Z",
-  },
-  {
-    _id: "2",
-    positionName: "Backend Engineer",
-    jobTitle: "Backend Engineer",
-    workplaceType: "On-site",
-    jobType: "Full-time",
-    totalApply: 11,
-    createdAt: "2025-11-20T09:30:00.000Z",
-    applicationDeadline: "2026-05-01T00:00:00.000Z",
-  },
-  {
-    _id: "3",
-    positionName: "UI/UX Designer",
-    jobTitle: "UI/UX Designer",
-    workplaceType: "Hybrid",
-    jobType: "Part-time",
-    totalApply: 37,
-    createdAt: "2025-11-10T11:00:00.000Z",
-    applicationDeadline: "2026-04-05T00:00:00.000Z",
-  },
-  {
-    _id: "4",
-    positionName: "DevOps Engineer",
-    jobTitle: "DevOps Engineer",
-    workplaceType: "Remote",
-    jobType: "Contract",
-    totalApply: 8,
-    createdAt: "2025-10-28T16:45:00.000Z",
-    applicationDeadline: "2026-03-30T00:00:00.000Z",
-  },
-  {
-    _id: "5",
-    positionName: "Product Manager",
-    jobTitle: "Product Manager",
-    workplaceType: "On-site",
-    jobType: "Full-time",
-    totalApply: 52,
-    createdAt: "2025-10-11T14:03:01.171Z",
-    applicationDeadline: "2026-06-15T00:00:00.000Z",
-  },
-  {
-    _id: "6",
-    positionName: "React Native Developer",
-    jobTitle: "React Native Developer",
-    workplaceType: "Remote",
-    jobType: "Full-time",
-    totalApply: 19,
-    createdAt: "2025-09-22T08:00:00.000Z",
-    applicationDeadline: "2026-04-10T00:00:00.000Z",
-  },
-];
+import { AuthContext } from "../../../../Context/AuthContext";
+import useAxios from "../../../../Hooks/Axios";
+import { jhToastError } from "../../../../utils";
 
 const JOBS_PER_PAGE = 4;
 
@@ -124,7 +63,7 @@ const deadlineBadge = (deadline) => {
   };
 };
 
-// ─── Highlight — green underline close to text, no layout shift ───────────────
+// ─── Highlight ────────────────────────────────────────────────────────────────
 const Highlight = ({ children }) => (
   <span
     className="text-[#3c8f63]"
@@ -187,7 +126,6 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
 
       {isOpen && (
         <div className="absolute right-0 top-10 w-44 bg-white border border-gray-100 rounded-xl shadow-lg z-50 overflow-hidden">
-          {/* View */}
           <button
             onClick={() => setOpenId(null)}
             className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors duration-150"
@@ -196,7 +134,6 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
             <span className="font-medium">View Post</span>
           </button>
           <div className="h-px bg-gray-100 mx-3" />
-          {/* Update */}
           <button
             onClick={() => setOpenId(null)}
             className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors duration-150"
@@ -205,7 +142,6 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
             <span className="font-medium">Update Post</span>
           </button>
           <div className="h-px bg-gray-100 mx-3" />
-          {/* Delete */}
           <button
             onClick={() => setOpenId(null)}
             className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 cursor-pointer transition-colors duration-150"
@@ -220,14 +156,15 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
 };
 
 // ─── Job Card ─────────────────────────────────────────────────────────────────
-// Hover: smooth box-shadow border — no translate, no layout shift
 const JobCard = ({ job, openId, setOpenId }) => {
   const badge = deadlineBadge(job.applicationDeadline);
+
+  // DB field is "position" not "positionName"
+  const displayTitle = job.position || job.jobTitle;
 
   return (
     <div
       className="bg-white rounded-2xl border border-gray-100 shadow-sm cursor-pointer flex flex-col gap-3 sm:gap-4 p-4 sm:p-5 transition-shadow duration-300"
-      style={{ boxShadow: undefined }}
       onMouseEnter={(e) =>
         (e.currentTarget.style.boxShadow =
           "0 0 0 2px rgba(60, 143, 99, 0.35), 0 4px 16px rgba(0,0,0,0.06)")
@@ -242,7 +179,7 @@ const JobCard = ({ job, openId, setOpenId }) => {
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="font-bold text-gray-800 text-sm sm:text-base leading-tight truncate">
-              {job.positionName}
+              {displayTitle}
             </h3>
             <div className="flex items-center gap-1.5 mt-0.5 text-gray-400 text-xs">
               <FaCalendarAlt className="text-[10px] shrink-0" />
@@ -281,7 +218,7 @@ const JobCard = ({ job, openId, setOpenId }) => {
         <div className="flex items-center gap-1.5 text-gray-500 text-sm">
           <FaUsers className="text-[#3c8f63] shrink-0" />
           <span>
-            <b className="text-gray-700">{job.totalApply}</b> Applied
+            <b className="text-gray-700">{job.totalApply ?? 0}</b> Applied
           </span>
         </div>
         <div className="text-xs text-gray-400">
@@ -349,32 +286,46 @@ const Pagination = ({ current, total, onChange }) => {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 const RecAllJobPost = () => {
+  const api = useAxios();
+  const { user } = useContext(AuthContext);
+
+  const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [jobs] = useState(MOCK_JOBS);
   const [search, setSearch] = useState("");
   const [dateFilter, setDateFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [openDropdownId, setOpenDropdownId] = useState(null);
   const [showNote, setShowNote] = useState(true);
 
+  // ── Fetch recruiter's jobs ──
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1800);
-    return () => clearTimeout(t);
-  }, []);
+    if (!user?.email) return;
 
-  const filtered = jobs
-    .slice()
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .filter((job) => {
-      const searchMatch =
-        job.positionName.toLowerCase().includes(search.toLowerCase()) ||
-        job.jobTitle.toLowerCase().includes(search.toLowerCase());
-      const dateMatch = dateFilter
-        ? job.createdAt.startsWith(dateFilter)
-        : true;
-      return searchMatch && dateMatch;
-    });
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        const res = await api.get(`/recruiter-api/my-jobs?email=${user.email}`);
+        setJobs(res.data);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        jhToastError("Failed to load job posts!");
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchJobs();
+  }, [api, user?.email]);
+
+  // ── Client-side search & date filter ──
+  const filtered = jobs.filter((job) => {
+    const title = (job.position || job.jobTitle || "").toLowerCase();
+    const searchMatch = title.includes(search.toLowerCase());
+    const dateMatch = dateFilter ? job.createdAt.startsWith(dateFilter) : true;
+    return searchMatch && dateMatch;
+  });
+
+  // ── Pagination ──
   const totalPages = Math.ceil(filtered.length / JOBS_PER_PAGE);
   const paginated = filtered.slice(
     (currentPage - 1) * JOBS_PER_PAGE,
@@ -397,7 +348,6 @@ const RecAllJobPost = () => {
   const isFiltered = search !== "" || dateFilter !== "";
 
   return (
-    // 15px padding desktop, 10px mobile — no extra margin/spacing
     <div className="w-full h-full overflow-y-auto p-[10px] sm:p-[15px]">
       {/* ── Page Header ── */}
       <div className="mb-6 sm:mb-8">
@@ -442,7 +392,7 @@ const RecAllJobPost = () => {
 
       {/* ── Search + Filter ── */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-5 sm:mb-6">
-        {/* Search — with left icon bg accent */}
+        {/* Search */}
         <div className="relative flex-1 flex items-center">
           <div className="absolute left-0 top-0 bottom-0 w-11 flex items-center justify-center bg-[#3c8f63]/8 rounded-l-xl border-r border-gray-200 pointer-events-none">
             <FaSearch className="text-[#3c8f63] text-sm" />
@@ -452,7 +402,7 @@ const RecAllJobPost = () => {
             value={search}
             onChange={(e) => handleSearch(e.target.value)}
             placeholder="Search by position or job title..."
-            className="w-full pl-12 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200 outline-none"
+            className="w-full pl-12 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200"
           />
         </div>
 
@@ -465,11 +415,11 @@ const RecAllJobPost = () => {
             type="date"
             value={dateFilter}
             onChange={(e) => handleDateFilter(e.target.value)}
-            className="w-full pl-12 pr-3 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200 outline-none"
+            className="w-full pl-12 pr-3 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200"
           />
         </div>
 
-        {/* Clear */}
+        {/* Clear Filters */}
         {isFiltered && (
           <button
             onClick={clearFilters}
