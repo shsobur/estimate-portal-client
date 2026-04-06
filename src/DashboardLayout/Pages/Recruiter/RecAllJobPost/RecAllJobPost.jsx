@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   FaBriefcase,
   FaCalendarAlt,
@@ -19,6 +19,7 @@ import {
 import { AuthContext } from "../../../../Context/AuthContext";
 import useAxios from "../../../../Hooks/Axios";
 import { jhToastError } from "../../../../utils";
+import AllJobPostEditModal from "../../../../Components/AllJobPostEditModal/AllJobPostEditModal";
 
 const JOBS_PER_PAGE = 4;
 
@@ -103,21 +104,13 @@ const SkeletonCard = () => (
 );
 
 // ─── Three-dot Dropdown ───────────────────────────────────────────────────────
-const JobDropdown = ({ jobId, openId, setOpenId }) => {
-  const ref = useRef(null);
+const JobDropdown = ({ jobId, openId, setOpenId, onOpenEdit }) => {
   const isOpen = openId === jobId;
 
-  useEffect(() => {
-    const handleOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpenId(null);
-    };
-    document.addEventListener("mousedown", handleOutside);
-    return () => document.removeEventListener("mousedown", handleOutside);
-  }, [setOpenId]);
-
   return (
-    <div className="relative shrink-0" ref={ref}>
+    <div className="relative shrink-0">
       <button
+        type="button"
         onClick={() => setOpenId(isOpen ? null : jobId)}
         className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-700 cursor-pointer transition-colors duration-200"
       >
@@ -127,6 +120,7 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
       {isOpen && (
         <div className="absolute right-0 top-10 w-44 bg-white border border-gray-100 rounded-xl shadow-lg z-50 overflow-hidden">
           <button
+            type="button"
             onClick={() => setOpenId(null)}
             className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors duration-150"
           >
@@ -135,7 +129,11 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
           </button>
           <div className="h-px bg-gray-100 mx-3" />
           <button
-            onClick={() => setOpenId(null)}
+            type="button"
+            onClick={() => {
+              setOpenId(null);
+              onOpenEdit?.();
+            }}
             className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors duration-150"
           >
             <FaEdit className="text-[#3c8f63] shrink-0" />
@@ -143,6 +141,7 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
           </button>
           <div className="h-px bg-gray-100 mx-3" />
           <button
+            type="button"
             onClick={() => setOpenId(null)}
             className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 cursor-pointer transition-colors duration-150"
           >
@@ -156,7 +155,7 @@ const JobDropdown = ({ jobId, openId, setOpenId }) => {
 };
 
 // ─── Job Card ─────────────────────────────────────────────────────────────────
-const JobCard = ({ job, openId, setOpenId }) => {
+const JobCard = ({ job, openId, setOpenId, onOpenEdit }) => {
   const badge = deadlineBadge(job.applicationDeadline);
 
   // DB field is "position" not "positionName"
@@ -189,7 +188,12 @@ const JobCard = ({ job, openId, setOpenId }) => {
             </div>
           </div>
         </div>
-        <JobDropdown jobId={job._id} openId={openId} setOpenId={setOpenId} />
+        <JobDropdown
+          jobId={job._id}
+          openId={openId}
+          setOpenId={setOpenId}
+          onOpenEdit={onOpenEdit}
+        />
       </div>
 
       {/* Badges */}
@@ -347,117 +351,130 @@ const RecAllJobPost = () => {
   };
   const isFiltered = search !== "" || dateFilter !== "";
 
+  const openUpdateJobModal = () => {
+    const modal = document.getElementById("res_all_job_post_update_modal");
+    if (!modal) {
+      console.warn("Update modal not found");
+      return;
+    }
+    modal.showModal();
+  };
+
   return (
-    <div className="w-full h-full overflow-y-auto p-[10px] sm:p-[15px]">
-      {/* ── Page Header ── */}
-      <div className="mb-6 sm:mb-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
-          <div>
-            <h2 className="text-3xl sm:text-[2.5rem] font-bold leading-tight text-[#1a202c] mb-2">
-              Manage Your <Highlight>Job Posts</Highlight>
-            </h2>
-            <p className="text-[#4a5568] text-base sm:text-[1.1rem] leading-relaxed">
-              Edit, update, or remove your active job listings anytime.
-            </p>
-          </div>
-          {!loading && (
-            <div className="self-start sm:self-center shrink-0 px-4 py-1.5 bg-[#3c8f63]/10 text-[#3c8f63] text-sm font-semibold rounded-full border border-[#3c8f63]/20">
-              {filtered.length} {filtered.length === 1 ? "Post" : "Posts"}
+    <>
+      <AllJobPostEditModal />
+      <div className="w-full h-full overflow-y-auto p-[10px] sm:p-[15px]">
+        {/* ── Page Header ── */}
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
+            <div>
+              <h2 className="text-3xl sm:text-[2.5rem] font-bold leading-tight text-[#1a202c] mb-2">
+                Manage Your <Highlight>Job Posts</Highlight>
+              </h2>
+              <p className="text-[#4a5568] text-base sm:text-[1.1rem] leading-relaxed">
+                Edit, update, or remove your active job listings anytime.
+              </p>
             </div>
+            {!loading && (
+              <div className="self-start sm:self-center shrink-0 px-4 py-1.5 bg-[#3c8f63]/10 text-[#3c8f63] text-sm font-semibold rounded-full border border-[#3c8f63]/20">
+                {filtered.length} {filtered.length === 1 ? "Post" : "Posts"}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* ── Info Note ── */}
+        {showNote && (
+          <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3.5 mb-5 sm:mb-6 relative">
+            <FaInfoCircle className="text-amber-500 text-base sm:text-lg mt-0.5 shrink-0" />
+            <p className="text-amber-800 text-xs sm:text-sm leading-relaxed pr-5">
+              <span className="font-semibold">Auto-removal notice:</span> Once
+              your job post's application deadline expires, it will be
+              automatically removed{" "}
+              <span className="font-semibold">1 day after expiry</span>. For
+              example, if your deadline is{" "}
+              <span className="font-semibold">Dec 15</span>, the post will be
+              deleted on <span className="font-semibold">Dec 17</span>.
+            </p>
+            <button
+              onClick={() => setShowNote(false)}
+              className="absolute right-3 top-3 text-amber-400 hover:text-amber-600 cursor-pointer transition-colors duration-150"
+            >
+              <FaTimes className="text-xs sm:text-sm" />
+            </button>
+          </div>
+        )}
+
+        {/* ── Search + Filter ── */}
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-5 sm:mb-6">
+          {/* Search */}
+          <div className="relative flex-1 flex items-center">
+            <div className="absolute left-0 top-0 bottom-0 w-11 flex items-center justify-center bg-[#3c8f63]/8 rounded-l-xl border-r border-gray-200 pointer-events-none">
+              <FaSearch className="text-[#3c8f63] text-sm" />
+            </div>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => handleSearch(e.target.value)}
+              placeholder="Search by position or job title..."
+              className="w-full pl-12 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200"
+            />
+          </div>
+
+          {/* Date Filter */}
+          <div className="relative flex items-center w-full sm:w-48">
+            <div className="absolute left-0 top-0 bottom-0 w-11 flex items-center justify-center bg-[#3c8f63]/8 rounded-l-xl border-r border-gray-200 pointer-events-none">
+              <FaCalendarAlt className="text-[#3c8f63] text-sm" />
+            </div>
+            <input
+              type="date"
+              value={dateFilter}
+              onChange={(e) => handleDateFilter(e.target.value)}
+              className="w-full pl-12 pr-3 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200"
+            />
+          </div>
+
+          {/* Clear Filters */}
+          {isFiltered && (
+            <button
+              onClick={clearFilters}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm text-gray-600 hover:bg-red-50 hover:text-red-500 hover:border-red-200 cursor-pointer transition-colors duration-200 whitespace-nowrap"
+            >
+              <FaTimes className="text-xs" />
+              <span>Clear</span>
+            </button>
           )}
         </div>
-      </div>
 
-      {/* ── Info Note ── */}
-      {showNote && (
-        <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3.5 mb-5 sm:mb-6 relative">
-          <FaInfoCircle className="text-amber-500 text-base sm:text-lg mt-0.5 shrink-0" />
-          <p className="text-amber-800 text-xs sm:text-sm leading-relaxed pr-5">
-            <span className="font-semibold">Auto-removal notice:</span> Once
-            your job post's application deadline expires, it will be
-            automatically removed{" "}
-            <span className="font-semibold">1 day after expiry</span>. For
-            example, if your deadline is{" "}
-            <span className="font-semibold">Dec 15</span>, the post will be
-            deleted on <span className="font-semibold">Dec 17</span>.
-          </p>
-          <button
-            onClick={() => setShowNote(false)}
-            className="absolute right-3 top-3 text-amber-400 hover:text-amber-600 cursor-pointer transition-colors duration-150"
-          >
-            <FaTimes className="text-xs sm:text-sm" />
-          </button>
+        {/* ── Cards Grid ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          {loading ? (
+            [1, 2, 3, 4].map((n) => <SkeletonCard key={n} />)
+          ) : paginated.length === 0 ? (
+            <EmptyState isFiltered={isFiltered} />
+          ) : (
+            paginated.map((job) => (
+              <JobCard
+                key={job._id}
+                job={job}
+                openId={openDropdownId}
+                setOpenId={setOpenDropdownId}
+                onOpenEdit={openUpdateJobModal}
+              />
+            ))
+          )}
         </div>
-      )}
 
-      {/* ── Search + Filter ── */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-5 sm:mb-6">
-        {/* Search */}
-        <div className="relative flex-1 flex items-center">
-          <div className="absolute left-0 top-0 bottom-0 w-11 flex items-center justify-center bg-[#3c8f63]/8 rounded-l-xl border-r border-gray-200 pointer-events-none">
-            <FaSearch className="text-[#3c8f63] text-sm" />
-          </div>
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Search by position or job title..."
-            className="w-full pl-12 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200"
+        {/* ── Pagination ── */}
+        {!loading && filtered.length > JOBS_PER_PAGE && (
+          <Pagination
+            current={currentPage}
+            total={totalPages}
+            onChange={setCurrentPage}
           />
-        </div>
-
-        {/* Date Filter */}
-        <div className="relative flex items-center w-full sm:w-48">
-          <div className="absolute left-0 top-0 bottom-0 w-11 flex items-center justify-center bg-[#3c8f63]/8 rounded-l-xl border-r border-gray-200 pointer-events-none">
-            <FaCalendarAlt className="text-[#3c8f63] text-sm" />
-          </div>
-          <input
-            type="date"
-            value={dateFilter}
-            onChange={(e) => handleDateFilter(e.target.value)}
-            className="w-full pl-12 pr-3 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 focus:outline-none focus:border-[#3c8f63] focus:ring-2 focus:ring-[#3c8f63]/10 transition-all duration-200"
-          />
-        </div>
-
-        {/* Clear Filters */}
-        {isFiltered && (
-          <button
-            onClick={clearFilters}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm text-gray-600 hover:bg-red-50 hover:text-red-500 hover:border-red-200 cursor-pointer transition-colors duration-200 whitespace-nowrap"
-          >
-            <FaTimes className="text-xs" />
-            <span>Clear</span>
-          </button>
         )}
       </div>
-
-      {/* ── Cards Grid ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-        {loading ? (
-          [1, 2, 3, 4].map((n) => <SkeletonCard key={n} />)
-        ) : paginated.length === 0 ? (
-          <EmptyState isFiltered={isFiltered} />
-        ) : (
-          paginated.map((job) => (
-            <JobCard
-              key={job._id}
-              job={job}
-              openId={openDropdownId}
-              setOpenId={setOpenDropdownId}
-            />
-          ))
-        )}
-      </div>
-
-      {/* ── Pagination ── */}
-      {!loading && filtered.length > JOBS_PER_PAGE && (
-        <Pagination
-          current={currentPage}
-          total={totalPages}
-          onChange={setCurrentPage}
-        />
-      )}
-    </div>
+    </>
   );
 };
 
